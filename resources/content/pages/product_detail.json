@@ -1,0 +1,48 @@
+{
+    "researchBadge": "Research Use Only",
+    "disclaimer": {
+        "heading": "Research use only.",
+        "body": "This compound is intended solely for laboratory research purposes and is not for human or animal consumption."
+    },
+    "trustBadges": [
+        {
+            "id": "coa",
+            "label": "Certificate of Analysis",
+            "sub": "Included with every order"
+        },
+        {
+            "id": "dispatch",
+            "label": "UK Dispatch",
+            "sub": "Fast tracked shipping"
+        },
+        {
+            "id": "grade",
+            "label": "Research Grade",
+            "sub": "≥98% purity standard"
+        },
+        {
+            "id": "packaging",
+            "label": "Secure Packaging",
+            "sub": "Discreet & tamper-proof"
+        }
+    ],
+    "addToCartLabel": "Add to cart",
+    "addingLabel": "Adding…",
+    "addedLabel": "Added to cart",
+    "viewCartLabel": "View cart & place order →",
+    "inStockLabel": "In stock",
+    "outOfStockLabel": "Out of stock",
+    "productDetailsHeading": "Product Details",
+    "notFoundMessage": "Product not found",
+    "backToProductsLabel": "Back to products",
+    "products": {
+        "bpc-157": {
+            "chemDesc": "Pentadecapeptide fragment of human Body Protection Compound. Sequence: GEPPPGKPADDAGLV. Stable gastric pentadecapeptide; resistant to enzymatic hydrolysis in gastric juice.",
+            "molecularWeight": "1419.55 g/mol",
+            "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C62H98N16O22"
+        }
+    }
+}

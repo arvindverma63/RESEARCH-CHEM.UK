@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "About & Compliance — ResearchChem.uk",
+    "description": "About ResearchChem.uk — our commitment to research-grade quality, regulatory compliance, and responsible supply of laboratory compounds in the United Kingdom."
+  },
+  "hero": {
+    "eyebrow": "About ResearchChem.uk",
+    "heading": "Research-Grade Quality. Uncompromising Standards.",
+    "subheading": "We supply verified, high-purity research compounds exclusively to qualified laboratory professionals across the United Kingdom."
+  },
+  "about": {
+    "heading": "Who We Are",
+    "body": [
+      {
+        "id": "ab1",
+        "text": "Research-Chem.uk is operated by Paul Stromberg, sole trader, trading as Research-Chem.uk, registered in England and Wales. We supply laboratory research compounds, peptides, SARMs, and associated research equipment with a singular focus: providing the scientific research community with the highest-purity compounds available, backed by full Certificate of Analysis documentation for every batch."
+      },
+      {
+        "id": "ab2",
+        "text": "We have extensive experience in the research chemicals sector and maintain rigorous quality control processes at every stage — from sourcing through to fulfilment. Every compound we supply is independently tested and verified before it reaches our customers."
+      }
+    ]
+  },
+  "disclaimers": [
+    {
+      "id": "d1",
+      "icon": "flask",
+      "heading": "For Research Use Only",
+      "body": "All compounds, peptides, SARMs, and products sold by ResearchChem.uk are strictly intended for in-vitro laboratory research purposes only. They are not intended for human consumption, veterinary use, or any clinical application whatsoever."
+    },
+    {
+      "id": "d2",
+      "icon": "shield",
+      "heading": "Not for Human or Veterinary Use",
+      "body": "None of the products listed on this website have been approved by the Medicines and Healthcare products Regulatory Agency (MHRA), the Food and Drug Administration (FDA), or any other regulatory authority for use in humans or animals. These products must not be administered to any living organism."
+    },
+    {
+      "id": "d3",
+      "icon": "id",
+      "heading": "Qualified Researchers Only",
+      "body": "Products are sold exclusively to individuals who are at least 18 years of age and who confirm they are qualified research professionals operating within a legitimate laboratory or academic research context. By placing an order you confirm this status."
+    },
+    {
+      "id": "d4",
+      "icon": "law",
+      "heading": "Buyer Responsibility & Legal Compliance",
+      "body": "It is the sole responsibility of the purchaser to ensure that the acquisition, possession, and use of any compound complies with all applicable laws and regulations in their jurisdiction. ResearchChem.uk accepts no liability for misuse, unlawful use, or any harm arising from improper handling of these compounds."
+    },
+    {
+      "id": "d5",
+      "icon": "hazard",
+      "heading": "Handling & Safety",
+      "body": "All research compounds must be handled by trained personnel using appropriate personal protective equipment (PPE) in a properly equipped laboratory environment. Compounds must be stored in accordance with the conditions specified on each product's Certificate of Analysis and Safety Data Sheet."
+    },
+    {
+      "id": "d6",
+      "icon": "globe",
+      "heading": "Export & Import Restrictions",
+      "body": "ResearchChem.uk supplies within the United Kingdom only. Customers are responsible for ensuring that importation of any compound into their country is lawful. We do not accept liability for any customs seizure, legal action, or regulatory consequence arising from international orders."
+    }
+  ],
+  "quality": {
+    "heading": "Our Quality Standards",
+    "points": [
+      {
+        "id": "q1",
+        "label": "Independent Third-Party Testing",
+        "detail": "Every batch is tested by accredited independent laboratories before dispatch."
+      },
+      {
+        "id": "q2",
+        "label": "Certificate of Analysis (COA)",
+        "detail": "Full COA documentation available for every product and batch number."
+      },
+      {
+        "id": "q3",
+        "label": "Purity Guarantee",
+        "detail": "Minimum 98%+ purity on all peptides and SARMs unless otherwise stated."
+      },
+      {
+        "id": "q4",
+        "label": "Secure Cold-Chain Storage",
+        "detail": "Temperature-controlled storage and packaging to preserve compound integrity."
+      },
+      {
+        "id": "q5",
+        "label": "Batch Traceability",
+        "detail": "Full batch traceability from synthesis through to customer delivery."
+      },
+      {
+        "id": "q6",
+        "label": "Discreet Professional Packaging",
+        "detail": "All orders dispatched in plain, professional packaging with no external branding."
+      }
+    ]
+  },
+  "legal": {
+    "heading": "Legal Notice",
+    "body": [
+      {
+        "id": "l1",
+        "text": "ResearchChem.uk operates in full compliance with United Kingdom law. The sale of research chemicals for laboratory use is a lawful activity in the UK when conducted responsibly and with appropriate safeguards."
+      },
+      {
+        "id": "l2",
+        "text": "By accessing this website and placing an order, you agree to our Terms & Conditions and confirm that you are purchasing solely for legitimate scientific research purposes. Any misrepresentation of intended use is the sole legal responsibility of the purchaser."
+      },
+      {
+        "id": "l3",
+        "text": "ResearchChem.uk reserves the right to refuse any order at its sole discretion, including where there is reasonable suspicion of non-research intent."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Compliance Enquiries",
+    "body": "For compliance-related enquiries, requests for Safety Data Sheets, or Certificate of Analysis documentation, please contact our team directly.",
+    "email": "info@research-chem.uk",
+    "cta": "Contact Us"
+  }
+}

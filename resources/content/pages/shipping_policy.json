@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Shipping Policy | ResearchChem.uk",
+    "description": "Shipping policy for ResearchChem.uk. UK orders dispatched within 2–3 working days in plain, discreet, unbranded packaging suitable for secure laboratory chemical transport."
+  },
+  "hero": {
+    "heading": "Shipping Policy",
+    "updated": "18 September 2026"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "1. Dispatch Timescale",
+      "body": "ResearchChem.uk aims to dispatch all confirmed orders within 2–3 working days of payment being received and verified. Orders placed on weekends or UK public holidays will begin processing on the next working day. You will receive a dispatch confirmation email once your order has been collected by our courier."
+    },
+    {
+      "id": "s2",
+      "heading": "2. UK Delivery Only",
+      "body": "We currently ship to addresses within the United Kingdom only. We do not offer international shipping at this time. If you are located outside the UK, we are unable to fulfil your order."
+    },
+    {
+      "id": "s3",
+      "heading": "3. Packaging — Plain, Discreet, and Secure",
+      "body": "All orders are dispatched in plain, highly secure, discreet, and unbranded packaging. There is no external branding, product labelling, or company name visible on the outside of any parcel. Packaging is selected to be suitable for the secure transport of laboratory chemical compounds, ensuring product integrity during transit."
+    },
+    {
+      "id": "s4",
+      "heading": "4. Delivery Charges",
+      "body": "Standard UK delivery is charged at £6.50 per order. Free standard delivery is available on orders totalling £50.00 or more. Delivery charges are calculated and displayed at checkout before payment is taken."
+    },
+    {
+      "id": "s5",
+      "heading": "5. Estimated Delivery Times",
+      "body": "Following dispatch, estimated delivery is typically 1–3 working days for standard UK delivery, depending on your location and the courier's service levels. These timescales are estimates only and are not guaranteed. ResearchChem.uk accepts no liability for delays caused by third-party couriers, adverse weather, or other circumstances beyond our reasonable control."
+    },
+    {
+      "id": "s6",
+      "heading": "6. Tracking",
+      "body": "Where a tracked service is used, tracking information will be included in your dispatch confirmation email. Please allow up to 24 hours after dispatch for tracking information to become active on the courier's system."
+    },
+    {
+      "id": "s7",
+      "heading": "7. Failed Deliveries",
+      "body": "If a delivery attempt is unsuccessful, the courier will leave a notification card or contact you directly to arrange redelivery or collection. ResearchChem.uk accepts no liability for orders that cannot be delivered due to an incorrect address being provided at checkout, or due to the recipient being unavailable to accept delivery."
+    },
+    {
+      "id": "s8",
+      "heading": "8. Non-Delivery",
+      "body": "If your order has not arrived within 10 working days of your dispatch confirmation, please contact us at info@research-chem.uk with your order reference. We will investigate with the courier and advise accordingly."
+    },
+    {
+      "id": "s9",
+      "heading": "9. Contact",
+      "body": "For any shipping-related queries, please contact us at info@research-chem.uk or in writing to: Paul Stromberg, 4 Grove Avenue, Llanfoist, Abergavenny, NP7 9NB, United Kingdom."
+    }
+  ]
+}

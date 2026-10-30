@@ -1,0 +1,39 @@
+{
+  "SARMS_FILTERS": [
+    {
+      "label": "All SARMs",
+      "value": "",
+      "id": "9jZfHBiuteonOtcOISAud"
+    },
+    {
+      "label": "RAD-140",
+      "value": "RAD-140",
+      "id": "vhEB2AVBUAU1VAxMkd7F8"
+    },
+    {
+      "label": "LGD-4033",
+      "value": "LGD-4033",
+      "id": "m8sRcmmjMTGHGT7ZG4pIF"
+    },
+    {
+      "label": "MK-2866",
+      "value": "MK-2866",
+      "id": "rwbLRarbl8oBdCCroa6MX"
+    },
+    {
+      "label": "GW-501516",
+      "value": "GW-501516",
+      "id": "hhZYo9LoLz2Hn4jfJviXR"
+    },
+    {
+      "label": "MK-677",
+      "value": "MK-677",
+      "id": "oSAw6laIkgDoNkoP-KLTu"
+    },
+    {
+      "label": "S4 Andarine",
+      "value": "S4",
+      "id": "K99rSSDw6zQrPvNNBnOeO"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0f1a"/>
+  <!-- hex grid pattern -->
+  <defs>
+    <pattern id="hex" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,2 58,17 58,47 30,62 2,47 2,17" fill="none" stroke="#0052a3" stroke-width="0.6" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#hex)"/>
+  <!-- cobalt accent bar -->
+  <rect x="0" y="0" width="1200" height="6" fill="#0052a3"/>
+  <!-- logo text -->
+  <text x="600" y="240" font-family="Arial, sans-serif" font-weight="900" font-size="64" fill="#ffffff" text-anchor="middle" letter-spacing="4">RESEARCH-CHEM.UK</text>
+  <!-- tagline -->
+  <text x="600" y="310" font-family="Arial, sans-serif" font-weight="400" font-size="26" fill="#0052a3" text-anchor="middle" letter-spacing="2">Premier Laboratory Research Compound Supplier</text>
+  <!-- divider -->
+  <rect x="480" y="340" width="240" height="2" fill="#0052a3" opacity="0.6"/>
+  <!-- trust badges -->
+  <text x="600" y="400" font-family="Arial, sans-serif" font-weight="400" font-size="18" fill="rgba(255,255,255,0.6)" text-anchor="middle">98%+ Purity  ·  HPLC Tested  ·  COA Verified  ·  UK Only</text>
+  <!-- bottom bar -->
+  <rect x="0" y="624" width="1200" height="6" fill="#0052a3"/>
+</svg>

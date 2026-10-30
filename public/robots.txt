@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Transactional pages — not useful in search results
+Disallow: /cart
+Disallow: /checkout/
+Disallow: /order-confirmation
+
+# Admin and payment-link pages — private
+Disallow: /admin/
+Disallow: /pay/
+
+# API routes
+Disallow: /api/
+
+# Legacy redirect paths — canonical versions are indexed instead
+Disallow: /products/mk-677$
+Disallow: /products/mk677
+Disallow: /products/mk-677-liquid
+Disallow: /products/mk-677-liquid-60ml
+Disallow: /products/mk-677-ibutamoren-60ml
+
+# Dead/stub routes that return 404 or are not real pages
+Disallow: /products$
+Disallow: /peptides$
+Disallow: /sarms$
+Disallow: /catalogue
+
+# Sitemap location
+Sitemap: https://research-chem.uk/sitemap.xml

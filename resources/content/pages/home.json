@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "headline": "Laboratory Research Compounds",
+    "subheadline": "Peptides, SARMs and pen kits supplied strictly for in-vitro laboratory research. Batch documentation available.",
+    "cta_primary": "View Compounds",
+    "cta_secondary": "View Categories"
+  },
+  "trust_signals": [
+    {
+      "id": "ts1",
+      "label": "Batch documentation"
+    },
+    {
+      "id": "ts2",
+      "label": "UK dispatch"
+    },
+    {
+      "id": "ts3",
+      "label": "Certificate of Analysis available"
+    },
+    {
+      "id": "ts4",
+      "label": "Research use only"
+    },
+    {
+      "id": "ts5",
+      "label": "Discreet packaging"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat1",
+      "name": "Laboratory Research Grade Peptides",
+      "descriptor": "Synthetic peptides supplied for in-vitro laboratory research. Lyophilised powder, individually sealed.",
+      "compound_count": "40+ Compounds",
+      "purity": "Batch-specific CoA",
+      "cas_ref": "CAS-REFERENCED",
+      "href": "/peptide-vials"
+    },
+    {
+      "id": "cat2",
+      "name": "Laboratory Research Grade SARMs",
+      "descriptor": "Selective androgen receptor modulators supplied strictly for in-vitro laboratory research.",
+      "compound_count": "20+ Compounds",
+      "purity": "Batch-specific CoA",
+      "cas_ref": "HPLC-DOCUMENTED",
+      "href": "/sarms"
+    },
+    {
+      "id": "cat3",
+      "name": "Laboratory Research Grade Peptide Pen Kits",
+      "descriptor": "Research compound kits supplied with listed accessories. Strictly for in-vitro laboratory research only.",
+      "compound_count": "Full Kit Range",
+      "purity": "Batch-specific CoA",
+      "cas_ref": "RESEARCH USE ONLY",
+      "href": "/pen-kits"
+    }
+  ],
+  "stats": [
+    {
+      "id": "stat1",
+      "value": "98.0%",
+      "label": "Minimum purity threshold"
+    },
+    {
+      "id": "stat2",
+      "value": "HPLC",
+      "label": "Batch testing documentation"
+    },
+    {
+      "id": "stat3",
+      "value": "2–3",
+      "label": "Working-day dispatch target"
+    },
+    {
+      "id": "stat4",
+      "value": "CoA",
+      "label": "Available by batch"
+    }
+  ],
+  "credentials": [
+    {
+      "id": "cred1",
+      "text": "Batch documentation available"
+    },
+    {
+      "id": "cred2",
+      "text": "Certificate of Analysis available for every product"
+    },
+    {
+      "id": "cred3",
+      "text": "Orders processed and dispatched within 2–3 working days"
+    },
+    {
+      "id": "cred4",
+      "text": "UK-based supplier of laboratory research compounds"
+    },
+    {
+      "id": "cred5",
+      "text": "Strict research-use positioning and documentation"
+    },
+    {
+      "id": "cred6",
+      "text": "Secure, discreet packaging as standard"
+    }
+  ],
+  "cta_section": {
+    "headline": "",
+    "subtext": "Browse our full catalogue of laboratory research compounds. Batch documentation is available and orders are dispatched within 2–3 working days.",
+    "button": "Browse Full Catalogue"
+  }
+}

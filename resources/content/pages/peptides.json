@@ -1,0 +1,39 @@
+{
+  "PEPTIDE_FILTERS": [
+    {
+      "label": "All Peptides",
+      "value": "",
+      "id": "lOlmKgcTmyiKfw7cBNg3B"
+    },
+    {
+      "label": "BPC-157",
+      "value": "BPC-157",
+      "id": "5TmsbEbMOp3D2CWvR1QqW"
+    },
+    {
+      "label": "TB-500",
+      "value": "TB-500",
+      "id": "DxSCvoObXqQC4Jn_7d1CE"
+    },
+    {
+      "label": "Melanotan",
+      "value": "Melanotan",
+      "id": "kksqk335Yu8JAwaB0I3kR"
+    },
+    {
+      "label": "Ipamorelin",
+      "value": "Ipamorelin",
+      "id": "ERdVNbdtYtXXk6eksFe9l"
+    },
+    {
+      "label": "CJC-1295",
+      "value": "CJC-1295",
+      "id": "MKtF2h2ERwzqsmFOMxBZI"
+    },
+    {
+      "label": "Sermorelin",
+      "value": "Sermorelin",
+      "id": "QQvifzhVNrqtlVnkzVqWO"
+    }
+  ]
+}

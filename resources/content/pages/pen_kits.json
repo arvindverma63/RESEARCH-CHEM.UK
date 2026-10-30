@@ -1,0 +1,176 @@
+{
+    "pageTitle": "Peptide Pen Kits",
+    "pageSubtitle": "Research compound kits · Listed accessories included · Dispatched within 2–3 working days",
+    "PRODUCTS": [
+        {
+            "id": "20",
+            "slug": "retatrutide-pen-kit",
+            "name": "Retatrutide 40mg Pen Kit",
+            "dose": "40mg",
+            "subtitle": "Retatrutide Multi-Dose Research Pen System",
+            "formula": "C219H345N55O68",
+            "contents": [
+                "1x Precision Multi-Dose Aluminum Pen Applicator",
+                "1x Retatrutide 40mg Lyophilised Dual-Chamber Cartridge",
+                "1x Bacteriostatic Water Ampoule (3ml)",
+                "4x Sterile Micro-Fine Dispensing Tips (31G)",
+                "Pre-reconstitution safety seals and batch COA"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 kit",
+                    "price": "£150",
+                    "each": "£150 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "2 kits",
+                    "price": "£300",
+                    "each": "£150 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "3 kits",
+                    "price": "£420",
+                    "each": "£140 each",
+                    "highlight": true
+                },
+                {
+                    "qty": "4 kits",
+                    "price": "£560",
+                    "each": "£140 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "5 kits",
+                    "price": "£650",
+                    "each": "£130 each",
+                    "highlight": false
+                }
+            ],
+            "cas": "2381272-89-3",
+            "molecularFormula": "C219H345N55O68",
+            "molecularWeight": "3765.1 g/mol",
+            "purity": "≥99.6% (HPLC)",
+            "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "chemDesc": "Complete precision research pen system with high purity Retatrutide lyophilised cartridge and diluent."
+        },
+        {
+            "id": "21",
+            "slug": "wolverine-pen-kit",
+            "name": "Wolverine 20mg Pen Kit",
+            "dose": "20mg",
+            "subtitle": "BPC-157 10mg + TB-500 10mg Pen System",
+            "formula": "BPC-157 + TB-500 Synergistic Blend",
+            "contents": [
+                "1x Precision Multi-Dose Pen Injector (0.01ml increment dial)",
+                "1x Wolverine 20mg (10mg BPC + 10mg TB-500) Cartridge",
+                "1x Bacteriostatic Water Reconstitution Ampoule",
+                "4x Sterile Disposable 31G Cartridge Needles",
+                "Protective Travel Case and Calibration Certificate"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 kit",
+                    "price": "£110",
+                    "each": "£110 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "2 kits",
+                    "price": "£210",
+                    "each": "£105 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "3 kits",
+                    "price": "£295",
+                    "each": "£98 each",
+                    "highlight": true
+                },
+                {
+                    "qty": "5 kits",
+                    "price": "£450",
+                    "each": "£90 each",
+                    "highlight": false
+                }
+            ],
+            "cas": "Blend — see CoA",
+            "molecularFormula": "BPC-157 + TB-500 Synergistic Blend",
+            "molecularWeight": "See CoA",
+            "purity": "≥98.5% BPC / ≥99.2% TB (HPLC)",
+            "sequence": "BPC-157 (10mg) + TB-500 (10mg) dual combination",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "chemDesc": "Dual-compound tissue recovery research pen combining BPC-157 and TB-500 in one precision injector."
+        },
+        {
+            "id": "22",
+            "slug": "glow-ghk-cu-pen-kit",
+            "name": "GLOW GHK-CU 70mg Pen Kit",
+            "dose": "70mg",
+            "subtitle": "GHK-Cu 50mg + BPC-157 10mg + TB-500 10mg",
+            "formula": "Tri-Peptide Regenerative Matrix",
+            "contents": [
+                "1x Precision Aluminum Multi-Dose Pen Delivery System",
+                "1x GLOW 70mg Multi-Compound Lyophilised Cartridge",
+                "1x Sterile Reconstitution Solvent Ampoule",
+                "4x 31G Ultra-Thin Wall Needles",
+                "Product CoA and storage instruction sheet"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 kit",
+                    "price": "£120",
+                    "each": "£120 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "2 kits",
+                    "price": "£230",
+                    "each": "£115 each",
+                    "highlight": false
+                },
+                {
+                    "qty": "3 kits",
+                    "price": "£325",
+                    "each": "£108 each",
+                    "highlight": true
+                },
+                {
+                    "qty": "5 kits",
+                    "price": "£495",
+                    "each": "£99 each",
+                    "highlight": false
+                }
+            ],
+            "cas": "Blend — see CoA",
+            "molecularFormula": "Tri-Peptide Regenerative Matrix",
+            "molecularWeight": "See CoA",
+            "purity": "≥99.6% GHK / ≥98.5% BPC / ≥99.2% TB",
+            "sequence": "GHK-Cu (50mg) + BPC-157 (10mg) + TB-500 (10mg)",
+            "appearance": "Deep blue lyophilised cartridge + pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "chemDesc": "Triple-peptide precision pen kit combining Copper Tripeptide-1 with BPC-157 and TB-500."
+        }
+    ],
+    "categoryIntro": {
+        "heading": "Retatrutide Pen Kits & Peptide Pens — UK's Best Sellers",
+        "body": [
+            {
+                "id": "pk-p1",
+                "text": "Our Retatrutide pen kit is our bestselling research compound kit — a complete Reta pen set combining a 40mg Retatrutide vial with a calibrated micro pin injector pen, 12× 32G micro needles, and alcohol wipes. Designed for structured GLP-1/GIP/glucagon receptor pathway research, the Retatrutide pen kit removes the need to source components separately and is ready to use straight from the box."
+            },
+            {
+                "id": "pk-p2",
+                "text": "ResearchChem.uk offers three peptide pen kit configurations: the Retatrutide 40mg Pen Kit (Reta pen), the Wolverine 20mg Pen Kit combining BPC-157 and TB-500 for tissue repair studies, and the GLOW GHK-CU 70mg Pen Kit for copper peptide research. All peptide pens include a filled vial, micro pin injector pen, 12× 32G micro pins, and 12× alcohol wipes — everything needed for a complete research protocol."
+            },
+            {
+                "id": "pk-p3",
+                "text": "All pen kits are dispatched from the UK within 2–3 working days. Multi-kit volume pricing is available at checkout. These kits are supplied strictly for qualified researchers conducting in-vitro laboratory research. Not for human or veterinary use."
+            }
+        ]
+    }
+}

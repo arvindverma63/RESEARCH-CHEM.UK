@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Privacy Policy | ResearchChem.uk",
+    "description": "UK GDPR-compliant privacy policy for ResearchChem.uk. How we collect, use, and protect your personal data as a sole trader business."
+  },
+  "hero": {
+    "heading": "Privacy Policy",
+    "updated": "18 September 2026"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "1. Who We Are",
+      "body": "ResearchChem.uk is operated by Paul Stromberg, sole trader, trading as Research-Chem.uk, registered in England and Wales. Our registered address is: 4 Grove Avenue, Llanfoist, Abergavenny, NP7 9NB, United Kingdom. You can contact us by email at info@research-chem.uk. As a sole trader processing personal data in connection with our business activities, we are the data controller for the purposes of the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018."
+    },
+    {
+      "id": "s2",
+      "heading": "2. What Personal Data We Collect",
+      "body": "We collect and process only the personal data necessary to fulfil your order and manage our business relationship with you. This includes: your name and business name; your delivery address and billing address; your email address and telephone number; order details including products purchased, quantities, and values; payment confirmation references (we do not store card details — payments are processed securely by our payment provider); and any correspondence you send to us."
+    },
+    {
+      "id": "s3",
+      "heading": "3. How We Use Your Personal Data",
+      "body": "We use your personal data for the following purposes: to process and fulfil your order; to communicate with you regarding your order, including dispatch and delivery notifications; to respond to enquiries or complaints; to comply with our legal and regulatory obligations; and to maintain accurate business records as required by HMRC and applicable law. We do not use your personal data for marketing purposes without your explicit consent."
+    },
+    {
+      "id": "s4",
+      "heading": "4. Legal Basis for Processing",
+      "body": "We process your personal data on the following legal bases under UK GDPR: (a) Contract — processing is necessary to perform the contract of sale between us; (b) Legal obligation — processing is necessary to comply with our legal obligations, including tax and accounting requirements; and (c) Legitimate interests — where we have a legitimate business interest in processing your data, such as maintaining records of transactions, provided this does not override your rights and freedoms."
+    },
+    {
+      "id": "s5",
+      "heading": "5. Data Sharing",
+      "body": "We do not sell, rent, or trade your personal data to any third party. We share your data only where necessary to fulfil your order or comply with legal obligations. This includes: our payment processing provider, for the purpose of processing your payment; our courier or delivery service, for the purpose of delivering your order; and HMRC or other regulatory authorities, where required by law. All third parties with whom we share data are required to handle it securely and in accordance with applicable data protection law."
+    },
+    {
+      "id": "s6",
+      "heading": "6. Data Retention",
+      "body": "We retain your personal data for as long as is necessary to fulfil the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements. Order and transaction records are retained for a minimum of six years in accordance with HMRC requirements. After this period, data is securely deleted or anonymised."
+    },
+    {
+      "id": "s7",
+      "heading": "7. Data Security",
+      "body": "We take the security of your personal data seriously. We implement appropriate technical and organisational measures to protect your data against unauthorised access, loss, destruction, or alteration. All order data is stored securely and access is restricted to authorised personnel only. Our website uses HTTPS encryption for all data transmitted between your browser and our server."
+    },
+    {
+      "id": "s8",
+      "heading": "8. Your Rights Under UK GDPR",
+      "body": "You have the following rights in relation to your personal data: the right to access a copy of the personal data we hold about you; the right to rectification of inaccurate or incomplete data; the right to erasure ('right to be forgotten') in certain circumstances; the right to restrict processing in certain circumstances; the right to data portability in certain circumstances; and the right to object to processing based on legitimate interests. To exercise any of these rights, please contact us at info@research-chem.uk. We will respond to all requests within one calendar month."
+    },
+    {
+      "id": "s9",
+      "heading": "9. Cookies",
+      "body": "Our website uses cookies to improve your browsing experience and to comply with our legal obligations. For full details of the cookies we use and how to manage your preferences, please refer to our Cookie Policy."
+    },
+    {
+      "id": "s10",
+      "heading": "10. Complaints",
+      "body": "If you have a concern about how we handle your personal data, please contact us in the first instance at info@research-chem.uk. If you remain dissatisfied, you have the right to lodge a complaint with the Information Commissioner's Office (ICO), the UK's supervisory authority for data protection matters. The ICO can be contacted at www.ico.org.uk or by telephone on 0303 123 1113."
+    },
+    {
+      "id": "s11",
+      "heading": "11. Changes to This Policy",
+      "body": "We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. The current version will always be published on this page with the date of last update. We encourage you to review this policy periodically."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Legal Disclaimer — ResearchChem.uk",
+    "description": "Full legal disclaimer for ResearchChem.uk. All products are for laboratory research use only. Not for human or veterinary use."
+  },
+  "hero": {
+    "heading": "Legal Disclaimer",
+    "updated": "2 August 2026"
+  },
+  "sections": [
+    {
+      "id": "dis1",
+      "heading": "Research Use Only",
+      "body": "All products sold by ResearchChem.uk are intended strictly for laboratory research purposes only. They are chemical compounds supplied to qualified research professionals for scientific investigation. Under no circumstances are these products intended for, or to be used for, human consumption, self-administration, veterinary use, or any clinical or therapeutic application."
+    },
+    {
+      "id": "dis2",
+      "heading": "No Medical or Health Claims",
+      "body": "Nothing on this website constitutes medical advice, health advice, or a recommendation to use any product for any health-related purpose. ResearchChem.uk makes no claims that any product is safe or effective for use in humans or animals. Any information provided is for scientific reference only and does not constitute a recommendation for any particular use."
+    },
+    {
+      "id": "dis3",
+      "heading": "Regulatory Status",
+      "body": "The products sold on this website have not been evaluated, approved, or licensed by the Medicines and Healthcare products Regulatory Agency (MHRA), the Food and Drug Administration (FDA), or any other regulatory body for use in humans or animals. They are not medicines, supplements, or veterinary products."
+    },
+    {
+      "id": "dis4",
+      "heading": "Buyer Responsibility",
+      "body": "By purchasing from ResearchChem.uk, the buyer accepts full legal and moral responsibility for ensuring that the purchase, possession, storage, handling, and use of any product complies with all applicable laws and regulations in their jurisdiction. ResearchChem.uk accepts no liability whatsoever for any harm, loss, legal consequence, or regulatory action arising from the misuse or unlawful use of any product."
+    },
+    {
+      "id": "dis5",
+      "heading": "Limitation of Liability",
+      "body": "To the maximum extent permitted by applicable law, ResearchChem.uk and its owner shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the purchase, possession, or use of any product sold on this website. Our total liability in any circumstances shall not exceed the purchase price of the relevant order."
+    },
+    {
+      "id": "dis6",
+      "heading": "Accuracy of Information",
+      "body": "While we make every effort to ensure that product information, specifications, and pricing on this website are accurate and up to date, we do not warrant that all information is free from error. Product specifications, purity levels, and availability are subject to change without notice. Always refer to the Certificate of Analysis for the definitive specification of any batch."
+    },
+    {
+      "id": "dis7",
+      "heading": "Third-Party Links",
+      "body": "This website may contain links to third-party websites for reference purposes. ResearchChem.uk does not endorse, control, or accept responsibility for the content of any third-party website. Accessing third-party links is at your own risk."
+    },
+    {
+      "id": "dis8",
+      "heading": "Jurisdiction",
+      "body": "This disclaimer is governed by the laws of England and Wales. Any disputes arising in connection with this disclaimer shall be subject to the exclusive jurisdiction of the courts of England and Wales."
+    },
+    {
+      "id": "dis9",
+      "heading": "Updates",
+      "body": "This disclaimer may be updated at any time without notice. The date shown at the top of this page indicates when it was last revised. Continued use of the website constitutes acceptance of the current disclaimer."
+    }
+  ]
+}

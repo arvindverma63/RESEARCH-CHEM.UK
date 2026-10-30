@@ -1,0 +1,16 @@
+{
+  "checkout": {
+    "heading": "Complete your order",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "you@example.com",
+    "nameLabel": "Full name",
+    "emailLabel": "Email address",
+    "paymentNote": "Secure checkout powered by Stripe. Card, Apple Pay & Google Pay accepted.",
+    "freeDeliveryBanner": "Free delivery on this order — Royal Mail Tracked",
+    "deliveryLabel": "Delivery: £6.50 — Royal Mail Tracked",
+    "deliveryRowLabel": "Delivery (Royal Mail Tracked)",
+    "freeDeliveryNote": "Free delivery on orders over £50.",
+    "totalLabel": "Total (inc. delivery)",
+    "redirectingLabel": "Redirecting to checkout…"
+  }
+}

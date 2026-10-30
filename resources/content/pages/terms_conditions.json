@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Terms & Conditions | ResearchChem.uk",
+    "description": "Terms and conditions for purchasing laboratory research compounds from ResearchChem.uk. All sales are strictly B2B for in-vitro laboratory research purposes only."
+  },
+  "hero": {
+    "heading": "Terms & Conditions",
+    "updated": "18 September 2026"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "1. Acceptance of Terms",
+      "body": "By placing an order with ResearchChem.uk, operated by Paul Stromberg, sole trader, trading as Research-Chem.uk, registered in England and Wales, you confirm that you have read, understood, and agree to be bound by these Terms and Conditions in their entirety. If you do not agree, you must not place an order."
+    },
+    {
+      "id": "s2",
+      "heading": "2. Business-to-Business Sales Only",
+      "body": "All sales made through ResearchChem.uk are strictly business-to-business (B2B) transactions. Products are supplied exclusively to qualified researchers, academic institutions, licensed laboratories, and other professional entities for legitimate in-vitro laboratory research purposes only. By completing a purchase, the buyer warrants and represents that they are acting in a professional or commercial capacity and not as a consumer."
+    },
+    {
+      "id": "s3",
+      "heading": "3. Research Use Only — No Human or Veterinary Use",
+      "body": "All compounds sold by ResearchChem.uk are strictly for in-vitro laboratory research use only. They are not intended for, and must not be used for, human consumption, veterinary use, clinical trials, or any application involving living organisms. Products have not been evaluated by the MHRA, FDA, or any other regulatory authority for safety or efficacy in humans or animals."
+    },
+    {
+      "id": "s4",
+      "heading": "4. Buyer Qualifications and Warranties",
+      "body": "By purchasing from ResearchChem.uk, the buyer warrants that: (a) they are a qualified researcher or are purchasing on behalf of a licensed laboratory or research institution; (b) they possess the necessary qualifications, licences, and facilities to handle, store, and use research-grade chemical compounds safely and in compliance with all applicable laws and regulations; (c) all products will be used solely for legitimate in-vitro laboratory research; and (d) they are aged 18 years or over."
+    },
+    {
+      "id": "s5",
+      "heading": "5. Assumption of Liability",
+      "body": "The buyer assumes 100% liability for the handling, storage, transportation, use, and disposal of all products purchased from ResearchChem.uk. ResearchChem.uk accepts no liability whatsoever for any loss, damage, injury, or consequence arising from the misuse, improper handling, or unauthorised application of any product. The buyer indemnifies ResearchChem.uk against any and all claims, damages, costs, or expenses arising from the buyer's use of the products."
+    },
+    {
+      "id": "s6",
+      "heading": "6. Pricing and Payment",
+      "body": "All prices are displayed in pounds sterling (GBP) and are inclusive of any applicable taxes unless otherwise stated. ResearchChem.uk reserves the right to amend prices at any time without prior notice. Payment must be made in full at the time of ordering. We accept payment via open banking transfer through our secure checkout. Orders will not be dispatched until payment has been confirmed."
+    },
+    {
+      "id": "s7",
+      "heading": "7. Dispatch and Delivery",
+      "body": "ResearchChem.uk aims to dispatch all orders within 2–3 working days of confirmed payment. Delivery is available to addresses within the United Kingdom only. Estimated delivery timescales are provided for guidance only and do not constitute a guarantee. ResearchChem.uk accepts no liability for delays caused by third-party couriers, adverse weather, or other circumstances beyond our reasonable control."
+    },
+    {
+      "id": "s8",
+      "heading": "8. Refunds and Returns",
+      "body": "Due to the sensitive nature of laboratory-grade compounds and batch purity requirements, all sales are final. No returns, exchanges, or refunds are accepted once an order has been dispatched. Please refer to our Refund & Returns Policy for full details."
+    },
+    {
+      "id": "s9",
+      "heading": "9. Intellectual Property",
+      "body": "All content on this website, including but not limited to text, images, logos, and product descriptions, is the intellectual property of ResearchChem.uk or its licensors and is protected by applicable copyright and intellectual property laws. Unauthorised reproduction or use is strictly prohibited."
+    },
+    {
+      "id": "s10",
+      "heading": "10. Limitation of Liability",
+      "body": "To the fullest extent permitted by law, ResearchChem.uk's total liability to the buyer for any claim arising out of or in connection with these Terms shall not exceed the total value of the order to which the claim relates. ResearchChem.uk shall not be liable for any indirect, consequential, special, or punitive damages of any kind."
+    },
+    {
+      "id": "s11",
+      "heading": "11. Governing Law",
+      "body": "These Terms and Conditions are governed by and construed in accordance with the laws of England and Wales. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts of England and Wales."
+    },
+    {
+      "id": "s12",
+      "heading": "12. Changes to These Terms",
+      "body": "ResearchChem.uk reserves the right to amend these Terms and Conditions at any time. The current version will always be published on this page with the date of last update. Continued use of the website following any changes constitutes acceptance of the revised Terms."
+    },
+    {
+      "id": "s13",
+      "heading": "13. Contact",
+      "body": "If you have any questions regarding these Terms and Conditions, please contact us at info@research-chem.uk or in writing to: Paul Stromberg, 4 Grove Avenue, Llanfoist, Abergavenny, NP7 9NB, United Kingdom."
+    }
+  ]
+}

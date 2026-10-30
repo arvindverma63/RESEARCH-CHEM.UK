@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Refund & Returns Policy | ResearchChem.uk",
+    "description": "Refund and returns policy for ResearchChem.uk. Due to the sensitive nature of laboratory-grade compounds, all sales are final once dispatched."
+  },
+  "hero": {
+    "heading": "Refund & Returns Policy",
+    "updated": "18 September 2026"
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "heading": "1. All Sales Are Final",
+      "body": "Due to the sensitive nature of laboratory-grade research compounds and strict batch purity requirements, all sales made through ResearchChem.uk are final. No returns, exchanges, or refunds are accepted once an order has been dispatched. By placing an order, the buyer acknowledges and accepts this policy in full."
+    },
+    {
+      "id": "s2",
+      "heading": "2. Why We Cannot Accept Returns",
+      "body": "Research-grade compounds are produced and certified to specific batch purity standards. Once a product leaves our facility, we cannot guarantee that it has been stored, handled, or transported in conditions that maintain its integrity and purity. Accepting returns would compromise the quality assurance standards we maintain for all customers and would be inconsistent with responsible laboratory supply practices."
+    },
+    {
+      "id": "s3",
+      "heading": "3. Damaged or Incorrect Orders",
+      "body": "In the unlikely event that you receive a product that is visibly damaged in transit, or that you receive an incorrect item, you must notify us within 48 hours of receipt by emailing info@research-chem.uk with your order reference and photographic evidence. We will assess each case individually and, where we determine an error or transit damage has occurred, we will arrange a replacement at our discretion. This does not affect your statutory rights."
+    },
+    {
+      "id": "s4",
+      "heading": "4. Non-Delivery",
+      "body": "If your order has not arrived within 10 working days of your dispatch confirmation email, please contact us at info@research-chem.uk. We will investigate with the courier and, where appropriate, arrange a replacement or issue a credit at our discretion."
+    },
+    {
+      "id": "s5",
+      "heading": "5. B2B Sales — Consumer Rights Act",
+      "body": "All purchases from ResearchChem.uk are made on a strictly business-to-business (B2B) basis. By purchasing, the buyer confirms they are acting in a professional or commercial capacity. The Consumer Rights Act 2015 and associated consumer protection legislation do not apply to B2B transactions. Buyers are advised to satisfy themselves as to the suitability of any product before ordering."
+    },
+    {
+      "id": "s6",
+      "heading": "6. Contact",
+      "body": "For any queries relating to this policy, please contact us at info@research-chem.uk or in writing to: Paul Stromberg, 4 Grove Avenue, Llanfoist, Abergavenny, NP7 9NB, United Kingdom."
+    }
+  ]
+}

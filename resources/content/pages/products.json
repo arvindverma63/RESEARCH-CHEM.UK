@@ -1,0 +1,24 @@
+{
+  "CATEGORIES": [
+    {
+      "label": "All",
+      "value": "",
+      "id": "51DfgWNfu1qGEAFDTV9jD"
+    },
+    {
+      "label": "Peptides",
+      "value": "peptides",
+      "id": "oHiyUEopDV4pEIJeBdbcx"
+    },
+    {
+      "label": "SARMs",
+      "value": "sarms",
+      "id": "K55xvaZOo1cx9a7z4hJ-_"
+    },
+    {
+      "label": "Pen Kits",
+      "value": "pen-kits",
+      "id": "K2yRXvNHrq4dSaYQ4nTUe"
+    }
+  ]
+}

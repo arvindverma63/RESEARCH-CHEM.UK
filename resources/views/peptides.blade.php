@@ -165,12 +165,13 @@
                     <!-- Two Action Buttons -->
                     <div style="display: flex; flex-direction: column; gap: 6px; margin-top: auto;">
                         <a href="{{ route('products.show', $slug) }}"
-                           style="display: block; text-align: center; padding: 7px 6px; background-color: #ffffff; color: #0052a3; font-family: var(--font-heading); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.03em; text-decoration: none; border-radius: 4px; border: 1.5px solid #0052a3; transition: all 0.15s ease;"
-                           onmouseover="this.style.backgroundColor='#f0f7ff'"
-                           onmouseout="this.style.backgroundColor='#ffffff'">
+                           class="btn-secondary-details">
                             View Details
                         </a>
                         <button type="button"
+                                class="btn-primary-cart"
+                                :class="{ 'is-added': added }"
+                                :disabled="loading"
                                 @click="
                                     if (loading) return;
                                     loading = true;
@@ -187,23 +188,18 @@
                                         added = true;
                                         setTimeout(() => added = false, 2000);
                                     }, 300);
-                                "
-                                :disabled="loading"
-                                :style="added ? 'background-color: #059669; border-color: #059669;' : 'background-color: #0052a3; border-color: #0052a3;'"
-                                style="display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; text-align: center; padding: 8px 6px; color: #ffffff; font-family: var(--font-heading); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.03em; border-radius: 4px; border: 1.5px solid #0052a3; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 1px 2px rgba(0,82,163,0.12);"
-                                onmouseover="if (!this.disabled && !added) this.style.backgroundColor='#003d7a'"
-                                onmouseout="if (!this.disabled && !added) this.style.backgroundColor='#0052a3'">
+                                ">
                             <span x-show="loading" x-cloak style="display: inline-flex; align-items: center; gap: 5px;">
                                 <svg class="animate-spin" style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                                <span>Adding...</span>
+                                <span style="color: #ffffff;">Adding...</span>
                             </span>
                             <span x-show="!loading && !added" style="display: inline-flex; align-items: center; gap: 5px;">
-                                <svg style="width: 13px; height: 13px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span>Add to Cart</span>
+                                <svg style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <span style="color: #ffffff;">Add to Cart</span>
                             </span>
                             <span x-show="!loading && added" x-cloak style="display: inline-flex; align-items: center; gap: 4px;">
-                                <svg style="width: 13px; height: 13px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                <span>Added!</span>
+                                <svg style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                <span style="color: #ffffff;">Added!</span>
                             </span>
                         </button>
                     </div>

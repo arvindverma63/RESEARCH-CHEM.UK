@@ -652,7 +652,7 @@
                             <!-- Actions -->
                             <div class="flex flex-col gap-1.5">
                                 <a href="{{ route('products.show', $fProd['slug']) }}"
-                                   class="block text-center py-1 text-[11px] font-bold rounded-xs border border-blue-700 text-blue-700 hover:bg-blue-50 transition-colors"
+                                   class="block text-center py-1.5 text-xs font-bold rounded-xs border border-[#0052a3] text-[#0052a3] hover:bg-blue-50 transition-colors"
                                    style="font-family: var(--font-heading);">
                                     View Details
                                 </a>
@@ -675,16 +675,19 @@
                                             }, 300);
                                         "
                                         :disabled="loading"
-                                        :class="added ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700 hover:bg-blue-800'"
-                                        class="w-full py-1 text-[11px] font-bold rounded-xs text-white transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-                                        style="font-family: var(--font-heading);">
-                                    <span x-show="loading" class="flex items-center gap-1">
-                                        <svg class="animate-spin h-3 w-3 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                                        :style="added ? 'background-color: #059669; border-color: #059669;' : 'background-color: #0052a3; border-color: #0052a3;'"
+                                        class="w-full py-1.5 text-xs font-bold rounded-xs text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-xs hover:brightness-105 active:scale-[0.99]"
+                                        style="font-family: var(--font-heading); border: 1.5px solid #0052a3;">
+                                    <span x-show="loading" x-cloak class="flex items-center gap-1">
+                                        <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
                                         <span>Adding...</span>
                                     </span>
-                                    <span x-show="!loading && !added">Add to Cart</span>
-                                    <span x-show="!loading && added" class="flex items-center gap-1">
-                                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                    <span x-show="!loading && !added" class="flex items-center gap-1.5">
+                                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                        <span>Add to Cart</span>
+                                    </span>
+                                    <span x-show="!loading && added" x-cloak class="flex items-center gap-1">
+                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                                         <span>Added!</span>
                                     </span>
                                 </button>

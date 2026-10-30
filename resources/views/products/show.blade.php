@@ -255,15 +255,15 @@
             <div class="flex flex-col gap-3 pt-2">
                 <div class="flex items-center gap-3">
                     <!-- Quantity Selector -->
-                    <div class="flex items-center border border-slate-300 rounded-lg overflow-hidden bg-white">
+                    <div class="flex items-center border border-slate-300 rounded-md overflow-hidden bg-white shadow-xs">
                         <button type="button" @click="quantity = Math.max(1, quantity - 1)"
-                                class="w-11 h-11 flex items-center justify-center text-lg font-bold text-slate-600 hover:bg-slate-100 transition-colors"
+                                class="w-12 h-12 flex items-center justify-center text-lg font-bold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer select-none"
                                 aria-label="Decrease quantity">
                             &minus;
                         </button>
-                        <span class="w-12 text-center text-sm font-bold text-slate-800" x-text="quantity">1</span>
+                        <span class="w-12 text-center text-sm font-bold text-slate-900 font-mono" x-text="quantity">1</span>
                         <button type="button" @click="quantity = quantity + 1"
-                                class="w-11 h-11 flex items-center justify-center text-lg font-bold text-slate-600 hover:bg-slate-100 transition-colors"
+                                class="w-12 h-12 flex items-center justify-center text-lg font-bold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer select-none"
                                 aria-label="Increase quantity">
                             &plus;
                         </button>
@@ -273,10 +273,10 @@
                     <button type="button"
                             @click="handleAddToCart()"
                             :disabled="loading"
-                            class="flex-1 flex items-center justify-center gap-2 h-11 px-6 rounded-lg text-sm font-bold text-white transition-all shadow-md hover:shadow-lg disabled:opacity-85"
-                            :class="added ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-700 hover:bg-blue-800'"
-                            style="font-family: var(--font-heading);">
-                        <span x-show="loading" class="flex items-center gap-2">
+                            :style="added ? 'background-color: #059669; border-color: #059669;' : 'background-color: #0052a3; border-color: #0052a3;'"
+                            class="flex-1 flex items-center justify-center gap-2.5 h-12 px-6 rounded-md text-sm font-bold text-white transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer select-none disabled:opacity-80 disabled:cursor-not-allowed hover:brightness-105 active:scale-[0.99]"
+                            style="font-family: var(--font-heading); border-width: 1.5px; border-style: solid;">
+                        <span x-show="loading" x-cloak class="flex items-center gap-2">
                             <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
@@ -284,12 +284,12 @@
                             <span>Adding to Cart...</span>
                         </span>
                         <span x-show="!loading && !added" class="flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                             <span>Add to Cart</span>
                         </span>
-                        <span x-show="!loading && added" class="flex items-center gap-2">
+                        <span x-show="!loading && added" x-cloak class="flex items-center gap-2 text-white">
                             <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
@@ -299,9 +299,13 @@
                 </div>
 
                 <!-- View Cart nudge -->
-                <div x-show="added" x-cloak class="text-center pt-1">
-                    <a href="{{ route('cart') }}" class="text-xs font-bold text-blue-700 hover:underline">
-                        Proceed to Cart &amp; Checkout &rarr;
+                <div x-show="added" x-cloak class="flex items-center justify-between px-3.5 py-2 bg-emerald-50 border border-emerald-200 rounded-md text-xs font-semibold text-emerald-800 transition-all">
+                    <span class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        Compound added to research order
+                    </span>
+                    <a href="{{ route('cart') }}" class="font-bold text-emerald-900 hover:text-emerald-700 underline flex items-center gap-1">
+                        Go to Cart &rarr;
                     </a>
                 </div>
             </div>

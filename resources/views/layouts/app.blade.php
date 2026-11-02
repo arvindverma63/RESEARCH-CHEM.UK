@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Buy Research Peptides & SARMs UK | ResearchChem.uk')</title>
     <meta name="description" content="@yield('meta_description', 'UK supplier of laboratory research compounds. Peptide vials, SARMs and pen kits with batch documentation available. Orders dispatch within 2–3 working days.')">
+    @hasSection('meta_keywords')
+    <meta name="keywords" content="@yield('meta_keywords')">
+    @endif
     <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Open Graph -->

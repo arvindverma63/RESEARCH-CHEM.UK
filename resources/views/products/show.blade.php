@@ -16,19 +16,32 @@
         ],
     ];
     $seo = $penKitSeo[$id] ?? null;
-    $pageTitle = $seo['title'] ?? (($product['name'] ?? 'Product') . ' – Research-Chem.uk');
-    $metaDesc = $seo['desc'] ?? ('Buy ' . ($product['name'] ?? 'Compound') . ' — laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.');
+    $pageTitle = !empty($product['seo_title']) ? $product['seo_title'] : ($seo['title'] ?? (($product['name'] ?? 'Product') . ' – Research-Chem.uk'));
+    $metaDesc = !empty($product['meta_description']) ? $product['meta_description'] : ($seo['desc'] ?? ('Buy ' . ($product['name'] ?? 'Compound') . ' — laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.'));
+    $metaKeywords = !empty($product['meta_keywords']) ? $product['meta_keywords'] : null;
     $productImage = $product['image'] ?? $product['img'] ?? ("/airo-assets/images/pages/" . ($product['category'] ?? 'peptides') . "/{$id}");
     $absoluteImage = str_starts_with($productImage, 'http') ? $productImage : asset($productImage);
 @endphp
 
 @section('title', $pageTitle)
 @section('meta_description', $metaDesc)
+@if(!empty($metaKeywords))
+@section('meta_keywords', $metaKeywords)
+@endif
 @section('og_title', $pageTitle)
 @section('og_description', $metaDesc)
 @section('og_image', $absoluteImage)
 
 @section('json_ld')
+@if(!empty($product['schema_markup']))
+    @if(str_contains($product['schema_markup'], '<script'))
+{!! $product['schema_markup'] !!}
+    @else
+<script type="application/ld+json">
+{!! $product['schema_markup'] !!}
+</script>
+    @endif
+@else
 <script type="application/ld+json">
 {
   "@@context": "https://schema.org",
@@ -82,6 +95,7 @@
   ]
 }
 </script>
+@endif
 @endsection
 
 @section('content')

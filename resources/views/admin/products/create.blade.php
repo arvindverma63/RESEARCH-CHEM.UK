@@ -328,6 +328,215 @@
             </div>
         </div>
 
+
+        <!-- Section: SEO & Structured Data (Schema.org) -->
+        <div class="pt-6 border-t border-slate-200"
+             x-data="{
+                seoTitle: '{{ addslashes(old('seo_title', '')) }}',
+                seoDesc: '{{ addslashes(old('meta_description', '')) }}',
+                schemaText: `{{ old('schema_markup', '') }}`,
+                schemaFileName: '',
+                jsonValid: null,
+                validateJson() {
+                    if (!this.schemaText.trim()) {
+                        this.jsonValid = null;
+                        return;
+                    }
+                    try {
+                        let clean = this.schemaText.trim();
+                        if (clean.startsWith('<script') && clean.endsWith('</script>')) {
+                            clean = clean.replace(/<script[^>]*>/, '').replace(/<\/script>/, '').trim();
+                        }
+                        JSON.parse(clean);
+                        this.jsonValid = true;
+                    } catch(e) {
+                        this.jsonValid = false;
+                    }
+                },
+                generateDefaultSchema() {
+                    const schema = {
+                        '@@context': 'https://schema.org',
+                        '@@type': 'Product',
+                        'name': this.seoTitle || 'New Research Compound',
+                        'description': this.seoDesc || 'Laboratory research compound supplied by Research-Chem.uk with batch COA documentation.',
+                        'brand': {
+                            '@@type': 'Brand',
+                            'name': 'ResearchChem.uk'
+                        },
+                        'offers': {
+                            '@@type': 'Offer',
+                            'priceCurrency': 'GBP',
+                            'price': '0.00',
+                            'availability': 'https://schema.org/InStock',
+                            'itemCondition': 'https://schema.org/NewCondition',
+                            'seller': {
+                                '@@type': 'Organization',
+                                'name': 'ResearchChem.uk'
+                            }
+                        }
+                    };
+                    this.schemaText = JSON.stringify(schema, null, 2);
+                    this.validateJson();
+                }
+             }">
+            <h2 class="text-sm font-bold font-heading text-[#002b5c] uppercase tracking-wider mb-4 pb-2 border-b border-slate-100 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <i data-lucide="search" class="w-4 h-4 text-blue-600"></i>
+                    <span>SEO &amp; Schema Structured Data</span>
+                </span>
+                <span class="text-[11px] font-mono text-slate-400 font-normal">Google ranking, Rich Snippets &amp; metadata</span>
+            </h2>
+
+            <!-- Google Search Result Live Preview -->
+            <div class="mb-5 p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold block mb-2">
+                    Google Search Result Preview (SERP Snippet)
+                </span>
+                <div class="space-y-1">
+                    <div class="flex items-center gap-1.5 text-xs text-slate-700">
+                        <span class="inline-block w-4 h-4 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold text-center leading-4">R</span>
+                        <span class="text-slate-800 text-xs font-medium">https://research-chem.uk &rsaquo; products &rsaquo; <span class="text-slate-500">product-url</span></span>
+                    </div>
+                    <div class="text-base text-blue-800 hover:underline font-medium cursor-pointer font-sans truncate"
+                         x-text="seoTitle || 'Compound Name – Research-Chem.uk'">
+                        Compound Name – Research-Chem.uk
+                    </div>
+                    <div class="text-xs text-slate-600 line-clamp-2 leading-relaxed"
+                         x-text="seoDesc || 'Buy laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.'">
+                        Buy laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- SEO Title & Keywords Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider font-heading">
+                                SEO Meta Title
+                            </label>
+                            <span class="text-[10px] font-mono" :class="seoTitle.length > 60 ? 'text-amber-600 font-bold' : 'text-slate-400'">
+                                <span x-text="seoTitle.length"></span> / 60 chars
+                            </span>
+                        </div>
+                        <input type="text" name="seo_title" x-model="seoTitle"
+                               value="{{ old('seo_title') }}"
+                               placeholder="e.g. Buy BPC-157 10mg UK | HPLC Verified | ResearchChem.uk"
+                               class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-sans">
+                        <p class="text-[11px] text-slate-400 mt-1">If blank, defaults to: <code>{Compound Name} – Research-Chem.uk</code></p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 font-heading">
+                            Meta Keywords
+                        </label>
+                        <input type="text" name="meta_keywords"
+                               value="{{ old('meta_keywords') }}"
+                               placeholder="e.g. bpc 157, buy peptides uk, laboratory bpc157, research chemical"
+                               class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-sans">
+                        <p class="text-[11px] text-slate-400 mt-1">Comma-separated target search keywords for search engines</p>
+                    </div>
+                </div>
+
+                <!-- Meta Description -->
+                <div>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider font-heading">
+                            Meta Description
+                        </label>
+                        <span class="text-[10px] font-mono" :class="seoDesc.length > 160 ? 'text-amber-600 font-bold' : 'text-slate-400'">
+                            <span x-text="seoDesc.length"></span> / 160 chars
+                        </span>
+                    </div>
+                    <textarea name="meta_description" x-model="seoDesc" rows="2"
+                              placeholder="e.g. Premium laboratory-grade BPC-157 10mg lyophilised peptide vial. Third-party UKAS accredited HPLC tested with batch COA included. Fast 2-3 working day UK dispatch."
+                              class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-sans leading-relaxed">{{ old('meta_description') }}</textarea>
+                    <p class="text-[11px] text-slate-400 mt-0.5">Concise summary displayed under the title in search engine results (140-160 characters recommended)</p>
+                </div>
+
+                <!-- Schema.org JSON-LD structured data upload / editor -->
+                <div class="pt-3 border-t border-slate-100">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider font-heading">
+                                Schema.org Structured Data (JSON-LD)
+                            </label>
+                            <span class="text-[11px] text-slate-400 font-sans">
+                                Upload a schema .json file or paste custom JSON-LD for rich snippets (Product, Offer, Rating, Brand)
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" @click="generateDefaultSchema()"
+                                    class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold rounded flex items-center gap-1 transition-colors">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-600"></i>
+                                <span>Generate Default Schema</span>
+                            </button>
+                            <button type="button" @click="validateJson()"
+                                    class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold rounded flex items-center gap-1 transition-colors">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                <span>Validate JSON</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- File Upload Option for Schema -->
+                    <div class="mb-3 p-3 bg-blue-50/60 border border-blue-200 rounded-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <i data-lucide="file-code" class="w-5 h-5 text-blue-700 shrink-0"></i>
+                            <div>
+                                <span class="text-xs font-bold text-blue-900 block">Upload Schema JSON File</span>
+                                <span class="text-[11px] text-blue-700 font-sans" x-text="schemaFileName ? 'Loaded file: ' + schemaFileName : 'Select a .json or .txt file containing JSON-LD markup to load and save'">Select a .json or .txt file containing JSON-LD markup to load and save</span>
+                            </div>
+                        </div>
+                        <label class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-bold shadow-xs transition-colors shrink-0">
+                            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                            <span>Browse Schema File...</span>
+                            <input type="file" name="schema_file" accept=".json,.txt,application/json,text/plain" class="sr-only"
+                                   @change="
+                                       if ($event.target.files.length > 0) {
+                                           const f = $event.target.files[0];
+                                           schemaFileName = f.name;
+                                           const reader = new FileReader();
+                                           reader.onload = (e) => {
+                                               schemaText = e.target.result;
+                                               validateJson();
+                                           };
+                                           reader.readAsText(f);
+                                       }
+                                   ">
+                        </label>
+                    </div>
+
+                    <!-- Schema Validation Alert -->
+                    <template x-if="jsonValid === true">
+                        <div class="mb-2 p-2 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                            <span>Valid JSON-LD schema syntax!</span>
+                        </div>
+                    </template>
+                    <template x-if="jsonValid === false">
+                        <div class="mb-2 p-2 bg-red-50 border border-red-200 text-red-800 text-xs rounded flex items-center gap-2">
+                            <i data-lucide="alert-triangle" class="w-4 h-4 text-red-600"></i>
+                            <span>Invalid JSON syntax. Please check for trailing commas or unquoted keys.</span>
+                        </div>
+                    </template>
+
+                    <!-- Textarea for Schema -->
+                    <textarea name="schema_markup" x-model="schemaText" @input="validateJson()" rows="6"
+                              placeholder='{
+  "@@context": "https://schema.org",
+  "@@type": "Product",
+  "name": "Compound Name"
+}'
+                              class="w-full px-3 py-2 text-xs font-mono border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 bg-slate-900 text-emerald-400 leading-relaxed">{{ old('schema_markup') }}</textarea>
+                    <p class="text-[11px] text-slate-400 mt-1">
+                        If custom schema is provided, it replaces the default product schema on the live store page.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Submit buttons -->
         <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
             <a href="{{ route('admin.products.index') }}"

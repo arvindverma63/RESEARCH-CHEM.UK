@@ -6,6 +6,7 @@ use App\Models\ContactMessage;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use App\Services\ProductSyncService;
 use Database\Seeders\OrderAndLeadSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -147,6 +148,93 @@ class AdminTest extends TestCase
             'appearance' => 'White lyophilised powder',
             'storage' => '−20 °C long-term; 2–8 °C short-term',
         ]);
+    }
+
+    public function test_admin_edit_page_renders_seo_and_schema_fields(): void
+    {
+        $product = Product::first();
+        $this->assertNotNull($product);
+
+        $response = $this->actingAs($this->admin)->get("/admin/products/{$product->id}/edit");
+        $response->assertStatus(200);
+        $response->assertSee('(SEO) &amp; Schema Structured Data', false);
+        $response->assertSee('SEO Meta Title');
+        $response->assertSee('Meta Description');
+        $response->assertSee('Meta Keywords');
+        $response->assertSee('Schema.org Structured Data (JSON-LD)', false);
+        $response->assertSee('Upload Schema JSON File');
+        $response->assertSee('Google Search Result Preview');
+    }
+
+    public function test_admin_can_update_product_seo_and_schema(): void
+    {
+        $product = Product::where('slug', 'bpc-157')->first();
+        $this->assertNotNull($product);
+
+        $customSchema = json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => 'Custom BPC-157 Lab Grade',
+            'sku' => 'BPC-157-CUSTOM',
+        ], JSON_PRETTY_PRINT);
+
+        $response = $this->actingAs($this->admin)->put("/admin/products/{$product->id}", [
+            'name' => 'BPC-157',
+            'slug' => 'bpc-157',
+            'category' => 'peptides',
+            'price' => '£24.95',
+            'seo_title' => 'Buy BPC-157 10mg UK | HPLC Verified Lab Grade | ResearchChem.uk',
+            'meta_description' => 'High purity laboratory-grade BPC-157 10mg peptide vial. UK third-party HPLC tested with full analytical COA report.',
+            'meta_keywords' => 'bpc 157, peptides uk, buy bpc157 laboratory',
+            'schema_markup' => $customSchema,
+        ]);
+
+        $response->assertRedirect("/admin/products/{$product->id}/edit");
+        $response->assertSessionHas('success');
+
+        $product->refresh();
+        $this->assertEquals('Buy BPC-157 10mg UK | HPLC Verified Lab Grade | ResearchChem.uk', $product->seo_title);
+        $this->assertEquals('High purity laboratory-grade BPC-157 10mg peptide vial. UK third-party HPLC tested with full analytical COA report.', $product->meta_description);
+        $this->assertEquals('bpc 157, peptides uk, buy bpc157 laboratory', $product->meta_keywords);
+        $this->assertEquals($customSchema, $product->schema_markup);
+
+        // Storefront product page should render the custom SEO title, description, keywords, and custom schema
+        $storefront = $this->get('/products/bpc-157');
+        $storefront->assertStatus(200);
+        $storefront->assertSee('<title>Buy BPC-157 10mg UK | HPLC Verified Lab Grade | ResearchChem.uk</title>', false);
+        $storefront->assertSee('High purity laboratory-grade BPC-157 10mg peptide vial. UK third-party HPLC tested with full analytical COA report.');
+        $storefront->assertSee('<meta name="keywords" content="bpc 157, peptides uk, buy bpc157 laboratory">', false);
+        $storefront->assertSee('Custom BPC-157 Lab Grade');
+        $storefront->assertSee('BPC-157-CUSTOM');
+    }
+
+    public function test_admin_can_upload_schema_file(): void
+    {
+        $product = Product::where('slug', 'bpc-157')->first();
+        $this->assertNotNull($product);
+
+        $fileContent = json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => 'Uploaded Schema Test',
+            'sku' => 'UPLOADED-SCHEMA-01',
+        ]);
+
+        $fakeFile = UploadedFile::fake()->createWithContent('bpc-schema.json', $fileContent);
+
+        $response = $this->actingAs($this->admin)->put("/admin/products/{$product->id}", [
+            'name' => 'BPC-157',
+            'slug' => 'bpc-157',
+            'category' => 'peptides',
+            'price' => '£24.95',
+            'schema_file' => $fakeFile,
+        ]);
+
+        $response->assertRedirect("/admin/products/{$product->id}/edit");
+
+        $product->refresh();
+        $this->assertStringContainsString('UPLOADED-SCHEMA-01', $product->schema_markup);
+        $this->assertStringContainsString('Uploaded Schema Test', $product->schema_markup);
     }
 
     public function test_admin_can_view_orders_list(): void

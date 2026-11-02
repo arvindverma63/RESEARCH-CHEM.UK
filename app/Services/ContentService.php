@@ -313,8 +313,22 @@ class ContentService
         if ($product && self::hasProductsTable()) {
             try {
                 $dbProduct = \App\Models\Product::where('slug', $slug)->first();
-                if ($dbProduct && !empty($dbProduct->details)) {
-                    $product['details'] = $dbProduct->details;
+                if ($dbProduct) {
+                    if (!empty($dbProduct->details)) {
+                        $product['details'] = $dbProduct->details;
+                    }
+                    if (!empty($dbProduct->seo_title)) {
+                        $product['seo_title'] = $dbProduct->seo_title;
+                    }
+                    if (!empty($dbProduct->meta_description)) {
+                        $product['meta_description'] = $dbProduct->meta_description;
+                    }
+                    if (!empty($dbProduct->meta_keywords)) {
+                        $product['meta_keywords'] = $dbProduct->meta_keywords;
+                    }
+                    if (!empty($dbProduct->schema_markup)) {
+                        $product['schema_markup'] = $dbProduct->schema_markup;
+                    }
                 }
             } catch (\Throwable $e) {
                 // Ignore DB error

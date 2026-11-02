@@ -80,6 +80,11 @@ class ProductController extends Controller
             'storage' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'seo_title' => ['nullable', 'string', 'max:255'],
+            'meta_description' => ['nullable', 'string', 'max:1000'],
+            'meta_keywords' => ['nullable', 'string', 'max:500'],
+            'schema_markup' => ['nullable', 'string'],
+            'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
         ]);
@@ -99,6 +104,14 @@ class ProductController extends Controller
             $filename = $cleanSlug . '-' . time() . '.' . $file->getClientOriginalExtension();
             $file->move($uploadDir, $filename);
             $validated['image'] = "/assets/images/uploads/{$filename}";
+        }
+
+        // Handle Schema JSON/TXT File Upload
+        if ($request->hasFile('schema_file') && $request->file('schema_file')->isValid()) {
+            $schemaRaw = file_get_contents($request->file('schema_file')->getRealPath());
+            if ($schemaRaw !== false) {
+                $validated['schema_markup'] = trim($schemaRaw);
+            }
         }
 
         $cleanPrice = $validated['price'];
@@ -170,6 +183,11 @@ class ProductController extends Controller
             'storage' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'seo_title' => ['nullable', 'string', 'max:255'],
+            'meta_description' => ['nullable', 'string', 'max:1000'],
+            'meta_keywords' => ['nullable', 'string', 'max:500'],
+            'schema_markup' => ['nullable', 'string'],
+            'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
         ]);
@@ -185,6 +203,14 @@ class ProductController extends Controller
             $filename = $cleanSlug . '-' . time() . '.' . $file->getClientOriginalExtension();
             $file->move($uploadDir, $filename);
             $validated['image'] = "/assets/images/uploads/{$filename}";
+        }
+
+        // Handle Schema JSON/TXT File Upload
+        if ($request->hasFile('schema_file') && $request->file('schema_file')->isValid()) {
+            $schemaRaw = file_get_contents($request->file('schema_file')->getRealPath());
+            if ($schemaRaw !== false) {
+                $validated['schema_markup'] = trim($schemaRaw);
+            }
         } elseif (empty($validated['image'])) {
             $validated['image'] = $product->image;
         }

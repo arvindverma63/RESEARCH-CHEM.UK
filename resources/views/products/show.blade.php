@@ -370,45 +370,8 @@
     <!-- ── BOTTOM: Extended Scientific Literature & Product Detail ── -->
     @if($hasCustomDetail)
         @include("products.details.{$id}")
-    @elseif(!empty($product['chemDesc']))
-        <div class="mt-16 border-t border-slate-200 pt-10">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: var(--font-heading);">
-                Compound Profile &amp; Specifications
-            </h2>
-            <div class="text-sm text-slate-600 leading-relaxed max-w-4xl mb-6 space-y-3 whitespace-pre-line font-sans">
-                {{ $product['chemDesc'] }}
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full max-w-2xl text-xs border border-slate-200 rounded-lg overflow-hidden">
-                    <tbody>
-                        @if(!empty($product['cas']))
-                        <tr class="border-b border-slate-200 bg-slate-50"><td class="p-3 font-bold text-blue-900 w-1/3">CAS Number</td><td class="p-3 font-mono text-slate-700">{{ $product['cas'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['molecularFormula']))
-                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-900">Molecular Formula</td><td class="p-3 font-mono text-slate-700">{{ $product['molecularFormula'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['molecularWeight']))
-                        <tr class="border-b border-slate-200 bg-slate-50"><td class="p-3 font-bold text-blue-900">Molecular Weight</td><td class="p-3 font-mono text-slate-700">{{ $product['molecularWeight'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['purity']))
-                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-900">Purity Threshold</td><td class="p-3 font-semibold text-emerald-700">{{ $product['purity'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['sequence']))
-                        <tr class="border-b border-slate-200 bg-slate-50"><td class="p-3 font-bold text-blue-900">Sequence</td><td class="p-3 font-mono text-slate-700 break-all">{{ $product['sequence'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['solvent']))
-                        <tr class="border-b border-slate-200 bg-slate-50"><td class="p-3 font-bold text-blue-900">Solvent Matrix</td><td class="p-3 text-slate-700">{{ $product['solvent'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['appearance']))
-                        <tr class="border-b border-slate-200"><td class="p-3 font-bold text-blue-900">Appearance</td><td class="p-3 text-slate-700">{{ $product['appearance'] }}</td></tr>
-                        @endif
-                        @if(!empty($product['storage']))
-                        <tr class="bg-slate-50"><td class="p-3 font-bold text-blue-900">Storage Specification</td><td class="p-3 text-slate-700">{{ $product['storage'] }}</td></tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    @else
+        @include("products.partials.dynamic-detail", ['product' => $product])
     @endif
 </div>
 @endsection

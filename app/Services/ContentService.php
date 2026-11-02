@@ -69,6 +69,7 @@ class ContentService
                     $vials = [];
                     foreach ($dbProducts as $p) {
                         $base = $jsonVialsBySlug[$p->slug] ?? [];
+                        $pDetails = is_array($p->details) ? $p->details : (json_decode($p->details ?? '[]', true) ?: []);
                         $vials[] = array_merge($base, [
                             'id' => (string) $p->id,
                             'slug' => $p->slug,
@@ -79,17 +80,20 @@ class ContentService
                             'purity' => $p->purity ?? ($base['purity'] ?? '≥98.0% (HPLC)'),
                             'cas' => !empty($p->cas_no) ? $p->cas_no : ($base['cas'] ?? ''),
                             'desc' => $p->description ?? ($base['desc'] ?? ''),
+                            'description' => $p->description ?? ($base['description'] ?? ($base['desc'] ?? '')),
                             'vialSize' => $base['vialSize'] ?? '3ml',
                             'img' => $p->image ?: ($base['img'] ?? "/assets/images/photorealistic-single-glass-research-via-ATRm5m.png"),
                             'image' => $p->image ?: ($base['img'] ?? "/assets/images/photorealistic-single-glass-research-via-ATRm5m.png"),
                             'in_stock' => (bool) $p->in_stock,
                             'featured' => (bool) $p->featured,
-                            'molecularFormula' => $base['molecularFormula'] ?? ($p->formula ?? ''),
-                            'molecularWeight' => $base['molecularWeight'] ?? '',
-                            'sequence' => $base['sequence'] ?? '',
-                            'appearance' => $base['appearance'] ?? 'White lyophilised powder',
-                            'storage' => $base['storage'] ?? '−20 °C long-term; 2–8 °C short-term',
-                            'chemDesc' => $base['chemDesc'] ?? ($p->description ?? ''),
+                            'details' => $pDetails,
+                            'molecularFormula' => $pDetails['molecularFormula'] ?? ($p->formula ?? ($base['molecularFormula'] ?? '')),
+                            'molecularWeight' => $pDetails['molecularWeight'] ?? ($base['molecularWeight'] ?? ''),
+                            'sequence' => $pDetails['sequence'] ?? ($base['sequence'] ?? ''),
+                            'appearance' => $pDetails['appearance'] ?? ($base['appearance'] ?? 'White lyophilised powder'),
+                            'storage' => $pDetails['storage'] ?? ($base['storage'] ?? '−20 °C long-term; 2–8 °C short-term'),
+                            'solvent' => $pDetails['solvent'] ?? ($base['solvent'] ?? 'Bacteriostatic or sterile water for injection'),
+                            'chemDesc' => $pDetails['chemDesc'] ?? ($p->description ?? ($base['chemDesc'] ?? '')),
                         ]);
                     }
                     $json['vials'] = $vials;
@@ -124,6 +128,7 @@ class ContentService
                     $products = [];
                     foreach ($dbProducts as $p) {
                         $base = $jsonBySlug[$p->slug] ?? [];
+                        $pDetails = is_array($p->details) ? $p->details : (json_decode($p->details ?? '[]', true) ?: []);
                         $products[] = array_merge($base, [
                             'id' => (string) $p->id,
                             'slug' => $p->slug,
@@ -137,17 +142,20 @@ class ContentService
                             'purity' => $p->purity ?? ($base['purity'] ?? '≥99.0% (HPLC)'),
                             'cas' => !empty($p->cas_no) ? $p->cas_no : ($base['cas'] ?? ''),
                             'desc' => $p->description ?? ($base['desc'] ?? ''),
+                            'description' => $p->description ?? ($base['description'] ?? ($base['desc'] ?? '')),
                             'img' => $p->image ?: ($base['img'] ?? "/assets/images/sarm-mk-677-hd.jpg"),
                             'image' => $p->image ?: ($base['img'] ?? "/assets/images/sarm-mk-677-hd.jpg"),
                             'in_stock' => (bool) $p->in_stock,
                             'featured' => (bool) $p->featured,
+                            'details' => $pDetails,
                             'formula' => $p->formula ?? ($base['formula'] ?? ''),
-                            'molecularFormula' => $base['molecularFormula'] ?? ($p->formula ?? ''),
-                            'molecularWeight' => $base['molecularWeight'] ?? '',
-                            'solvent' => $base['solvent'] ?? 'Propylene glycol (food grade)',
-                            'appearance' => $base['appearance'] ?? 'Clear to pale yellow solution',
-                            'storage' => $base['storage'] ?? 'Store at 2–8 °C, protect from light',
-                            'chemDesc' => $base['chemDesc'] ?? ($p->description ?? ''),
+                            'molecularFormula' => $pDetails['molecularFormula'] ?? ($p->formula ?? ($base['molecularFormula'] ?? '')),
+                            'molecularWeight' => $pDetails['molecularWeight'] ?? ($base['molecularWeight'] ?? ''),
+                            'sequence' => $pDetails['sequence'] ?? ($base['sequence'] ?? ''),
+                            'solvent' => $pDetails['solvent'] ?? ($base['solvent'] ?? 'Propylene glycol (food grade)'),
+                            'appearance' => $pDetails['appearance'] ?? ($base['appearance'] ?? 'Clear to pale yellow solution'),
+                            'storage' => $pDetails['storage'] ?? ($base['storage'] ?? 'Store at 2–8 °C, protect from light'),
+                            'chemDesc' => $pDetails['chemDesc'] ?? ($p->description ?? ($base['chemDesc'] ?? '')),
                         ]);
                     }
                     $json['products'] = $products;
@@ -182,6 +190,7 @@ class ContentService
                     $kits = [];
                     foreach ($dbProducts as $p) {
                         $base = $jsonBySlug[$p->slug] ?? [];
+                        $pDetails = is_array($p->details) ? $p->details : (json_decode($p->details ?? '[]', true) ?: []);
                         $kits[] = array_merge($base, [
                             'id' => (string) $p->id,
                             'slug' => $p->slug,
@@ -195,16 +204,20 @@ class ContentService
                             'price_pence' => $p->price_pence,
                             'purity' => $p->purity ?? ($base['purity'] ?? '≥99.0% (HPLC)'),
                             'cas' => !empty($p->cas_no) ? $p->cas_no : ($base['cas'] ?? ''),
+                            'desc' => $p->description ?? ($base['desc'] ?? ''),
+                            'description' => $p->description ?? ($base['description'] ?? ($base['desc'] ?? '')),
                             'img' => $p->image ?: ($base['img'] ?? "/assets/images/pen-kit-retatrutide-hd.jpg"),
                             'image' => $p->image ?: ($base['img'] ?? "/assets/images/pen-kit-retatrutide-hd.jpg"),
                             'in_stock' => (bool) $p->in_stock,
                             'featured' => (bool) $p->featured,
-                            'molecularFormula' => $base['molecularFormula'] ?? ($p->formula ?? ''),
-                            'molecularWeight' => $base['molecularWeight'] ?? '',
-                            'sequence' => $base['sequence'] ?? '',
-                            'appearance' => $base['appearance'] ?? 'Lyophilised cartridge + adjustable pen delivery system',
-                            'storage' => $base['storage'] ?? '−20 °C long-term; 2–8 °C reconstituted',
-                            'chemDesc' => $base['chemDesc'] ?? ($p->description ?? ''),
+                            'details' => $pDetails,
+                            'molecularFormula' => $pDetails['molecularFormula'] ?? ($p->formula ?? ($base['molecularFormula'] ?? '')),
+                            'molecularWeight' => $pDetails['molecularWeight'] ?? ($base['molecularWeight'] ?? ''),
+                            'sequence' => $pDetails['sequence'] ?? ($base['sequence'] ?? ''),
+                            'solvent' => $pDetails['solvent'] ?? ($base['solvent'] ?? ''),
+                            'appearance' => $pDetails['appearance'] ?? ($base['appearance'] ?? 'Lyophilised cartridge + adjustable pen delivery system'),
+                            'storage' => $pDetails['storage'] ?? ($base['storage'] ?? '−20 °C long-term; 2–8 °C reconstituted'),
+                            'chemDesc' => $pDetails['chemDesc'] ?? ($p->description ?? ($base['chemDesc'] ?? '')),
                         ]);
                     }
                     $json['PRODUCTS'] = $kits;
@@ -310,12 +323,74 @@ class ContentService
         $products = self::getAllProducts();
         $product = $products[$slug] ?? null;
 
-        if ($product && self::hasProductsTable()) {
+        if (self::hasProductsTable()) {
             try {
                 $dbProduct = \App\Models\Product::where('slug', $slug)->first();
                 if ($dbProduct) {
-                    if (!empty($dbProduct->details)) {
-                        $product['details'] = $dbProduct->details;
+                    $pDetails = is_array($dbProduct->details) ? $dbProduct->details : (json_decode($dbProduct->details ?? '[]', true) ?: []);
+                    if (!$product) {
+                        $cat = $dbProduct->category;
+                        $catLabel = $cat === 'peptides' ? 'Peptide Vials' : ($cat === 'sarms' ? 'SARMs' : 'Pen Kits');
+                        $catUrl = $cat === 'peptides' ? '/peptide-vials' : ($cat === 'sarms' ? '/sarms-products' : '/pen-kits');
+                        $product = [
+                            'id' => (string) $dbProduct->id,
+                            'slug' => $dbProduct->slug,
+                            'name' => $dbProduct->name,
+                            'subtitle' => $dbProduct->subtitle,
+                            'category' => $cat,
+                            'category_label' => $catLabel,
+                            'category_url' => $catUrl,
+                            'price' => $dbProduct->price,
+                            'price_pence' => $dbProduct->price_pence,
+                            'in_stock' => (bool) $dbProduct->in_stock,
+                            'featured' => (bool) $dbProduct->featured,
+                            'dose' => $dbProduct->dose,
+                            'contents' => $dbProduct->contents ?? [],
+                            'tiers' => $dbProduct->tiers ?? [],
+                            'image' => $dbProduct->image ?: '/assets/images/photorealistic-single-glass-research-via-ATRm5m.png',
+                            'img' => $dbProduct->image ?: '/assets/images/photorealistic-single-glass-research-via-ATRm5m.png',
+                        ];
+                    }
+                    $product['details'] = $pDetails;
+                    if (!empty($dbProduct->description)) {
+                        $product['description'] = $dbProduct->description;
+                        $product['desc'] = $dbProduct->description;
+                    }
+                    if (!empty($dbProduct->cas_no)) {
+                        $product['cas'] = $dbProduct->cas_no;
+                    }
+                    if (!empty($dbProduct->formula)) {
+                        $product['formula'] = $dbProduct->formula;
+                        $product['molecularFormula'] = $dbProduct->formula;
+                    }
+                    if (!empty($pDetails['molecularFormula'])) {
+                        $product['molecularFormula'] = $pDetails['molecularFormula'];
+                    }
+                    if (!empty($pDetails['molecularWeight'])) {
+                        $product['molecularWeight'] = $pDetails['molecularWeight'];
+                    }
+                    if (!empty($pDetails['sequence'])) {
+                        $product['sequence'] = $pDetails['sequence'];
+                    }
+                    if (!empty($pDetails['solvent'])) {
+                        $product['solvent'] = $pDetails['solvent'];
+                    }
+                    if (!empty($pDetails['appearance'])) {
+                        $product['appearance'] = $pDetails['appearance'];
+                    }
+                    if (!empty($pDetails['storage'])) {
+                        $product['storage'] = $pDetails['storage'];
+                    }
+                    if (!empty($pDetails['chemDesc'])) {
+                        $product['chemDesc'] = $pDetails['chemDesc'];
+                    } elseif (!empty($dbProduct->description)) {
+                        $product['chemDesc'] = $dbProduct->description;
+                    }
+                    if (!empty($dbProduct->purity)) {
+                        $product['purity'] = $dbProduct->purity;
+                    }
+                    if (!empty($dbProduct->dose)) {
+                        $product['dose'] = $dbProduct->dose;
                     }
                     if (!empty($dbProduct->seo_title)) {
                         $product['seo_title'] = $dbProduct->seo_title;

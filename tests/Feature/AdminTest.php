@@ -365,4 +365,40 @@ class AdminTest extends TestCase
         $this->admin->refresh();
         $this->assertTrue(Hash::check('secret123', $this->admin->password));
     }
+
+    public function test_dynamic_product_renders_formatted_specifications_table(): void
+    {
+        $product = Product::create([
+            'slug' => 'test-auto-format-compound',
+            'name' => 'Test Auto Format Compound',
+            'category' => 'peptides',
+            'dose' => '15mg',
+            'price' => '£55.00',
+            'price_pence' => 5500,
+            'purity' => '≥99.2%',
+            'cas_no' => '999999-99-9',
+            'formula' => 'C60H90N16O14',
+            'description' => "Test Auto Format Compound is a laboratory peptide.\n\nInvestigated for experimental research.",
+            'details' => [
+                'molecularFormula' => 'C60H90N16O14',
+                'molecularWeight' => '1350.5 g/mol',
+                'sequence' => 'Ala-Gly-Ser-Leu',
+                'appearance' => 'Lyophilised white powder',
+                'storage' => 'Store at -20 °C',
+            ],
+            'in_stock' => true,
+            'is_active' => true,
+        ]);
+
+        $response = $this->get('/products/test-auto-format-compound');
+        $response->assertStatus(200);
+        $response->assertSee('Test Auto Format Compound');
+        $response->assertSee('Key Product Features');
+        $response->assertSee('Test Auto Format Compound Product Specifications');
+        $response->assertSee('999999-99-9');
+        $response->assertSee('C60H90N16O14');
+        $response->assertSee('1350.5 g/mol');
+        $response->assertSee('Ala-Gly-Ser-Leu');
+        $response->assertSee('Quality and Analytical Standards');
+    }
 }

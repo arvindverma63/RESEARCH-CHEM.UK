@@ -48,7 +48,7 @@
 
     <!-- Filter & Search Toolbar -->
     <div class="bg-white p-3.5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <form action="{{ route('admin.products.index') }}" method="GET" class="flex-1 flex flex-col sm:flex-row items-center gap-2">
+        <form action="{{ route('admin.products.index') }}" method="GET" class="flex-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
             @if(request('category'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
             @endif
@@ -71,12 +71,12 @@
                 </select>
             </div>
 
-            <button type="submit" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-md text-xs font-bold font-heading">
+            <button type="submit" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-md text-xs font-bold font-heading text-center">
                 Filter
             </button>
 
             @if(request()->hasAny(['q', 'status']))
-                <a href="{{ route('admin.products.index', ['category' => request('category')]) }}" class="text-xs text-slate-500 hover:text-red-600 underline">
+                <a href="{{ route('admin.products.index', ['category' => request('category')]) }}" class="text-xs text-slate-500 hover:text-red-600 underline text-center sm:text-left py-1">
                     Clear
                 </a>
             @endif
@@ -86,7 +86,7 @@
     <!-- Products Data Table -->
     <div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
+            <table class="w-full text-left text-xs border-collapse min-w-[800px]">
                 <thead class="bg-slate-50 border-b border-slate-200 font-heading text-slate-600 text-[11px] uppercase tracking-wider font-bold">
                     <tr>
                         <th class="py-3 px-4 w-12">#</th>

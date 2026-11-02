@@ -78,3 +78,4 @@ class SettingController extends Controller
             ->with('success', 'Admin password changed successfully. Please remember your new password.');
     }
 }
+

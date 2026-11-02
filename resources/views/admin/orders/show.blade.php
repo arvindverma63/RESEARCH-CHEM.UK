@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
+                    <table class="w-full text-left text-xs min-w-[480px]">
                         <thead class="bg-slate-50 text-slate-500 font-mono uppercase tracking-wider text-[11px]">
                             <tr>
                                 <th class="py-2.5 px-4">Compound</th>

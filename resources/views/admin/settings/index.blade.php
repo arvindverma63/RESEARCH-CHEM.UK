@@ -128,7 +128,7 @@
             <!-- Footer Action -->
             <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
                 <button type="submit" form="profileForm"
-                        class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
                     <i data-lucide="save" class="w-3.5 h-3.5"></i>
                     <span>Save Profile Changes</span>
                 </button>
@@ -232,7 +232,7 @@
             <!-- Footer Action -->
             <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
                 <button type="submit" form="passwordForm"
-                        class="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
                     <i data-lucide="lock" class="w-3.5 h-3.5"></i>
                     <span>Update Password</span>
                 </button>
@@ -271,3 +271,4 @@
 
 </div>
 @endsection
+

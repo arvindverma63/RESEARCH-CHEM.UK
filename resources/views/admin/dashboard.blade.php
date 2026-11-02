@@ -7,7 +7,7 @@
 <div class="space-y-6">
 
     <!-- Welcome Banner -->
-    <div class="bg-gradient-to-r from-[#002b5c] to-[#0052a3] rounded-lg p-6 text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="bg-gradient-to-r from-[#002b5c] to-[#0052a3] rounded-lg p-4 sm:p-6 text-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-bold tracking-tight font-heading">
                 ResearchChem.uk Operations &amp; Catalog
@@ -16,20 +16,20 @@
                 Real-time dashboard for customer orders, incoming leads, bank transfer payments, and compound catalog.
             </p>
         </div>
-        <div class="flex items-center gap-2.5">
+        <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
             <a href="{{ route('admin.orders.index') }}"
-               class="px-4 py-2 bg-white text-[#0052a3] text-xs font-bold font-heading rounded-md hover:bg-slate-100 transition-colors shadow-sm">
+               class="flex-1 sm:flex-none text-center px-4 py-2 bg-white text-[#0052a3] text-xs font-bold font-heading rounded-md hover:bg-slate-100 transition-colors shadow-sm">
                 View All Orders ({{ $stats['total_orders'] }})
             </a>
             <a href="{{ route('admin.products.create') }}"
-               class="px-4 py-2 bg-white/10 border border-white/30 text-white text-xs font-bold font-heading rounded-md hover:bg-white/20 transition-colors">
+               class="flex-1 sm:flex-none text-center px-4 py-2 bg-white/10 border border-white/30 text-white text-xs font-bold font-heading rounded-md hover:bg-white/20 transition-colors">
                 + Add Product
             </a>
         </div>
     </div>
 
     <!-- ── KEY METRICS (ORDERS, REVENUE, LEADS, COMPOUNDS) ── -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         
         <!-- Total Orders -->
         <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex items-center justify-between">
@@ -250,7 +250,7 @@
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
+            <table class="w-full text-left text-xs border-collapse min-w-[640px]">
                 <thead class="bg-slate-50 border-b border-slate-200 font-heading text-slate-600 text-[11px] uppercase tracking-wider font-bold">
                     <tr>
                         <th class="py-3 px-4">Compound</th>

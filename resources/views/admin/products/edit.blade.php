@@ -23,15 +23,15 @@
             </h1>
         </div>
 
-        <div class="flex items-center gap-2.5">
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
             <a href="{{ route('products.show', $product->slug) }}" target="_blank"
-               class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md flex items-center gap-1.5 transition-colors">
+               class="flex-1 sm:flex-none px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md flex items-center justify-center gap-1.5 transition-colors">
                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>View Live Store Page</span>
+                <span>View Live Page</span>
             </a>
             <a href="{{ route('admin.products.index') }}"
-               class="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
-                &larr; Back to Catalog
+               class="flex-1 sm:flex-none px-3.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold font-heading rounded-md flex items-center justify-center transition-colors">
+                &larr; Catalog
             </a>
         </div>
     </div>
@@ -39,7 +39,7 @@
     <!-- Edit Form -->
     <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data"
           x-data="{ previewUrl: '{{ old('image', $product->image) }}', fileName: '' }"
-          class="bg-white rounded-lg border border-slate-200 shadow-xs p-6 space-y-6">
+          class="bg-white rounded-lg border border-slate-200 shadow-xs p-4 sm:p-6 space-y-6">
         @csrf
         @method('PUT')
 
@@ -633,18 +633,18 @@
         </div>
 
         <!-- Form Actions -->
-        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
-            <span class="text-xs text-slate-400 font-mono">
+        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span class="text-xs text-slate-400 font-mono text-center sm:text-left">
                 Last modified: {{ $product->updated_at->format('d M Y, H:i') }}
             </span>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2.5 w-full sm:w-auto">
                 <a href="{{ route('admin.products.index') }}"
-                   class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
+                   class="flex-1 sm:flex-none text-center px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
                     Cancel
                 </a>
                 <button type="submit"
-                        class="px-6 py-2.5 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-sm transition-colors uppercase tracking-wider">
+                        class="flex-1 sm:flex-none text-center px-5 py-2.5 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-sm transition-colors uppercase tracking-wider">
                     Save Changes &amp; Publish
                 </button>
             </div>

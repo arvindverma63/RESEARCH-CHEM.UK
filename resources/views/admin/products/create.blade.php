@@ -16,14 +16,14 @@
             </p>
         </div>
         <a href="{{ route('admin.products.index') }}"
-           class="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold font-heading rounded-sm transition-colors">
+           class="px-3.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold font-heading rounded-sm transition-colors w-full sm:w-auto text-center">
             &larr; Back to Catalog
         </a>
     </div>
 
     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data"
           x-data="{ previewUrl: '{{ old('image', '') }}', fileName: '' }"
-          class="bg-white rounded-lg border border-slate-200 shadow-xs p-6 space-y-6">
+          class="bg-white rounded-lg border border-slate-200 shadow-xs p-4 sm:p-6 space-y-6">
         @csrf
 
         <!-- Core Details -->
@@ -538,13 +538,13 @@
         </div>
 
         <!-- Submit buttons -->
-        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
+        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-end gap-2.5">
             <a href="{{ route('admin.products.index') }}"
-               class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
+               class="w-full sm:w-auto text-center px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
                 Cancel
             </a>
             <button type="submit"
-                    class="px-6 py-2.5 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-sm transition-colors uppercase tracking-wider">
+                    class="w-full sm:w-auto text-center px-6 py-2.5 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-sm transition-colors uppercase tracking-wider">
                 Create &amp; Publish Compound
             </button>
         </div>

@@ -205,31 +205,13 @@
             </div>
 
             @if($products->hasPages())
-                <div class="admin-pagination text-xs">
-                    {{ $products->links() }}
+                <div>
+                    {{ $products->links('admin.partials.pagination') }}
                 </div>
             @endif
         </div>
     </div>
 
 </div>
-
-<style>
-.admin-pagination nav svg {
-    width: 1rem !important;
-    height: 1rem !important;
-    display: inline-block !important;
-}
-.admin-pagination nav > div:first-child {
-    display: none !important;
-}
-.admin-pagination nav span,
-.admin-pagination nav a {
-    font-size: 0.75rem !important;
-    padding: 0.35rem 0.65rem !important;
-    line-height: 1 !important;
-}
-</style>
-
 @endsection
 

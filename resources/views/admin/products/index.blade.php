@@ -52,6 +52,9 @@
             @if(request('category'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
             @endif
+            @if(request('per_page'))
+                <input type="hidden" name="per_page" value="{{ request('per_page') }}">
+            @endif
 
             <div class="relative flex-1 w-full">
                 <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
@@ -182,13 +185,51 @@
             </table>
         </div>
 
-        @if($products->hasPages())
-            <div class="p-4 border-t border-slate-200 bg-slate-50">
-                {{ $products->links() }}
+        <div class="px-5 py-4 border-t border-slate-200 bg-slate-50 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+                <span>
+                    Showing <strong class="font-bold text-slate-900">{{ $products->firstItem() ?? 0 }}</strong> to <strong class="font-bold text-slate-900">{{ $products->lastItem() ?? 0 }}</strong> of <strong class="font-bold text-slate-900">{{ $products->total() }}</strong> compounds
+                </span>
+                <span class="text-slate-300 hidden sm:inline">|</span>
+                <div class="flex items-center gap-1.5">
+                    <label for="per_page_select" class="text-xs text-slate-500 font-medium">Rows per page:</label>
+                    <select id="per_page_select"
+                            onchange="const url = new URL(window.location.href); url.searchParams.set('per_page', this.value); url.searchParams.delete('page'); window.location.href = url.toString();"
+                            class="px-2.5 py-1 text-xs border border-slate-300 rounded bg-white font-semibold text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 cursor-pointer">
+                        <option value="10" {{ ($perPage ?? 10) == 10 ? 'selected' : '' }}>10</option>
+                        <option value="20" {{ ($perPage ?? 10) == 20 ? 'selected' : '' }}>20</option>
+                        <option value="50" {{ ($perPage ?? 10) == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ ($perPage ?? 10) == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                </div>
             </div>
-        @endif
+
+            @if($products->hasPages())
+                <div class="admin-pagination text-xs">
+                    {{ $products->links() }}
+                </div>
+            @endif
+        </div>
     </div>
 
 </div>
+
+<style>
+.admin-pagination nav svg {
+    width: 1rem !important;
+    height: 1rem !important;
+    display: inline-block !important;
+}
+.admin-pagination nav > div:first-child {
+    display: none !important;
+}
+.admin-pagination nav span,
+.admin-pagination nav a {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.65rem !important;
+    line-height: 1 !important;
+}
+</style>
+
 @endsection
 

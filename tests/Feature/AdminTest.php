@@ -289,5 +289,26 @@ class AdminTest extends TestCase
         $lead->refresh();
         $this->assertEquals('replied', $lead->status);
     }
-}
 
+    public function test_admin_products_table_has_pagination_and_per_page_filter(): void
+    {
+        // Default pagination: 10 per page
+        $response = $this->actingAs($this->admin)->get('/admin/products');
+        $response->assertStatus(200);
+        $response->assertSee('Showing');
+        $response->assertSee('Rows per page');
+        $response->assertSee('page=2');
+
+        // Request custom per_page
+        $response20 = $this->actingAs($this->admin)->get('/admin/products?per_page=20');
+        $response20->assertStatus(200);
+        $response20->assertSee('Showing');
+        $response20->assertSee('to <strong class="font-bold text-slate-900">20</strong> of', false);
+
+        // Page 2 navigation
+        $responsePage2 = $this->actingAs($this->admin)->get('/admin/products?page=2');
+        $responsePage2->assertStatus(200);
+        $responsePage2->assertSee('Showing');
+        $responsePage2->assertSee('to <strong class="font-bold text-slate-900">20</strong> of', false);
+    }
+}

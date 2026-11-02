@@ -41,7 +41,11 @@ class ProductController extends Controller
         $direction = $request->get('direction', 'asc');
         $query->orderBy($sort, $direction);
 
-        $products = $query->paginate(25)->withQueryString();
+        $perPage = in_array((int) $request->input('per_page'), [10, 20, 50, 100], true)
+            ? (int) $request->input('per_page')
+            : 10;
+
+        $products = $query->paginate($perPage)->withQueryString();
 
         $counts = [
             'all' => Product::count(),
@@ -50,7 +54,7 @@ class ProductController extends Controller
             'pen-kits' => Product::where('category', 'pen-kits')->count(),
         ];
 
-        return view('admin.products.index', compact('products', 'counts'));
+        return view('admin.products.index', compact('products', 'counts', 'perPage'));
     }
 
     public function create()

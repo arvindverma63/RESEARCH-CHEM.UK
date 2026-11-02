@@ -145,7 +145,7 @@
                      alt="{{ $kit['name'] }} {{ $kit['dose'] }} Pen Kit"
                      loading="lazy"
                      decoding="async"
-                     style="width: 100%; max-height: 340px; object-fit: contain; display: block; background: #ffffff;">
+                     onerror="this.onerror=null; this.src='/assets/images/pen-kit-retatrutide-hd.jpg';" style="width: 100%; max-height: 340px; object-fit: contain; display: block; background: #ffffff;">
 
                 <!-- Top Badges -->
                 <div style="position: absolute; top: 12px; left: 12px; background-color: #0052a3; color: #fff; font-size: 0.52rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 9px; border-radius: 2px;">

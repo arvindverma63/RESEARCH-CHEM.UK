@@ -147,7 +147,7 @@
                          alt="{{ $vial['name'] }} {{ $vial['dose'] }} research vial"
                          loading="lazy"
                          decoding="async"
-                         style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center center; background: #ffffff;">
+                         onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: center center; background: #ffffff;">
                     <div class="vial-badge-research">Research Only</div>
                 </div>
 

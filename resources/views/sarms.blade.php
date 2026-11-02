@@ -135,7 +135,7 @@
                          alt="{{ $sarm['name'] }} {{ $sarm['subtitle'] ?? '' }} {{ $sarm['concentration'] ?? $sarm['dose'] ?? '' }}"
                          loading="lazy"
                          decoding="async"
-                         style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block; background: #ffffff;">
+                         onerror="this.onerror=null; this.src='/assets/images/sarm-mk-677-hd.jpg';" style="width: 100%; height: 100%; object-fit: contain; object-position: center center; display: block; background: #ffffff;">
                     <div class="sarms-badge-research">Research Only</div>
                 </div>
 

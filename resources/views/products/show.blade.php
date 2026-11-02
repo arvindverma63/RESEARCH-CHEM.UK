@@ -151,7 +151,8 @@
                 <img src="{{ $productImage }}" alt="{{ $product['name'] }}"
                      class="w-full h-full object-contain"
                      fetchpriority="high"
-                     decoding="async">
+                     decoding="async"
+                     onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';">
 
                 <!-- Research Use Badge -->
                 <span class="absolute top-4 left-4 text-xs font-mono font-bold px-3 py-1 text-white rounded-sm"

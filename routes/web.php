@@ -82,5 +82,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('products', App\Http\Controllers\Admin\ProductController::class, [
             'as' => 'admin',
         ]);
+
+        // Settings & Credentials Management
+        Route::get('/settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings.index');
+        Route::put('/settings/profile', [App\Http\Controllers\Admin\SettingController::class, 'updateProfile'])->name('admin.settings.profile');
+        Route::put('/settings/password', [App\Http\Controllers\Admin\SettingController::class, 'updatePassword'])->name('admin.settings.password');
     });
 });

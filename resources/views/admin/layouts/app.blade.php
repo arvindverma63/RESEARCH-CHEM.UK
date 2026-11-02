@@ -103,6 +103,13 @@
                 <span>Products Catalog</span>
             </a>
 
+            <!-- Settings -->
+            <a href="{{ route('admin.settings.index') }}"
+               class="flex items-center gap-3 px-3.5 py-2.5 rounded-md transition-colors {{ request()->routeIs('admin.settings.*') ? 'bg-[#0052a3] text-white shadow-sm' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+                <span>Settings</span>
+            </a>
+
             <div class="pt-4 pb-1 px-3.5 text-[11px] font-mono text-slate-400 uppercase tracking-wider font-bold">
                 Quick Category Views
             </div>
@@ -151,23 +158,29 @@
         <!-- User Profile & Logout -->
         <div class="p-4 border-t border-white/10 bg-[#002047]">
             <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5 overflow-hidden">
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs shrink-0">
+                <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-2.5 overflow-hidden group hover:opacity-90 transition-opacity no-underline" title="Account Settings">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 group-hover:bg-blue-500 flex items-center justify-center font-bold text-xs shrink-0 text-white transition-colors">
                         {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="truncate text-xs">
                         <span class="font-bold text-white block truncate">{{ Auth::user()->name ?? 'Admin' }}</span>
                         <span class="text-slate-400 block truncate text-[11px]">{{ Auth::user()->email ?? '' }}</span>
                     </div>
-                </div>
+                </a>
 
-                <form action="{{ route('admin.logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" title="Logout"
-                            class="p-1.5 text-slate-400 hover:text-red-400 transition-colors rounded-sm hover:bg-white/5">
-                        <i data-lucide="log-out" class="w-4 h-4"></i>
-                    </button>
-                </form>
+                <div class="flex items-center gap-1">
+                    <a href="{{ route('admin.settings.index') }}" title="Account Settings"
+                       class="p-1.5 text-slate-400 hover:text-white transition-colors rounded-sm hover:bg-white/5">
+                        <i data-lucide="settings" class="w-4 h-4"></i>
+                    </a>
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" title="Logout"
+                                class="p-1.5 text-slate-400 hover:text-red-400 transition-colors rounded-sm hover:bg-white/5">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </aside>

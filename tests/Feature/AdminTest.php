@@ -311,4 +311,58 @@ class AdminTest extends TestCase
         $responsePage2->assertSee('Showing');
         $responsePage2->assertSee('to <strong class="font-bold text-slate-900">20</strong> of', false);
     }
+
+    public function test_admin_can_view_settings_page(): void
+    {
+        $response = $this->actingAs($this->admin)->get('/admin/settings');
+        $response->assertStatus(200);
+        $response->assertSee('Admin Settings &amp; Credentials', false);
+        $response->assertSee($this->admin->email);
+        $response->assertSee('Save Profile Changes');
+        $response->assertSee('Update Password');
+    }
+
+    public function test_admin_can_update_profile_and_email(): void
+    {
+        $response = $this->actingAs($this->admin)->put('/admin/settings/profile', [
+            'name' => 'Updated Super Admin',
+            'email' => 'new_admin@research-chem.uk',
+        ]);
+
+        $response->assertRedirect(route('admin.settings.index'));
+        $response->assertSessionHas('success');
+
+        $this->admin->refresh();
+        $this->assertEquals('Updated Super Admin', $this->admin->name);
+        $this->assertEquals('new_admin@research-chem.uk', $this->admin->email);
+    }
+
+    public function test_admin_can_update_password_with_correct_current_password(): void
+    {
+        $response = $this->actingAs($this->admin)->put('/admin/settings/password', [
+            'current_password' => 'secret123',
+            'password' => 'newSecretPassword2026!',
+            'password_confirmation' => 'newSecretPassword2026!',
+        ]);
+
+        $response->assertRedirect(route('admin.settings.index'));
+        $response->assertSessionHas('success');
+
+        $this->admin->refresh();
+        $this->assertTrue(Hash::check('newSecretPassword2026!', $this->admin->password));
+    }
+
+    public function test_admin_cannot_update_password_with_wrong_current_password(): void
+    {
+        $response = $this->actingAs($this->admin)->put('/admin/settings/password', [
+            'current_password' => 'wrong_password',
+            'password' => 'newSecretPassword2026!',
+            'password_confirmation' => 'newSecretPassword2026!',
+        ]);
+
+        $response->assertSessionHasErrors(['current_password']);
+
+        $this->admin->refresh();
+        $this->assertTrue(Hash::check('secret123', $this->admin->password));
+    }
 }

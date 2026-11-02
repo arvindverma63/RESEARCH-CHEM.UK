@@ -375,9 +375,9 @@
             <h2 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: var(--font-heading);">
                 Compound Profile &amp; Specifications
             </h2>
-            <p class="text-sm text-slate-600 leading-relaxed max-w-4xl mb-6">
+            <div class="text-sm text-slate-600 leading-relaxed max-w-4xl mb-6 space-y-3 whitespace-pre-line font-sans">
                 {{ $product['chemDesc'] }}
-            </p>
+            </div>
             <div class="overflow-x-auto">
                 <table class="w-full max-w-2xl text-xs border border-slate-200 rounded-lg overflow-hidden">
                     <tbody>

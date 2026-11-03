@@ -481,21 +481,16 @@
     <section class="relative py-10" style="background-color: #ffffff;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section header -->
-            <div class="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-                <div>
-                    <div class="flex items-center gap-3 mb-2">
-                        <span class="h-px w-6" style="background-color: #0052a3;"></span>
-                        <span class="text-sm font-mono tracking-widest uppercase font-bold" style="color: #0052a3;">
-                            Product Categories
-                        </span>
-                    </div>
-                    <h2 class="text-3xl sm:text-4xl font-bold" style="font-family: var(--font-heading); color: #0052a3;">
-                        Research Grade Compounds
-                    </h2>
+            <div class="mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="h-px w-6" style="background-color: #0052a3;"></span>
+                    <span class="text-sm font-mono tracking-widest uppercase font-bold" style="color: #0052a3;">
+                        Product Categories
+                    </span>
                 </div>
-                <div class="text-sm font-mono text-slate-500 font-bold">
-                    All batches third-party HPLC & MS verified
-                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold" style="font-family: var(--font-heading); color: #0052a3;">
+                    Research Grade Compounds
+                </h2>
             </div>
 
             <!-- Bento grid -->
@@ -507,13 +502,13 @@
                     'pen-kits' => 'syringe'
                 ];
             @endphp
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
                 @foreach($dynCategories as $catKey => $cat)
                     @php
                         $icon = $catIcons[$catKey] ?? 'beaker';
                         $imgSrc = $cat['image'] ?? '/assets/images/category-peptides.jpg';
                     @endphp
-                    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl bg-white"
+                    <div class="group flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg bg-white"
                          style="border: 1.5px solid #0052a3;">
 
                         <!-- Category image -->
@@ -522,9 +517,6 @@
                                  alt="{{ $cat['full_title'] }}"
                                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                  loading="lazy">
-                            <div class="absolute top-2.5 right-2.5 bg-blue-900/90 text-white text-[11px] font-mono font-bold px-2 py-0.5 rounded-xs backdrop-blur-xs">
-                                {{ $cat['count_label'] }}
-                            </div>
                         </div>
 
                         <!-- Card body -->
@@ -536,16 +528,16 @@
                                 </div>
                                 <div class="flex flex-col items-end gap-1">
                                     <span class="text-xs font-mono tracking-widest px-2 py-0.5" style="border: 1px solid #0052a3; color: #0052a3;">
-                                        {{ $cat['purity'] }}
+                                        {{ $cat['badge_box'] ?? 'Batch-specific CoA' }}
                                     </span>
-                                    <span class="text-xs font-mono tracking-widest font-bold" style="color: #0052a3;">
-                                        {{ $cat['badge'] }}
+                                    <span class="text-xs font-mono tracking-widest uppercase font-bold" style="color: #0052a3;">
+                                        {{ $cat['sub_badge'] ?? 'CAS-REFERENCED' }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Category name -->
-                            <h3 class="text-lg font-bold leading-snug mb-2" style="font-family: var(--font-heading); color: #0052a3;">
+                            <h3 class="text-lg font-bold leading-snug mb-3" style="font-family: var(--font-heading); color: #0052a3;">
                                 {{ $cat['full_title'] }}
                             </h3>
 
@@ -555,14 +547,11 @@
                             </p>
 
                             <!-- Footer: CTA -->
-                            <div class="flex items-center justify-between pt-4" style="border-top: 1px solid #0052a3;">
-                                <span class="text-xs font-mono text-slate-500 font-semibold">
-                                    {{ count($cat['products']) }} Available
-                                </span>
+                            <div class="flex items-center justify-end pt-4" style="border-top: 1px solid #0052a3;">
                                 <a href="{{ $cat['url'] }}"
-                                   class="inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide hover:opacity-90 transition-opacity px-4 py-1.5"
+                                   class="inline-flex items-center gap-1 text-sm font-semibold tracking-wide hover:opacity-80 transition-opacity px-4 py-1.5"
                                    style="background-color: #0052a3; color: #ffffff; font-family: var(--font-heading);">
-                                    Browse Range
+                                    Browse
                                     <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
                                 </a>
                             </div>

@@ -22,7 +22,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear to pale yellow solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "Potent, orally active ghrelin receptor agonist suspended in food grade propylene glycol."
+            "chemDesc": "Potent, orally active ghrelin receptor agonist suspended in food grade propylene glycol.",
+            "image": "/assets/images/products/mk-677-ibutamoren.jpg"
         },
         {
             "id": "15",
@@ -43,7 +44,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear to pale yellow solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "Selective androgen receptor modulator with high affinity for androgen receptors."
+            "chemDesc": "Selective androgen receptor modulator with high affinity for androgen receptors.",
+            "image": "/assets/images/products/rad-140-testolone.jpg"
         },
         {
             "id": "16",
@@ -64,7 +66,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "Steroidal SARM and follistatin gene expression inducer in liquid solution."
+            "chemDesc": "Steroidal SARM and follistatin gene expression inducer in liquid solution.",
+            "image": "/assets/images/products/yk-11-myostine.jpg"
         },
         {
             "id": "17",
@@ -85,7 +88,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear to pale yellow solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "Non-steroidal oral selective androgen receptor modulator."
+            "chemDesc": "Non-steroidal oral selective androgen receptor modulator.",
+            "image": "/assets/images/products/lgd-4033-ligandrol.jpg"
         },
         {
             "id": "18",
@@ -106,7 +110,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear to pale yellow solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "Selective androgen receptor modulator extensively investigated in preclinical studies."
+            "chemDesc": "Selective androgen receptor modulator extensively investigated in preclinical studies.",
+            "image": "/assets/images/products/mk-2866-ostarine.jpg"
         },
         {
             "id": "19",
@@ -127,7 +132,8 @@
             "solvent": "Propylene glycol (food grade)",
             "appearance": "Clear solution",
             "storage": "Store at 2–8 °C, protect from light",
-            "chemDesc": "PPARδ receptor agonist liquid solution with calibrated 1.0ml graduated dropper."
+            "chemDesc": "PPARδ receptor agonist liquid solution with calibrated 1.0ml graduated dropper.",
+            "image": "/assets/images/products/gw-501516-cardarine.jpg"
         }
     ],
     "categoryIntro": {

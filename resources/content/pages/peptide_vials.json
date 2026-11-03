@@ -19,7 +19,8 @@
             "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Pentadecapeptide fragment of human Body Protection Compound. Sequence: GEPPPGKPADDAGLV. Stable gastric pentadecapeptide; resistant to enzymatic hydrolysis in gastric juice."
+            "chemDesc": "Pentadecapeptide fragment of human Body Protection Compound. Sequence: GEPPPGKPADDAGLV. Stable gastric pentadecapeptide; resistant to enzymatic hydrolysis in gastric juice.",
+            "image": "/assets/images/products/bpc-157.png"
         },
         {
             "id": "2",
@@ -37,7 +38,8 @@
             "sequence": "Ac-Ser-Asp-Lys-Pro-Asp-Met-Ala-Glu-Ile-Glu-Lys-Phe-Asp-Lys-Ser-Lys-Leu-Lys-Lys-Thr-Glu-Thr-Gln-Glu-Lys-Asn-Pro-Leu-Pro-Ser-Lys-Glu-Thr-Ile-Glu-Gln-Glu-Lys-Gln-Ala-Gly-Glu-Ser",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Synthetic peptide fraction of thymosin beta-4."
+            "chemDesc": "Synthetic peptide fraction of thymosin beta-4.",
+            "image": "/assets/images/products/tb-500.png"
         },
         {
             "id": "3",
@@ -55,7 +57,8 @@
             "sequence": "BPC-157 + TB-500 combination blend",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Laboratory blend of 10mg BPC-157 and 10mg TB-500 in a single lyophilised vial."
+            "chemDesc": "Laboratory blend of 10mg BPC-157 and 10mg TB-500 in a single lyophilised vial.",
+            "image": "/assets/images/products/wolverine.png"
         },
         {
             "id": "4",
@@ -73,7 +76,8 @@
             "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Novel multi-target tri-agonist peptide for in-vitro metabolic binding assays."
+            "chemDesc": "Novel multi-target tri-agonist peptide for in-vitro metabolic binding assays.",
+            "image": "/assets/images/products/retatrutide.png"
         },
         {
             "id": "5",
@@ -91,7 +95,8 @@
             "sequence": "Aib-His-D-2Nal-D-Phe-Lys-NH₂",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Pentapeptide growth hormone secretagogue receptor agonist."
+            "chemDesc": "Pentapeptide growth hormone secretagogue receptor agonist.",
+            "image": "/assets/images/products/ipamorelin.png"
         },
         {
             "id": "6",
@@ -109,7 +114,8 @@
             "sequence": "GHRH(1-29)-Lys(Nε-maleimidopropionamide) analogue + Drug Affinity Complex",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Long-acting synthetic analog of growth hormone-releasing hormone."
+            "chemDesc": "Long-acting synthetic analog of growth hormone-releasing hormone.",
+            "image": "/assets/images/products/cjc-1295-dac.png"
         },
         {
             "id": "7",
@@ -127,7 +133,8 @@
             "sequence": "Gly-His-Lys · Cu²⁺ chelate",
             "appearance": "Blue lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Naturally occurring copper-binding tripeptide with tissue remodeling research applications."
+            "chemDesc": "Naturally occurring copper-binding tripeptide with tissue remodeling research applications.",
+            "image": "/assets/images/products/ghk-cu.png"
         },
         {
             "id": "8",
@@ -145,7 +152,8 @@
             "sequence": "Gly-His-Lys · Cu²⁺ chelate — high-dose formulation",
             "appearance": "Blue lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Advanced 3-compound lyophilised formulation combining GHK-Cu, BPC-157, and TB-500."
+            "chemDesc": "Advanced 3-compound lyophilised formulation combining GHK-Cu, BPC-157, and TB-500.",
+            "image": "/assets/images/products/glow-ghk-cu.png"
         },
         {
             "id": "9",
@@ -163,7 +171,8 @@
             "sequence": "Nicotinamide adenine dinucleotide (oxidised form)",
             "appearance": "White to off-white lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term, desiccated",
-            "chemDesc": "Essential cellular coenzyme for mitochondrial and cellular longevity research."
+            "chemDesc": "Essential cellular coenzyme for mitochondrial and cellular longevity research.",
+            "image": "/assets/images/products/nad.png"
         },
         {
             "id": "10",
@@ -181,7 +190,8 @@
             "sequence": "Sterile water for injection (WFI grade)",
             "appearance": "Clear, colourless solution",
             "storage": "Store at 15–25 °C; discard 28 days after first use",
-            "chemDesc": "Multi-dose sterile water container preserved with 0.9% benzyl alcohol."
+            "chemDesc": "Multi-dose sterile water container preserved with 0.9% benzyl alcohol.",
+            "image": "/assets/images/products/bacteriostatic-water.png"
         },
         {
             "id": "11",
@@ -199,7 +209,8 @@
             "sequence": "Dual GIP/GLP-1 receptor agonist peptide — C20 fatty diacid conjugate",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Dual glucose-dependent insulinotropic polypeptide and glucagon-like peptide-1 agonist."
+            "chemDesc": "Dual glucose-dependent insulinotropic polypeptide and glucagon-like peptide-1 agonist.",
+            "image": "/assets/images/products/tirzepatide.png"
         },
         {
             "id": "12",
@@ -217,7 +228,8 @@
             "sequence": "Ala-Glu-Asp-Gly",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Synthetic peptide (Ala-Glu-Asp-Gly) studied for telomerase activation."
+            "chemDesc": "Synthetic peptide (Ala-Glu-Asp-Gly) studied for telomerase activation.",
+            "image": "/assets/images/products/epithalon.png"
         },
         {
             "id": "13",
@@ -235,7 +247,8 @@
             "sequence": "D-Arg-2′6′-Dmt-Lys-Phe-NH₂",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Mitochondria-targeting synthetic tetrapeptide for cellular bioenergetics research."
+            "chemDesc": "Mitochondria-targeting synthetic tetrapeptide for cellular bioenergetics research.",
+            "image": "/assets/images/products/ss-31.png"
         }
     ],
     "categoryIntro": {

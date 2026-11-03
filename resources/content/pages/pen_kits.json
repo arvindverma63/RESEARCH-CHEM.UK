@@ -55,7 +55,9 @@
             "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
             "appearance": "Lyophilised cartridge + adjustable pen delivery system",
             "storage": "−20 °C long-term; 2–8 °C reconstituted",
-            "chemDesc": "Complete precision research pen system with high purity Retatrutide lyophilised cartridge and diluent."
+            "chemDesc": "Complete precision research pen system with high purity Retatrutide lyophilised cartridge and diluent.",
+            "img": "/assets/images/products/retatrutide-pen-kit.jpg",
+            "image": "/assets/images/products/retatrutide-pen-kit.jpg"
         },
         {
             "id": "21",
@@ -104,7 +106,9 @@
             "sequence": "BPC-157 (10mg) + TB-500 (10mg) dual combination",
             "appearance": "Lyophilised cartridge + adjustable pen delivery system",
             "storage": "−20 °C long-term; 2–8 °C reconstituted",
-            "chemDesc": "Dual-compound tissue recovery research pen combining BPC-157 and TB-500 in one precision injector."
+            "chemDesc": "Dual-compound tissue recovery research pen combining BPC-157 and TB-500 in one precision injector.",
+            "img": "/assets/images/products/wolverine-pen-kit.png",
+            "image": "/assets/images/products/wolverine-pen-kit.png"
         },
         {
             "id": "22",
@@ -153,7 +157,9 @@
             "sequence": "GHK-Cu (50mg) + BPC-157 (10mg) + TB-500 (10mg)",
             "appearance": "Deep blue lyophilised cartridge + pen delivery system",
             "storage": "−20 °C long-term; 2–8 °C reconstituted",
-            "chemDesc": "Triple-peptide precision pen kit combining Copper Tripeptide-1 with BPC-157 and TB-500."
+            "chemDesc": "Triple-peptide precision pen kit combining Copper Tripeptide-1 with BPC-157 and TB-500.",
+            "img": "/assets/images/products/glow-ghk-cu-pen-kit.jpg",
+            "image": "/assets/images/products/glow-ghk-cu-pen-kit.jpg"
         }
     ],
     "categoryIntro": {

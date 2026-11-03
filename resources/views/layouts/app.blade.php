@@ -189,7 +189,7 @@
                                              alt="{{ $prod['name'] }}"
                                              loading="lazy"
                                              decoding="async"
-                                             class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200">
+                                             onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200">
                                     </div>
                                     <!-- Title -->
                                     <h4 class="text-xs font-bold text-slate-900 group-hover:text-blue-700 truncate leading-snug"
@@ -255,7 +255,7 @@
                                 @foreach($cat['products'] as $prod)
                                     <a href="{{ route('products.show', $prod['slug']) }}" @click="mobileOpen = false"
                                        class="flex items-center gap-2 p-1.5 bg-white rounded-xs border border-slate-200 hover:border-blue-600">
-                                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" class="w-9 h-9 object-contain shrink-0 bg-white p-0.5">
+                                        <img src="{{ $prod['image'] }}" alt="{{ $prod['name'] }}" onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';" class="w-9 h-9 object-contain shrink-0 bg-white p-0.5">
                                         <div class="min-w-0 flex-1">
                                             <div class="text-[11px] font-bold text-slate-900 truncate" style="font-family: var(--font-heading);">
                                                 {{ $prod['name'] }}

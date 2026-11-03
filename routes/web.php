@@ -90,16 +90,35 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::get('/api/debug-uploads', function() {
-    $dir = public_path('assets/images/uploads');
-    $exists = file_exists($dir);
-    $files = $exists ? scandir($dir) : [];
-    return response()->json([
-        'public_path' => public_path(),
-        'base_path' => base_path(),
-        'upload_dir' => $dir,
-        'dir_exists' => $exists,
-        'files' => $files,
-        'writable' => is_writable(public_path('assets/images')),
+// Uploaded Product Image Handler with Persistent Storage and Safe Fallback
+Route::get('/assets/images/uploads/{filename}', function ($filename) {
+    // 1. Check storage/app/public/uploads
+    $storagePublic = storage_path('app/public/uploads/' . $filename);
+    if (file_exists($storagePublic) && is_file($storagePublic)) {
+        return response()->file($storagePublic, [
+            'Cache-Control' => 'public, max-age=86400',
+        ]);
+    }
+
+    // 2. Check storage/app/uploads
+    $storageApp = storage_path('app/uploads/' . $filename);
+    if (file_exists($storageApp) && is_file($storageApp)) {
+        return response()->file($storageApp, [
+            'Cache-Control' => 'public, max-age=86400',
+        ]);
+    }
+
+    // 3. Check public/assets/images/uploads
+    $publicUpload = public_path('assets/images/uploads/' . $filename);
+    if (file_exists($publicUpload) && is_file($publicUpload)) {
+        return response()->file($publicUpload, [
+            'Cache-Control' => 'public, max-age=86400',
+        ]);
+    }
+
+    // 4. Default high-res laboratory vial product shot fallback (never broken!)
+    $defaultShot = public_path('assets/images/photorealistic-single-glass-research-via-ATRm5m.png');
+    return response()->file($defaultShot, [
+        'Cache-Control' => 'no-cache, private',
     ]);
-});
+})->where('filename', '.*');

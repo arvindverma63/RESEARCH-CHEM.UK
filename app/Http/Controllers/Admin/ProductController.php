@@ -97,16 +97,21 @@ class ProductController extends Controller
             $validated['slug'] = Str::slug($validated['name']);
         }
 
-        // Handle File Upload if provided
+        // Handle File Upload if provided with persistent storage backup
         if ($request->hasFile('image_file') && $request->file('image_file')->isValid()) {
             $file = $request->file('image_file');
-            $uploadDir = public_path('assets/images/uploads');
-            if (!file_exists($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
+            $storageDir = storage_path('app/public/uploads');
+            if (!file_exists($storageDir)) {
+                mkdir($storageDir, 0755, true);
+            }
+            $publicUploadDir = public_path('assets/images/uploads');
+            if (!file_exists($publicUploadDir)) {
+                mkdir($publicUploadDir, 0755, true);
             }
             $cleanSlug = $validated['slug'];
             $filename = $cleanSlug . '-' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadDir, $filename);
+            $file->move($storageDir, $filename);
+            @copy($storageDir . '/' . $filename, $publicUploadDir . '/' . $filename);
             $validated['image'] = "/assets/images/uploads/{$filename}";
         }
 
@@ -196,16 +201,21 @@ class ProductController extends Controller
             'featured' => ['nullable', 'boolean'],
         ]);
 
-        // Handle File Upload if provided
+        // Handle File Upload if provided with persistent storage backup
         if ($request->hasFile('image_file') && $request->file('image_file')->isValid()) {
             $file = $request->file('image_file');
-            $uploadDir = public_path('assets/images/uploads');
-            if (!file_exists($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
+            $storageDir = storage_path('app/public/uploads');
+            if (!file_exists($storageDir)) {
+                mkdir($storageDir, 0755, true);
+            }
+            $publicUploadDir = public_path('assets/images/uploads');
+            if (!file_exists($publicUploadDir)) {
+                mkdir($publicUploadDir, 0755, true);
             }
             $cleanSlug = $validated['slug'];
             $filename = $cleanSlug . '-' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move($uploadDir, $filename);
+            $file->move($storageDir, $filename);
+            @copy($storageDir . '/' . $filename, $publicUploadDir . '/' . $filename);
             $validated['image'] = "/assets/images/uploads/{$filename}";
         }
 

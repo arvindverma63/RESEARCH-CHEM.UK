@@ -621,7 +621,7 @@
                                      alt="{{ $fProd['name'] }}"
                                      loading="lazy"
                                      decoding="async"
-                                     class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+                                     onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
                                 <span class="absolute top-1.5 right-1.5 bg-blue-700 text-white text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-xs">
                                     {{ $fProd['purity'] ?? '≥98%' }}
                                 </span>

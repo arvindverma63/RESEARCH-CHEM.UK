@@ -37,18 +37,52 @@
     @yield('json_ld')
 </head>
 <body class="min-h-screen flex flex-col bg-white text-slate-800 antialiased font-sans selection:bg-blue-600 selection:text-white"
-      x-data="{ mobileOpen: false, ageVerified: false, showAgeGate: false, showCookieBanner: false }"
+      x-data="{
+          mobileOpen: false,
+          ageVerified: (function() {
+              try {
+                  if (new URLSearchParams(window.location.search).has('reset_age')) {
+                      localStorage.removeItem('rc_age_verified');
+                      return false;
+                  }
+                  return !!localStorage.getItem('rc_age_verified');
+              } catch(e) {
+                  return false;
+              }
+          })(),
+          showAgeGate: (function() {
+              try {
+                  if (new URLSearchParams(window.location.search).has('reset_age')) {
+                      localStorage.removeItem('rc_age_verified');
+                      return true;
+                  }
+                  return !localStorage.getItem('rc_age_verified');
+              } catch(e) {
+                  return true;
+              }
+          })(),
+          showCookieBanner: false,
+          confirmAge() {
+              try {
+                  localStorage.setItem('rc_age_verified', '1');
+              } catch(e) {}
+              this.showAgeGate = false;
+              this.ageVerified = true;
+              document.body.style.overflow = '';
+              if (!localStorage.getItem('rc_cookie_consent')) {
+                  setTimeout(() => this.showCookieBanner = true, 600);
+              }
+          },
+          exitAge() {
+              window.location.href = 'https://www.google.com';
+          }
+      }"
       x-init="
-        try {
-            ageVerified = !!localStorage.getItem('rc_age_verified');
-            if (!ageVerified) {
-                showAgeGate = true;
-            } else if (!localStorage.getItem('rc_cookie_consent')) {
-                setTimeout(() => showCookieBanner = true, 500);
-            }
-        } catch(e) {
-            showAgeGate = true;
-        }
+          if (showAgeGate) {
+              document.body.style.overflow = 'hidden';
+          } else if (!localStorage.getItem('rc_cookie_consent')) {
+              setTimeout(() => showCookieBanner = true, 600);
+          }
       ">
 
     <!-- ── Sitewide Top Alert Banner ── -->
@@ -384,58 +418,73 @@
     <!-- ── Age Verification Gate Modal ── -->
     <div x-show="showAgeGate" x-cloak
          role="dialog" aria-modal="true" aria-labelledby="age-gate-title"
-         style="position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px);">
-        <div style="background: #fff; border-radius: 16px; max-width: 520px; width: 100%; padding: clamp(28px,5vw,44px); box-shadow: 0 24px 80px rgba(0,0,0,0.5); text-align: center; font-family: var(--font-sans);"
+         class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+         style="background: rgba(2, 14, 33, 0.82); backdrop-filter: blur(8px);">
+        
+        <div class="relative w-full max-w-[500px] bg-white rounded-2xl p-6 sm:p-9 text-center border border-slate-100 shadow-2xl font-sans"
              @click.outside="false">
-            <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-                <div style="background: #0052a3; border-radius: 50%; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; color: #fff;">
-                    <i data-lucide="shield-check" class="w-8 h-8"></i>
+            
+            <!-- Top Shield Badge -->
+            <div class="flex justify-center mb-4">
+                <div class="w-13 h-13 rounded-full bg-[#0052a3] text-white flex items-center justify-center shadow-lg shadow-blue-900/25">
+                    <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
                 </div>
             </div>
 
-            <h2 id="age-gate-title" style="font-family: var(--font-heading); font-weight: 900; font-size: clamp(1.3rem,3vw,1.8rem); color: #0052a3; margin-bottom: 12px;">
+            <!-- Title -->
+            <h2 id="age-gate-title" class="text-2xl sm:text-[26px] font-extrabold text-[#0052a3] mb-3 tracking-tight leading-tight" style="font-family: var(--font-heading);">
                 Age &amp; Research Verification
             </h2>
 
-            <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
-                <p style="font-size: 0.82rem; font-weight: 700; color: #856404; margin: 0; text-transform: uppercase; letter-spacing: 0.05em;">
-                    ⚠️ For Research Use Only — Not for Human Use
-                </p>
+            <!-- Warning Notice Pill -->
+            <div class="bg-[#fef9c3] border border-[#fde047] rounded-lg py-2 px-3 mb-4 flex items-center justify-center gap-1.5 text-[#854d0e] text-[11px] font-bold tracking-wider uppercase">
+                <span class="text-amber-600">⚠</span>
+                <span>FOR RESEARCH USE ONLY — NOT FOR HUMAN USE</span>
             </div>
 
-            <p style="font-size: clamp(0.88rem,1.5vw,0.95rem); line-height: 1.75; color: #333; margin-bottom: 20px;">
-                This website sells <strong>research-grade chemical compounds strictly for in-vitro laboratory use</strong>.
-                Products are <strong>not intended for human or veterinary consumption</strong> and are sold exclusively to qualified research professionals.
+            <!-- Introductory Context -->
+            <p class="text-xs sm:text-[13px] leading-relaxed text-slate-600 mb-4 font-normal">
+                This website sells <strong class="text-slate-800">research-grade chemical compounds strictly for in-vitro laboratory use</strong>. Products are <strong class="text-slate-800">not intended for human or veterinary consumption</strong> and are sold exclusively to qualified research professionals.
             </p>
 
-            <p style="font-size: 0.9rem; font-weight: 600; color: #1a1a2e; margin-bottom: 16px;">
+            <!-- Confirmation Prompt -->
+            <p class="text-xs sm:text-[13px] font-bold text-slate-800 mb-2.5">
                 By entering this site you confirm that you are:
             </p>
 
-            <ul style="text-align: left; font-size: 0.88rem; line-height: 1.8; color: #444; margin-bottom: 28px; padding-left: 20px;" class="list-disc">
-                <li>Aged <strong>18 years or older</strong></li>
-                <li>Intending to use all <strong>research-chem.uk products</strong> for legitimate laboratory research purposes only</li>
-                <li>Aware that these products are <strong>not for human consumption</strong></li>
-                <li>Compliant with all <strong>applicable laws</strong> in your jurisdiction</li>
-            </ul>
+            <!-- Statements (Matching design: clean, centered, no bullet dots) -->
+            <div class="flex flex-col gap-1.5 mb-6 text-xs sm:text-[13px] leading-relaxed text-slate-600">
+                <div>Aged <strong class="text-slate-900">18 years or older</strong></div>
+                <div>Intending to use all <strong class="text-slate-900">research-chem.uk products</strong> for legitimate laboratory research purposes only</div>
+                <div>Aware that these products are <strong class="text-slate-900">not for human consumption</strong></div>
+                <div>Compliant with all <strong class="text-slate-900">applicable laws</strong> in your jurisdiction</div>
+            </div>
 
-            <div style="display: flex; gap: 12px; flex-direction: column;">
-                <button @click="localStorage.setItem('rc_age_verified', '1'); showAgeGate = false; ageVerified = true; if (!localStorage.getItem('rc_cookie_consent')) setTimeout(() => showCookieBanner = true, 500);"
-                        style="background: #0052a3; color: #fff; border: none; border-radius: 8px; padding: 14px 24px; font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; cursor: pointer; width: 100%;">
+            <!-- Action Buttons -->
+            <div class="flex flex-col gap-2.5">
+                <button type="button"
+                        @click="confirmAge()"
+                        class="w-full h-11 sm:h-12 flex items-center justify-center bg-[#0052a3] hover:bg-[#003d7a] text-white rounded-lg text-sm font-bold tracking-wide shadow-sm hover:shadow-md transition-all cursor-pointer"
+                        style="font-family: var(--font-heading);">
                     I Confirm — I am 18+ and Agree to These Terms
                 </button>
-                <button @click="window.location.href = 'https://www.google.com'"
-                        style="background: transparent; color: #888; border: 1px solid #ddd; border-radius: 8px; padding: 12px 24px; font-family: var(--font-heading); font-weight: 600; font-size: 0.88rem; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                    I Do Not Meet These Requirements — Exit
+                <button type="button"
+                        @click="exitAge()"
+                        class="w-full h-10 flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-700 border border-slate-300 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                        style="font-family: var(--font-heading);">
+                    <span class="text-base leading-none">&times;</span>
+                    <span>I Do Not Meet These Requirements — Exit</span>
                 </button>
             </div>
 
-            <p style="font-size: 0.75rem; color: #aaa; margin-top: 20px; line-height: 1.6;">
-                By clicking "I Confirm" you agree to our
-                <a href="{{ route('legal.terms-conditions') }}" style="color: #0052a3;">Terms &amp; Conditions</a>,
-                <a href="{{ route('legal.privacy-policy') }}" style="color: #0052a3;">Privacy Policy</a>, and
-                <a href="{{ route('compliance') }}" style="color: #0052a3;">Compliance Notice</a>.
+            <!-- Footer Legal Terms -->
+            <p class="text-[11px] text-slate-400 mt-4 leading-relaxed">
+                By clicking &ldquo;I Confirm&rdquo; you agree to our
+                <a href="{{ route('legal.terms-conditions') }}" class="text-[#0052a3] hover:underline font-medium">Terms &amp; Conditions</a>,
+                <a href="{{ route('legal.privacy-policy') }}" class="text-[#0052a3] hover:underline font-medium">Privacy Policy</a>, and
+                <a href="{{ route('compliance') }}" class="text-[#0052a3] hover:underline font-medium">Compliance Notice</a>.
             </p>
         </div>
     </div>

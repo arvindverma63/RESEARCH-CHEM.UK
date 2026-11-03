@@ -13,14 +13,14 @@
             "cas": "137525-51-0",
             "desc": "Lyophilised pentadecapeptide for in-vitro laboratory research.",
             "img": "/assets/images/photorealistic-single-glass-research-via-ATRm5m.png",
+            "image": "/assets/images/products/bpc-157.png",
             "vialSize": "3ml",
             "molecularFormula": "C62H98N16O22",
             "molecularWeight": "1419.55 g/mol",
             "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Pentadecapeptide fragment of human Body Protection Compound. Sequence: GEPPPGKPADDAGLV. Stable gastric pentadecapeptide; resistant to enzymatic hydrolysis in gastric juice.",
-            "image": "/assets/images/products/bpc-157.png"
+            "chemDesc": "Pentadecapeptide fragment of human Body Protection Compound. Sequence: GEPPPGKPADDAGLV. Stable gastric pentadecapeptide; resistant to enzymatic hydrolysis in gastric juice."
         },
         {
             "id": "2",
@@ -32,14 +32,14 @@
             "cas": "77591-33-4",
             "desc": "Synthetic peptide fraction of thymosin beta-4.",
             "img": "/assets/images/photorealistic-single-glass-research-via-Hen6Mo.png",
+            "image": "/assets/images/products/tb-500.png",
             "vialSize": "3ml",
             "molecularFormula": "C212H350N56O78S",
             "molecularWeight": "4963.44 g/mol",
             "sequence": "Ac-Ser-Asp-Lys-Pro-Asp-Met-Ala-Glu-Ile-Glu-Lys-Phe-Asp-Lys-Ser-Lys-Leu-Lys-Lys-Thr-Glu-Thr-Gln-Glu-Lys-Asn-Pro-Leu-Pro-Ser-Lys-Glu-Thr-Ile-Glu-Gln-Glu-Lys-Gln-Ala-Gly-Glu-Ser",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Synthetic peptide fraction of thymosin beta-4.",
-            "image": "/assets/images/products/tb-500.png"
+            "chemDesc": "Synthetic analogue of the actin-sequestering protein Thymosin β-4. 43-amino acid peptide. Promotes actin polymerisation and cellular migration in vitro."
         },
         {
             "id": "3",
@@ -51,14 +51,14 @@
             "cas": "Blend — see CoA",
             "desc": "Laboratory blend of 10mg BPC-157 and 10mg TB-500 in a single lyophilised vial.",
             "img": "/assets/images/photorealistic-single-glass-research-via-ZiTlLS.png",
+            "image": "/assets/images/products/wolverine.png",
             "vialSize": "3ml",
             "molecularFormula": "Synergistic Peptide Blend",
             "molecularWeight": "See CoA",
             "sequence": "BPC-157 + TB-500 combination blend",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Laboratory blend of 10mg BPC-157 and 10mg TB-500 in a single lyophilised vial.",
-            "image": "/assets/images/products/wolverine.png"
+            "chemDesc": "Proprietary dual-peptide lyophilised blend. Contains BPC-157 (CAS 137525-51-0) and TB-500 (CAS 77591-33-4) in a fixed molar ratio. Each component independently verified by HPLC."
         },
         {
             "id": "4",
@@ -70,14 +70,14 @@
             "cas": "2381272-89-3",
             "desc": "Novel multi-target tri-agonist peptide for in-vitro metabolic binding assays.",
             "img": "/assets/images/change-the-label-on-this-research-chemic-LRmlHu.png",
+            "image": "/assets/images/products/retatrutide.png",
             "vialSize": "3ml",
             "molecularFormula": "C219H345N55O68",
             "molecularWeight": "3765.1 g/mol",
             "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Novel multi-target tri-agonist peptide for in-vitro metabolic binding assays.",
-            "image": "/assets/images/products/retatrutide.png"
+            "chemDesc": "Triple incretin receptor agonist (GIP-R / GLP-1R / GCGR). C18 fatty diacid-conjugated peptide enabling extended half-life via albumin binding. Investigational compound."
         },
         {
             "id": "5",
@@ -89,14 +89,14 @@
             "cas": "170851-70-4",
             "desc": "Pentapeptide growth hormone secretagogue receptor agonist.",
             "img": "/assets/images/photorealistic-single-glass-research-via-IOX3m4.png",
+            "image": "/assets/images/products/ipamorelin.png",
             "vialSize": "3ml",
             "molecularFormula": "C38H49N9O5",
             "molecularWeight": "711.86 g/mol",
             "sequence": "Aib-His-D-2Nal-D-Phe-Lys-NH₂",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Pentapeptide growth hormone secretagogue receptor agonist.",
-            "image": "/assets/images/products/ipamorelin.png"
+            "chemDesc": "Pentapeptide growth hormone secretagogue. Selective GHSR-1a agonist. Contains Aib (α-aminoisobutyric acid) at position 1 conferring proteolytic stability."
         },
         {
             "id": "6",
@@ -108,14 +108,14 @@
             "cas": "863288-34-0",
             "desc": "Long-acting synthetic analog of growth hormone-releasing hormone.",
             "img": "/assets/images/photorealistic-single-glass-research-via-W-sigu.png",
+            "image": "/assets/images/products/cjc-1295-dac.png",
             "vialSize": "3ml",
             "molecularFormula": "C165H271N47O46",
             "molecularWeight": "3647.28 g/mol",
             "sequence": "GHRH(1-29)-Lys(Nε-maleimidopropionamide) analogue + Drug Affinity Complex",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Long-acting synthetic analog of growth hormone-releasing hormone.",
-            "image": "/assets/images/products/cjc-1295-dac.png"
+            "chemDesc": "Modified GHRH analogue with Drug Affinity Complex (DAC) technology. Covalent albumin binding via maleimide–thiol reaction extends plasma half-life to approximately 6–8 days."
         },
         {
             "id": "7",
@@ -127,14 +127,14 @@
             "cas": "49557-75-7",
             "desc": "Naturally occurring copper-binding tripeptide with tissue remodeling research applications.",
             "img": "/assets/images/photorealistic-single-glass-research-via-RnFJa3.png",
+            "image": "/assets/images/products/ghk-cu.png",
             "vialSize": "3ml",
             "molecularFormula": "C14H24CuN6O4",
             "molecularWeight": "340.84 g/mol (free base)",
             "sequence": "Gly-His-Lys · Cu²⁺ chelate",
             "appearance": "Blue lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Naturally occurring copper-binding tripeptide with tissue remodeling research applications.",
-            "image": "/assets/images/products/ghk-cu.png"
+            "chemDesc": "Copper(II) chelate of the tripeptide glycyl-L-histidyl-L-lysine. Endogenous plasma peptide. Cu²⁺ coordination via imidazole nitrogen of His and ε-amino group of Lys."
         },
         {
             "id": "8",
@@ -146,14 +146,14 @@
             "cas": "Blend — see CoA",
             "desc": "Advanced 3-compound lyophilised formulation combining GHK-Cu, BPC-157, and TB-500.",
             "img": "/assets/images/photorealistic-single-glass-research-via-Mm3Pbt.png",
+            "image": "/assets/images/products/glow-ghk-cu.png",
             "vialSize": "3ml",
             "molecularFormula": "Tri-Peptide Regenerative Blend",
             "molecularWeight": "340.84 g/mol (free base)",
             "sequence": "Gly-His-Lys · Cu²⁺ chelate — high-dose formulation",
             "appearance": "Blue lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Advanced 3-compound lyophilised formulation combining GHK-Cu, BPC-157, and TB-500.",
-            "image": "/assets/images/products/glow-ghk-cu.png"
+            "chemDesc": "High-concentration GHK-Cu formulation (70 mg/vial). Identical molecular structure to standard GHK-Cu (CAS 49557-75-7). Elevated dose per vial for intensive in vitro protocols."
         },
         {
             "id": "9",
@@ -165,14 +165,14 @@
             "cas": "53-84-9",
             "desc": "Essential cellular coenzyme for mitochondrial and cellular longevity research.",
             "img": "/assets/images/photorealistic-single-glass-research-via-oJuqSo.png",
-            "vialSize": "3ml",
+            "image": "/assets/images/products/nad.png",
+            "vialSize": "10ml",
             "molecularFormula": "C21H27N7O14P2",
             "molecularWeight": "663.43 g/mol",
             "sequence": "Nicotinamide adenine dinucleotide (oxidised form)",
             "appearance": "White to off-white lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term, desiccated",
-            "chemDesc": "Essential cellular coenzyme for mitochondrial and cellular longevity research.",
-            "image": "/assets/images/products/nad.png"
+            "chemDesc": "Oxidised form of nicotinamide adenine dinucleotide. Essential coenzyme in cellular redox reactions. Substrate for sirtuins (SIRT1–7), PARP enzymes, and CD38 NADase."
         },
         {
             "id": "10",
@@ -184,14 +184,14 @@
             "cas": "7732-18-5 / 100-51-6",
             "desc": "Multi-dose sterile water container preserved with 0.9% benzyl alcohol.",
             "img": "/assets/images/photorealistic-single-glass-research-via-ZdRy7k.png",
-            "vialSize": "3ml",
+            "image": "/assets/images/products/bacteriostatic-water.png",
+            "vialSize": "10ml",
             "molecularFormula": "H2O + 0.9% C7H8O",
             "molecularWeight": "18.015 g/mol (H₂O)",
             "sequence": "Sterile water for injection (WFI grade)",
             "appearance": "Clear, colourless solution",
             "storage": "Store at 15–25 °C; discard 28 days after first use",
-            "chemDesc": "Multi-dose sterile water container preserved with 0.9% benzyl alcohol.",
-            "image": "/assets/images/products/bacteriostatic-water.png"
+            "chemDesc": "Water for injection preserved with 0.9% w/v benzyl alcohol (CAS 100-51-6). Bacteriostatic agent inhibits microbial growth. Suitable for multi-dose reconstitution of lyophilised peptides."
         },
         {
             "id": "11",
@@ -203,14 +203,14 @@
             "cas": "2023788-19-2",
             "desc": "Dual glucose-dependent insulinotropic polypeptide and glucagon-like peptide-1 agonist.",
             "img": "/assets/images/photorealistic-single-glass-research-via-iuUQZJ.png",
+            "image": "/assets/images/products/tirzepatide.png",
             "vialSize": "3ml",
             "molecularFormula": "C225H348N48O68",
             "molecularWeight": "4813.5 g/mol",
             "sequence": "Dual GIP/GLP-1 receptor agonist peptide — C20 fatty diacid conjugate",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Dual glucose-dependent insulinotropic polypeptide and glucagon-like peptide-1 agonist.",
-            "image": "/assets/images/products/tirzepatide.png"
+            "chemDesc": "Dual incretin receptor agonist (GIP-R / GLP-1R). 39-amino acid peptide with Aib substitution at position 2. C20 fatty diacid moiety enables once-weekly dosing via albumin binding."
         },
         {
             "id": "12",
@@ -222,14 +222,14 @@
             "cas": "307297-39-8",
             "desc": "Synthetic peptide (Ala-Glu-Asp-Gly) studied for telomerase activation.",
             "img": "/assets/images/photorealistic-single-glass-research-via-PkNjP6.png",
+            "image": "/assets/images/products/epithalon.png",
             "vialSize": "3ml",
             "molecularFormula": "C14H22N4O9",
             "molecularWeight": "390.35 g/mol",
             "sequence": "Ala-Glu-Asp-Gly",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Synthetic peptide (Ala-Glu-Asp-Gly) studied for telomerase activation.",
-            "image": "/assets/images/products/epithalon.png"
+            "chemDesc": "Synthetic tetrapeptide (Ala-Glu-Asp-Gly). Analogue of epithalamin, a polypeptide isolated from bovine pineal gland. Reported to stimulate telomerase activity in somatic cells in vitro."
         },
         {
             "id": "13",
@@ -241,31 +241,14 @@
             "cas": "736992-21-5",
             "desc": "Mitochondria-targeting synthetic tetrapeptide for cellular bioenergetics research.",
             "img": "/assets/images/photorealistic-single-glass-research-via-6bplOH.png",
+            "image": "/assets/images/products/ss-31.png",
             "vialSize": "3ml",
             "molecularFormula": "C32H49N9O5",
             "molecularWeight": "635.80 g/mol",
             "sequence": "D-Arg-2′6′-Dmt-Lys-Phe-NH₂",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "chemDesc": "Mitochondria-targeting synthetic tetrapeptide for cellular bioenergetics research.",
-            "image": "/assets/images/products/ss-31.png"
+            "chemDesc": "Szeto-Schiller tetrapeptide. Mitochondria-targeted antioxidant peptide. Selectively concentrates in the inner mitochondrial membrane via electrostatic interaction with cardiolipin."
         }
-    ],
-    "categoryIntro": {
-        "heading": "Research Peptide Vials — UK Dispatched",
-        "body": [
-            {
-                "id": "pv-p1",
-                "text": "Peptides are short-chain amino acid sequences that act as signalling molecules within biological systems. In laboratory research, synthetic peptides are used to investigate cellular repair mechanisms, growth hormone secretion pathways, metabolic regulation, and tissue remodelling processes. Their high target specificity and well-characterised pharmacokinetic profiles make them a preferred tool for in-vitro and in-vivo preclinical studies."
-            },
-            {
-                "id": "pv-p2",
-                "text": "ResearchChem.uk supplies a curated range of research-grade peptide vials, each verified by HPLC analysis to a minimum purity of ≥98%. Every batch is accompanied by a Certificate of Analysis confirming identity, purity, and molecular weight. Compounds are lyophilised and supplied in sealed glass vials, ready for reconstitution with bacteriostatic water in a controlled laboratory environment."
-            },
-            {
-                "id": "pv-p3",
-                "text": "All peptide vials are dispatched from the UK within 2–3 working days. Volume discounts apply automatically at checkout. These compounds are supplied strictly for qualified researchers conducting in-vitro laboratory research. Not for human or veterinary use."
-            }
-        ]
-    }
+    ]
 }

@@ -17,21 +17,35 @@ class ProductSyncService
 
         foreach ($all as $slug => $item) {
             $category = $item['category'] ?? 'peptides';
-            $details = $detailConfig[$slug] ?? null;
+            $details = $detailConfig[$slug] ?? [];
+            if (empty($details)) {
+                $details = [
+                    'molecularFormula' => $item['molecularFormula'] ?? $item['formula'] ?? null,
+                    'molecularWeight' => $item['molecularWeight'] ?? null,
+                    'sequence' => $item['sequence'] ?? null,
+                    'appearance' => $item['appearance'] ?? null,
+                    'storage' => $item['storage'] ?? null,
+                    'chemDesc' => $item['chemDesc'] ?? null,
+                    'volume' => $item['volume'] ?? null,
+                    'concentration' => $item['concentration'] ?? null,
+                    'solvent' => $item['solvent'] ?? null,
+                    'vialSize' => $item['vialSize'] ?? null,
+                ];
+            }
 
             Product::updateOrCreate(
                 ['slug' => $slug],
                 [
                     'name' => $item['name'] ?? ucfirst($slug),
                     'category' => $category,
-                    'dose' => $item['dose'] ?? null,
+                    'dose' => $item['dose'] ?? $item['concentration'] ?? null,
                     'price' => $item['price'] ?? '£0.00',
                     'price_pence' => $item['price_pence'] ?? ContentService::parsePence($item['price'] ?? '0'),
                     'purity' => $item['purity'] ?? '≥98%',
                     'subtitle' => $item['subtitle'] ?? null,
-                    'formula' => $item['formula'] ?? null,
+                    'formula' => $item['molecularFormula'] ?? $item['formula'] ?? null,
                     'cas_no' => $item['cas'] ?? $item['cas_no'] ?? null,
-                    'description' => $item['desc'] ?? $item['description'] ?? null,
+                    'description' => $item['desc'] ?? $item['description'] ?? $item['chemDesc'] ?? null,
                     'contents' => $item['contents'] ?? null,
                     'tiers' => $item['tiers'] ?? null,
                     'details' => $details,

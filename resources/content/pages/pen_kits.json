@@ -1,12 +1,13 @@
 {
     "pageTitle": "Peptide Pen Kits",
-    "pageSubtitle": "Research compound kits · Listed accessories included · Dispatched within 2–3 working days",
+    "pageSubtitle": "Complete, precision-dosed peptide pen systems. Pre-filled and ready for laboratory research.",
     "PRODUCTS": [
         {
             "id": "20",
             "slug": "retatrutide-pen-kit",
             "name": "Retatrutide 40mg Pen Kit",
             "dose": "40mg",
+            "price": "£150",
             "subtitle": "Retatrutide Multi-Dose Research Pen System",
             "formula": "C219H345N55O68",
             "contents": [
@@ -48,22 +49,23 @@
                     "highlight": false
                 }
             ],
-            "cas": "2381272-89-3",
-            "molecularFormula": "C219H345N55O68",
-            "molecularWeight": "3765.1 g/mol",
+            "img": "/assets/images/products/retatrutide-pen-kit.jpg",
+            "image": "/assets/images/products/retatrutide-pen-kit.jpg",
             "purity": "≥99.6% (HPLC)",
-            "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
             "appearance": "Lyophilised cartridge + adjustable pen delivery system",
             "storage": "−20 °C long-term; 2–8 °C reconstituted",
             "chemDesc": "Complete precision research pen system with high purity Retatrutide lyophilised cartridge and diluent.",
-            "img": "/assets/images/products/retatrutide-pen-kit.jpg",
-            "image": "/assets/images/products/retatrutide-pen-kit.jpg"
+            "cas": "2381272-89-3",
+            "molecularFormula": "C219H345N55O68",
+            "molecularWeight": "",
+            "sequence": ""
         },
         {
             "id": "21",
             "slug": "wolverine-pen-kit",
             "name": "Wolverine 20mg Pen Kit",
             "dose": "20mg",
+            "price": "£95",
             "subtitle": "BPC-157 10mg + TB-500 10mg Pen System",
             "formula": "BPC-157 + TB-500 Synergistic Blend",
             "contents": [
@@ -99,22 +101,23 @@
                     "highlight": false
                 }
             ],
-            "cas": "Blend — see CoA",
-            "molecularFormula": "BPC-157 + TB-500 Synergistic Blend",
-            "molecularWeight": "See CoA",
+            "img": "/assets/images/products/wolverine-pen-kit.png",
+            "image": "/assets/images/products/wolverine-pen-kit.png",
             "purity": "≥98.5% BPC / ≥99.2% TB (HPLC)",
-            "sequence": "BPC-157 (10mg) + TB-500 (10mg) dual combination",
             "appearance": "Lyophilised cartridge + adjustable pen delivery system",
             "storage": "−20 °C long-term; 2–8 °C reconstituted",
-            "chemDesc": "Dual-compound tissue recovery research pen combining BPC-157 and TB-500 in one precision injector.",
-            "img": "/assets/images/products/wolverine-pen-kit.png",
-            "image": "/assets/images/products/wolverine-pen-kit.png"
+            "chemDesc": "Complete precision research pen system with high purity Wolverine lyophilised cartridge and diluent.",
+            "cas": "Blend — see CoA",
+            "molecularFormula": "BPC-157 + TB-500 Synergistic Blend",
+            "molecularWeight": "",
+            "sequence": ""
         },
         {
             "id": "22",
             "slug": "glow-ghk-cu-pen-kit",
             "name": "GLOW GHK-CU 70mg Pen Kit",
             "dose": "70mg",
+            "price": "£100",
             "subtitle": "GHK-Cu 50mg + BPC-157 10mg + TB-500 10mg",
             "formula": "Tri-Peptide Regenerative Matrix",
             "contents": [
@@ -150,33 +153,16 @@
                     "highlight": false
                 }
             ],
+            "img": "/assets/images/products/glow-ghk-cu-pen-kit.jpg",
+            "image": "/assets/images/products/glow-ghk-cu-pen-kit.jpg",
+            "purity": "≥99.6% GHK / ≥98.5% BPC / ≥99.2% TB",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "chemDesc": "Complete precision research pen system with high purity GLOW GHK-CU lyophilised cartridge and diluent.",
             "cas": "Blend — see CoA",
             "molecularFormula": "Tri-Peptide Regenerative Matrix",
-            "molecularWeight": "See CoA",
-            "purity": "≥99.6% GHK / ≥98.5% BPC / ≥99.2% TB",
-            "sequence": "GHK-Cu (50mg) + BPC-157 (10mg) + TB-500 (10mg)",
-            "appearance": "Deep blue lyophilised cartridge + pen delivery system",
-            "storage": "−20 °C long-term; 2–8 °C reconstituted",
-            "chemDesc": "Triple-peptide precision pen kit combining Copper Tripeptide-1 with BPC-157 and TB-500.",
-            "img": "/assets/images/products/glow-ghk-cu-pen-kit.jpg",
-            "image": "/assets/images/products/glow-ghk-cu-pen-kit.jpg"
+            "molecularWeight": "",
+            "sequence": ""
         }
-    ],
-    "categoryIntro": {
-        "heading": "Retatrutide Pen Kits & Peptide Pens — UK's Best Sellers",
-        "body": [
-            {
-                "id": "pk-p1",
-                "text": "Our Retatrutide pen kit is our bestselling research compound kit — a complete Reta pen set combining a 40mg Retatrutide vial with a calibrated micro pin injector pen, 12× 32G micro needles, and alcohol wipes. Designed for structured GLP-1/GIP/glucagon receptor pathway research, the Retatrutide pen kit removes the need to source components separately and is ready to use straight from the box."
-            },
-            {
-                "id": "pk-p2",
-                "text": "ResearchChem.uk offers three peptide pen kit configurations: the Retatrutide 40mg Pen Kit (Reta pen), the Wolverine 20mg Pen Kit combining BPC-157 and TB-500 for tissue repair studies, and the GLOW GHK-CU 70mg Pen Kit for copper peptide research. All peptide pens include a filled vial, micro pin injector pen, 12× 32G micro pins, and 12× alcohol wipes — everything needed for a complete research protocol."
-            },
-            {
-                "id": "pk-p3",
-                "text": "All pen kits are dispatched from the UK within 2–3 working days. Multi-kit volume pricing is available at checkout. These kits are supplied strictly for qualified researchers conducting in-vitro laboratory research. Not for human or veterinary use."
-            }
-        ]
-    }
+    ]
 }

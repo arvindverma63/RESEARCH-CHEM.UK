@@ -42,7 +42,370 @@
             "sequence": "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
             "appearance": "White lyophilised powder",
             "storage": "−20 °C long-term; 2–8 °C short-term",
-            "molecularFormula": "C62H98N16O22"
+            "molecularFormula": "C62H98N16O22",
+            "cas": "137525-51-0",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "tb-500": {
+            "chemDesc": "Synthetic analogue of the actin-sequestering protein Thymosin β-4. 43-amino acid peptide. Promotes actin polymerisation and cellular migration in vitro.",
+            "molecularWeight": "4963.44 g/mol",
+            "sequence": "Ac-Ser-Asp-Lys-Pro-Asp-Met-Ala-Glu-Ile-Glu-Lys-Phe-Asp-Lys-Ser-Lys-Leu-Lys-Lys-Thr-Glu-Thr-Gln-Glu-Lys-Asn-Pro-Leu-Pro-Ser-Lys-Glu-Thr-Ile-Glu-Gln-Glu-Lys-Gln-Ala-Gly-Glu-Ser",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₂₁₂H₃₅₀N₅₆O₇₈S",
+            "cas": "77591-33-4",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "wolverine": {
+            "chemDesc": "Proprietary dual-peptide lyophilised blend. Contains BPC-157 (CAS 137525-51-0) and TB-500 (CAS 77591-33-4) in a fixed molar ratio. Each component independently verified by HPLC.",
+            "molecularWeight": "See CoA",
+            "sequence": "BPC-157 + TB-500 combination blend",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "Peptide blend",
+            "cas": "Blend — see CoA",
+            "purity": "≥98.0% per component (HPLC)",
+            "vialSize": "3ml"
+        },
+        "retatrutide": {
+            "chemDesc": "Triple incretin receptor agonist (GIP-R / GLP-1R / GCGR). C18 fatty diacid-conjugated peptide enabling extended half-life via albumin binding. Investigational compound.",
+            "molecularWeight": "3765.1 g/mol",
+            "sequence": "GIP/GLP-1/Glucagon triple receptor agonist peptide",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₁₆₄H₂₅₆N₄₄O₅₃",
+            "cas": "2381272-89-3",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "ipamorelin": {
+            "chemDesc": "Pentapeptide growth hormone secretagogue. Selective GHSR-1a agonist. Contains Aib (α-aminoisobutyric acid) at position 1 conferring proteolytic stability.",
+            "molecularWeight": "711.86 g/mol",
+            "sequence": "Aib-His-D-2Nal-D-Phe-Lys-NH₂",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₃₈H₄₉N₉O₅",
+            "cas": "170851-70-4",
+            "purity": "≥98.5% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "cjc-1295-dac": {
+            "chemDesc": "Modified GHRH analogue with Drug Affinity Complex (DAC) technology. Covalent albumin binding via maleimide–thiol reaction extends plasma half-life to approximately 6–8 days.",
+            "molecularWeight": "3647.28 g/mol",
+            "sequence": "GHRH(1-29)-Lys(Nε-maleimidopropionamide) analogue + Drug Affinity Complex",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₁₅₂H₂₅₂N₄₄O₄₂",
+            "cas": "863288-34-0",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "ghk-cu": {
+            "chemDesc": "Copper(II) chelate of the tripeptide glycyl-L-histidyl-L-lysine. Endogenous plasma peptide. Cu²⁺ coordination via imidazole nitrogen of His and ε-amino group of Lys.",
+            "molecularWeight": "340.84 g/mol (free base)",
+            "sequence": "Gly-His-Lys · Cu²⁺ chelate",
+            "appearance": "Blue lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₁₄H₂₄CuN₆O₄",
+            "cas": "49557-75-7",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "glow-ghk-cu": {
+            "chemDesc": "High-concentration GHK-Cu formulation (70 mg/vial). Identical molecular structure to standard GHK-Cu (CAS 49557-75-7). Elevated dose per vial for intensive in vitro protocols.",
+            "molecularWeight": "340.84 g/mol (free base)",
+            "sequence": "Gly-His-Lys · Cu²⁺ chelate — high-dose formulation",
+            "appearance": "Blue lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₁₄H₂₄CuN₆O₄",
+            "cas": "49557-75-7",
+            "purity": "≥99.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "nad": {
+            "chemDesc": "Oxidised form of nicotinamide adenine dinucleotide. Essential coenzyme in cellular redox reactions. Substrate for sirtuins (SIRT1–7), PARP enzymes, and CD38 NADase.",
+            "molecularWeight": "663.43 g/mol",
+            "sequence": "Nicotinamide adenine dinucleotide (oxidised form)",
+            "appearance": "White to off-white lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term, desiccated",
+            "molecularFormula": "C₂₁H₂₇N₇O₁₄P₂",
+            "cas": "53-84-9",
+            "purity": "≥99.0% (HPLC)",
+            "vialSize": "10ml"
+        },
+        "bacteriostatic-water": {
+            "chemDesc": "Water for injection preserved with 0.9% w/v benzyl alcohol (CAS 100-51-6). Bacteriostatic agent inhibits microbial growth. Suitable for multi-dose reconstitution of lyophilised peptides.",
+            "molecularWeight": "18.015 g/mol (H₂O)",
+            "sequence": "Sterile water for injection (WFI grade)",
+            "appearance": "Clear, colourless solution",
+            "storage": "Store at 15–25 °C; discard 28 days after first use",
+            "molecularFormula": "H₂O + 0.9% benzyl alcohol",
+            "cas": "7732-18-5",
+            "purity": "Sterile-filtered; 0.22 µm membrane",
+            "vialSize": "10ml"
+        },
+        "tirzepatide": {
+            "chemDesc": "Dual incretin receptor agonist (GIP-R / GLP-1R). 39-amino acid peptide with Aib substitution at position 2. C20 fatty diacid moiety enables once-weekly dosing via albumin binding.",
+            "molecularWeight": "4813.5 g/mol",
+            "sequence": "Dual GIP/GLP-1 receptor agonist peptide — C20 fatty diacid conjugate",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₂₂₅H₃₄₈N₄₈O₆₈",
+            "cas": "2023788-19-2",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "epithalon": {
+            "chemDesc": "Synthetic tetrapeptide (Ala-Glu-Asp-Gly). Analogue of epithalamin, a polypeptide isolated from bovine pineal gland. Reported to stimulate telomerase activity in somatic cells in vitro.",
+            "molecularWeight": "390.35 g/mol",
+            "sequence": "Ala-Glu-Asp-Gly",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₁₄H₂₂N₄O₉",
+            "cas": "307297-39-8",
+            "purity": "≥98.5% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "ss-31": {
+            "chemDesc": "Szeto-Schiller tetrapeptide. Mitochondria-targeted antioxidant peptide. Selectively concentrates in the inner mitochondrial membrane via electrostatic interaction with cardiolipin.",
+            "molecularWeight": "635.80 g/mol",
+            "sequence": "D-Arg-2′6′-Dmt-Lys-Phe-NH₂",
+            "appearance": "White lyophilised powder",
+            "storage": "−20 °C long-term; 2–8 °C short-term",
+            "molecularFormula": "C₃₂H₄₉N₉O₅",
+            "cas": "736992-21-5",
+            "purity": "≥98.0% (HPLC)",
+            "vialSize": "3ml"
+        },
+        "mk-677-ibutamoren": {
+            "chemDesc": "Non-peptide ghrelin receptor agonist. Orally active GH secretagogue. Selectively mimics the action of endogenous ghrelin at the GHSR-1a receptor.",
+            "molecularWeight": "528.66 g/mol",
+            "appearance": "Clear to pale yellow solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₂₇H₃₆N₄O₅S",
+            "cas": "159752-10-0",
+            "purity": "≥99.0% (HPLC)",
+            "volume": "60ml",
+            "concentration": "25mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "rad-140-testolone": {
+            "chemDesc": "Nonsteroidal selective androgen receptor modulator (SARM). High binding affinity for androgen receptor (AR). Tissue-selective agonist activity in skeletal muscle and bone.",
+            "molecularWeight": "393.83 g/mol",
+            "appearance": "Clear to pale yellow solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₂₀H₁₆ClN₅O₂",
+            "cas": "1182367-47-0",
+            "purity": "≥99.0% (HPLC)",
+            "volume": "60ml",
+            "concentration": "10mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "yk-11-myostine": {
+            "chemDesc": "Steroidal SARM and partial agonist of the androgen receptor. Inhibits myostatin (GDF-8) signalling pathway. Structurally derived from 5α-dihydrotestosterone (DHT).",
+            "molecularWeight": "430.53 g/mol",
+            "appearance": "Clear solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₂₅H₃₄O₆",
+            "cas": "1370003-76-1",
+            "purity": "≥98.5% (HPLC)",
+            "volume": "60ml",
+            "concentration": "10mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "lgd-4033-ligandrol": {
+            "chemDesc": "Nonsteroidal SARM with high oral bioavailability. Selective agonist at androgen receptor in muscle and bone tissue. Fluorinated pyrrolidinyl-benzonitrile scaffold.",
+            "molecularWeight": "338.25 g/mol",
+            "appearance": "Clear to pale yellow solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₁₄H₁₂F₆N₂O",
+            "cas": "1165910-22-4",
+            "purity": "≥99.0% (HPLC)",
+            "volume": "60ml",
+            "concentration": "10mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "mk-2866-ostarine": {
+            "chemDesc": "Nonsteroidal SARM. Arylpropionamide-class androgen receptor ligand. Demonstrates high selectivity for muscle and bone AR over prostate tissue in preclinical models.",
+            "molecularWeight": "389.33 g/mol",
+            "appearance": "Clear to pale yellow solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₁₉H₁₄F₃N₃O₃",
+            "cas": "841205-47-8",
+            "purity": "≥99.0% (HPLC)",
+            "volume": "60ml",
+            "concentration": "20mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "gw-501516-cardarine": {
+            "chemDesc": "PPARδ (peroxisome proliferator-activated receptor delta) agonist. Thiazole-based synthetic ligand. Activates fatty acid oxidation pathways in skeletal muscle cell lines.",
+            "molecularWeight": "453.50 g/mol",
+            "appearance": "Clear solution",
+            "storage": "Store at 2–8 °C, protect from light",
+            "molecularFormula": "C₂₁H₁₈F₃NO₃S₂",
+            "cas": "317318-70-0",
+            "purity": "≥98.5% (HPLC)",
+            "volume": "60ml",
+            "concentration": "10mg per ml",
+            "solvent": "Propylene glycol (food grade)"
+        },
+        "retatrutide-pen-kit": {
+            "chemDesc": "Complete precision research pen system with high purity Retatrutide lyophilised cartridge and diluent.",
+            "subtitle": "Triple GIP / GLP-1 / Glucagon receptor agonist",
+            "formula": "GLP-1 · GIP · Glucagon",
+            "contents": [
+                "3ml Retatrutide filled vial 40mg",
+                "Micro needle Injector Pen",
+                "12 × 4mm 32G Micro Needles",
+                "12 × alcohol wipe sachets"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 Kit",
+                    "price": "£150",
+                    "each": "",
+                    "highlight": false,
+                    "id": "BGMqifGvxs_Z5xw_42PL0"
+                },
+                {
+                    "qty": "2 Kits",
+                    "price": "£300",
+                    "each": "£150 each",
+                    "highlight": false,
+                    "id": "BGMqifGvxs_Z5xw_42PL1"
+                },
+                {
+                    "qty": "3 Kits",
+                    "price": "£420",
+                    "each": "£140 each",
+                    "highlight": true,
+                    "id": "oynR9ISri1C5wXTDnZEdu"
+                },
+                {
+                    "qty": "4 Kits",
+                    "price": "£560",
+                    "each": "£140 each",
+                    "highlight": false,
+                    "id": "oynR9ISri1C5wXTDnZEd1"
+                },
+                {
+                    "qty": "5 Kits",
+                    "price": "£650",
+                    "each": "£130 each",
+                    "highlight": false,
+                    "id": "Zz7M8ytncrd1s7MtFT41I"
+                }
+            ],
+            "dose": "40mg",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "purity": "≥99.0% (HPLC)"
+        },
+        "wolverine-pen-kit": {
+            "chemDesc": "Complete precision research pen system with high purity Wolverine lyophilised cartridge and diluent.",
+            "subtitle": "BPC-157 10mg + TB-500 10mg",
+            "formula": "BPC-157 · TB-500",
+            "contents": [
+                "3ml Wolverine 20mg filled vial",
+                "Micro needle Injector Pen",
+                "12 × 4mm 32G Micro Needles",
+                "12 × alcohol wipe sachets"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 Kit",
+                    "price": "£95",
+                    "each": "",
+                    "highlight": false,
+                    "id": "QQzjYaeDiPLXgLJrGv5uF"
+                },
+                {
+                    "qty": "2 Kits",
+                    "price": "£190",
+                    "each": "£95 each",
+                    "highlight": false,
+                    "id": "QQzjYaeDiPLXgLJrGv5u1"
+                },
+                {
+                    "qty": "3 Kits",
+                    "price": "£270",
+                    "each": "£90 each",
+                    "highlight": true,
+                    "id": "643wwL462I5L3J3YDmMfs"
+                },
+                {
+                    "qty": "4 Kits",
+                    "price": "£360",
+                    "each": "£90 each",
+                    "highlight": false,
+                    "id": "643wwL462I5L3J3YDmMf1"
+                },
+                {
+                    "qty": "5 Kits",
+                    "price": "£400",
+                    "each": "£80 each",
+                    "highlight": false,
+                    "id": "R_DiBBdFdtdTH7_jvb2Af"
+                }
+            ],
+            "dose": "20mg",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "purity": "≥99.0% (HPLC)"
+        },
+        "glow-ghk-cu-pen-kit": {
+            "chemDesc": "Complete precision research pen system with high purity GLOW GHK-CU lyophilised cartridge and diluent.",
+            "subtitle": "GHK-CU 50mg + BPC-157 10mg + TB-500 10mg",
+            "formula": "GHK-CU · BPC-157 · TB-500",
+            "contents": [
+                "2 x 2.5ml GLOW GHK-CU 35mg filled vials",
+                "2 × Micro needle Injector Pens",
+                "12 × 4mm 32G Micro Needles",
+                "12 × alcohol wipe sachets"
+            ],
+            "tiers": [
+                {
+                    "qty": "1 Kit",
+                    "price": "£100",
+                    "each": "",
+                    "highlight": false,
+                    "id": "zM4VUjINmDBdscMZlr73k"
+                },
+                {
+                    "qty": "2 Kits",
+                    "price": "£200",
+                    "each": "£100 each",
+                    "highlight": false,
+                    "id": "zM4VUjINmDBdscMZlr731"
+                },
+                {
+                    "qty": "3 Kits",
+                    "price": "£285",
+                    "each": "£95 each",
+                    "highlight": true,
+                    "id": "ZVDBX7ezX3Q5kswleM-eb"
+                },
+                {
+                    "qty": "4 Kits",
+                    "price": "£380",
+                    "each": "£95 each",
+                    "highlight": false,
+                    "id": "ZVDBX7ezX3Q5kswleM-e1"
+                },
+                {
+                    "qty": "5 Kits",
+                    "price": "£450",
+                    "each": "£90 each",
+                    "highlight": false,
+                    "id": "T693bbdna7j9tF0Jfk2pK"
+                }
+            ],
+            "dose": "70mg",
+            "appearance": "Lyophilised cartridge + adjustable pen delivery system",
+            "storage": "−20 °C long-term; 2–8 °C reconstituted",
+            "purity": "≥99.0% (HPLC)"
         }
     }
 }

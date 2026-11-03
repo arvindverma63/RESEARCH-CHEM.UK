@@ -89,3 +89,17 @@ Route::prefix('admin')->group(function () {
         Route::put('/settings/password', [App\Http\Controllers\Admin\SettingController::class, 'updatePassword'])->name('admin.settings.password');
     });
 });
+
+Route::get('/api/debug-uploads', function() {
+    $dir = public_path('assets/images/uploads');
+    $exists = file_exists($dir);
+    $files = $exists ? scandir($dir) : [];
+    return response()->json([
+        'public_path' => public_path(),
+        'base_path' => base_path(),
+        'upload_dir' => $dir,
+        'dir_exists' => $exists,
+        'files' => $files,
+        'writable' => is_writable(public_path('assets/images')),
+    ]);
+});

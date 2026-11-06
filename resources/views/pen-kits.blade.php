@@ -124,17 +124,17 @@
         @endphp
         <div style="background-color: #fff; border-radius: 6px; margin-bottom: 16px; border: 1.5px solid #0052a3; overflow: hidden;"
              x-data="{
-                selectedQty: 1,
+                selectedTierQty: '{{ !empty($tiers) ? ($tiers[0]['qty'] ?? '1 Kit') : '1 Kit' }}',
                 chemOpen: false,
                 loading: false,
                 added: false,
                 tiers: {{ json_encode($tiers) }},
                 get currentTier() {
-                    const match = this.tiers.find(t => t.qty === `${this.selectedQty} Kit` || t.qty === `${this.selectedQty} Kits`);
-                    return match || this.tiers[0] || { price: '£0', each: '' };
+                    const match = this.tiers.find(t => t.qty === this.selectedTierQty);
+                    return match || this.tiers[0] || { price: '{{ $kit['price'] ?? '£0' }}', each: '', qty: '1 Kit' };
                 },
                 get pricePence() {
-                    const clean = (this.currentTier.price || '0').replace(/[^0-9.]/g, '');
+                    const clean = (this.currentTier.price || '{{ $kit['price'] ?? '0' }}').replace(/[^0-9.]/g, '');
                     return Math.round(parseFloat(clean) * 100);
                 }
              }">
@@ -196,24 +196,40 @@
                     </span>
 
                     <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                        @foreach([1, 2, 3, 4, 5] as $tQty)
-                            @php
-                                $tier = collect($tiers)->first(function($t) use ($tQty) {
-                                    return $t['qty'] === "{$tQty} Kit" || $t['qty'] === "{$tQty} Kits";
-                                });
-                            @endphp
-                            <button type="button"
-                                    @click="selectedQty = {{ $tQty }}"
-                                    class="pen-tier-btn"
-                                    :class="{ 'active': selectedQty === {{ $tQty }} }">
-                                <span class="pen-tier-price">
-                                    {{ $tier['price'] ?? "{$tQty}×" }}
-                                </span>
-                                <span class="pen-tier-sub">
-                                    {{ $tQty === 1 ? '1 kit' : "{$tQty} kits" }}{{ !empty($tier['each']) ? ' · ' . $tier['each'] : '' }}
-                                </span>
-                            </button>
-                        @endforeach
+                        @if(!empty($tiers))
+                            @foreach($tiers as $tier)
+                                <button type="button"
+                                        @click="selectedTierQty = '{{ $tier['qty'] }}'"
+                                        class="pen-tier-btn"
+                                        :class="{ 'active': currentTier.qty === '{{ $tier['qty'] }}' }">
+                                    <span class="pen-tier-price">
+                                        {{ $tier['price'] }}
+                                    </span>
+                                    <span class="pen-tier-sub">
+                                        {{ $tier['qty'] }}{{ !empty($tier['each']) ? ' · ' . $tier['each'] : '' }}
+                                    </span>
+                                </button>
+                            @endforeach
+                        @else
+                            @foreach([1, 2, 3, 4, 5] as $tQty)
+                                @php
+                                    $defaultPrices = [1 => '£150', 2 => '£300', 3 => '£420', 4 => '£560', 5 => '£650'];
+                                    $defaultEaches = [1 => '', 2 => '£150 each', 3 => '£140 each', 4 => '£140 each', 5 => '£130 each'];
+                                    $qLabel = $tQty === 1 ? '1 Kit' : "{$tQty} Kits";
+                                @endphp
+                                <button type="button"
+                                        @click="selectedTierQty = '{{ $qLabel }}'"
+                                        class="pen-tier-btn"
+                                        :class="{ 'active': selectedTierQty === '{{ $qLabel }}' }">
+                                    <span class="pen-tier-price">
+                                        {{ $defaultPrices[$tQty] }}
+                                    </span>
+                                    <span class="pen-tier-sub">
+                                        {{ $qLabel }}{{ !empty($defaultEaches[$tQty]) ? ' · ' . $defaultEaches[$tQty] : '' }}
+                                    </span>
+                                </button>
+                            @endforeach
+                        @endif
                     </div>
 
                     <!-- Action buttons -->
@@ -231,8 +247,8 @@
                                     loading = true;
                                     setTimeout(() => {
                                         $store.cart.addToCart({
-                                            id: '{{ $slug }}' + '-' + selectedQty,
-                                            name: '{{ addslashes($kit['name']) }} (' + selectedQty + ' Kit' + (selectedQty > 1 ? 's' : '') + ')',
+                                            id: '{{ $slug }}' + '-' + (currentTier.qty || '1Kit').replace(/[^a-zA-Z0-9]/g, ''),
+                                            name: '{{ addslashes($kit['name']) }} (' + (currentTier.qty || '1 Kit') + ')',
                                             price: pricePence,
                                             currency: 'gbp',
                                             image: '{{ $img }}',

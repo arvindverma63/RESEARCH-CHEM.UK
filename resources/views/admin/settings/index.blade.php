@@ -13,7 +13,7 @@
                 Admin Settings & Credentials
             </h1>
             <p class="text-xs text-slate-500 mt-0.5">
-                Manage your administrator login email, display name, and password credentials.
+                Manage your administrator login, password, and email (SMTP) settings.
             </p>
         </div>
 
@@ -239,6 +239,202 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- ── CARD 3: EMAIL / SMTP SETTINGS ── -->
+    <style>[x-cloak]{display:none !important}</style>
+    <div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden"
+         x-data="{ showSmtpPass: false, showToken: false, driver: '{{ old('mail_driver', $mail['mailer'] === 'hostinger' ? 'hostinger' : 'smtp') }}' }">
+        <!-- Card Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center font-bold">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </div>
+                <div>
+                    <h2 class="text-sm font-bold text-slate-900 font-heading">Email Settings</h2>
+                    <p class="text-[11px] text-slate-500">How order and enquiry emails are sent. Saved values override .env.</p>
+                </div>
+            </div>
+            @php
+                $active = in_array($mail['mailer'], ['smtp', 'hostinger'], true);
+                $badge = ['smtp' => 'SMTP Active', 'hostinger' => 'Hostinger API Active'][$mail['mailer']] ?? 'Mailer: ' . $mail['mailer'];
+            @endphp
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider {{ $active ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200' }}">
+                {{ $badge }}
+            </span>
+        </div>
+
+        <form id="mailForm" action="{{ route('admin.settings.mail') }}" method="POST" class="p-5">
+            @csrf
+            @method('PUT')
+
+            @php
+                $input = 'w-full px-3 py-2 text-xs border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600';
+                $label = 'block text-xs font-bold text-slate-700 mb-1 font-heading';
+            @endphp
+
+            <!-- Driver -->
+            <div class="mb-4">
+                <label class="{{ $label }}">Sending Method <span class="text-red-500">*</span></label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <label class="flex items-start gap-2 p-3 rounded-md border cursor-pointer text-xs"
+                           :class="driver === 'hostinger' ? 'border-emerald-500 bg-emerald-50/50' : 'border-slate-300'">
+                        <input type="radio" name="mail_driver" value="hostinger" x-model="driver" class="mt-0.5">
+                        <span>
+                            <strong class="block text-slate-800">Hostinger Mail API</strong>
+                            <span class="text-[11px] text-slate-500">Sends over HTTPS with an API token. Recommended.</span>
+                        </span>
+                    </label>
+                    <label class="flex items-start gap-2 p-3 rounded-md border cursor-pointer text-xs"
+                           :class="driver === 'smtp' ? 'border-emerald-500 bg-emerald-50/50' : 'border-slate-300'">
+                        <input type="radio" name="mail_driver" value="smtp" x-model="driver" class="mt-0.5">
+                        <span>
+                            <strong class="block text-slate-800">SMTP</strong>
+                            <span class="text-[11px] text-slate-500">Classic mail server login (host, port, password).</span>
+                        </span>
+                    </label>
+                </div>
+                @error('mail_driver') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Hostinger API Token -->
+                <div class="lg:col-span-2" x-show="driver === 'hostinger'" x-cloak>
+                    <label for="hostinger_api_token" class="{{ $label }}">Mail API Token</label>
+                    <div class="relative">
+                        <input :type="showToken ? 'text' : 'password'" id="hostinger_api_token" name="hostinger_api_token" autocomplete="off"
+                               placeholder="{{ $mail['has_api_token'] ? '•••••••• (leave blank to keep)' : 'Paste token from hPanel → Emails → Agentic Mail → API access' }}"
+                               class="{{ $input }} pr-9 font-mono {{ $errors->has('hostinger_api_token') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                        <button type="button" @click="showToken = !showToken" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                            <i :data-lucide="showToken ? 'eye-off' : 'eye'" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                    <p class="text-slate-400 text-[11px] mt-1">Stored encrypted. Leave blank to keep the current token.</p>
+                    @error('hostinger_api_token') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Hostinger Mailbox ID -->
+                <div x-show="driver === 'hostinger'" x-cloak>
+                    <label for="hostinger_mailbox_id" class="{{ $label }}">Mailbox ID <span class="text-slate-400 font-normal">(optional)</span></label>
+                    <input type="text" id="hostinger_mailbox_id" name="hostinger_mailbox_id"
+                           value="{{ old('hostinger_mailbox_id', $mail['mailbox_id']) }}" placeholder="Auto-detect"
+                           class="{{ $input }} font-mono {{ $errors->has('hostinger_mailbox_id') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    <p class="text-slate-400 text-[11px] mt-1">Leave blank: the mailbox matching the Sender Email is used.</p>
+                    @error('hostinger_mailbox_id') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Host -->
+                <div class="lg:col-span-2" x-show="driver === 'smtp'" x-cloak>
+                    <label for="mail_host" class="{{ $label }}">SMTP Host <span class="text-red-500">*</span></label>
+                    <input type="text" id="mail_host" name="mail_host" :required="driver === 'smtp'"
+                           value="{{ old('mail_host', $mail['host']) }}" placeholder="smtp.hostinger.com"
+                           class="{{ $input }} {{ $errors->has('mail_host') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    @error('mail_host') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Port -->
+                <div x-show="driver === 'smtp'" x-cloak>
+                    <label for="mail_port" class="{{ $label }}">Port <span class="text-red-500">*</span></label>
+                    <input type="number" id="mail_port" name="mail_port" :required="driver === 'smtp'" min="1" max="65535"
+                           value="{{ old('mail_port', $mail['port']) }}" placeholder="465"
+                           class="{{ $input }} {{ $errors->has('mail_port') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    @error('mail_port') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Username -->
+                <div x-show="driver === 'smtp'" x-cloak>
+                    <label for="mail_username" class="{{ $label }}">SMTP Username <span class="text-red-500">*</span></label>
+                    <input type="text" id="mail_username" name="mail_username" :required="driver === 'smtp'" autocomplete="off"
+                           value="{{ old('mail_username', $mail['username']) }}" placeholder="enquiry@yourdomain.com"
+                           class="{{ $input }} {{ $errors->has('mail_username') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    @error('mail_username') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Password -->
+                <div x-show="driver === 'smtp'" x-cloak>
+                    <label for="mail_password" class="{{ $label }}">SMTP Password</label>
+                    <div class="relative">
+                        <input :type="showSmtpPass ? 'text' : 'password'" id="mail_password" name="mail_password" autocomplete="new-password"
+                               placeholder="{{ $mail['has_password'] ? '•••••••• (leave blank to keep)' : 'Enter mailbox password' }}"
+                               class="{{ $input }} pr-9 {{ $errors->has('mail_password') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                        <button type="button" @click="showSmtpPass = !showSmtpPass" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+                            <i :data-lucide="showSmtpPass ? 'eye-off' : 'eye'" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                    <p class="text-slate-400 text-[11px] mt-1">Stored encrypted. Leave blank to keep the current password.</p>
+                    @error('mail_password') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Encryption -->
+                <div x-show="driver === 'smtp'" x-cloak>
+                    <label for="mail_encryption" class="{{ $label }}">Encryption <span class="text-red-500">*</span></label>
+                    @php $enc = old('mail_encryption', $mail['encryption']); @endphp
+                    <select id="mail_encryption" name="mail_encryption" :required="driver === 'smtp'"
+                            class="{{ $input }} bg-white {{ $errors->has('mail_encryption') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                        <option value="ssl" @selected($enc === 'ssl')>SSL (usually port 465)</option>
+                        <option value="tls" @selected($enc === 'tls')>TLS / STARTTLS (usually port 587)</option>
+                        <option value="none" @selected($enc === 'none')>None</option>
+                    </select>
+                    @error('mail_encryption') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- From Address -->
+                <div>
+                    <label for="mail_from_address" class="{{ $label }}">Sender Email <span class="text-red-500">*</span></label>
+                    <input type="email" id="mail_from_address" name="mail_from_address" required
+                           value="{{ old('mail_from_address', $mail['from_address']) }}" placeholder="enquiry@yourdomain.com"
+                           class="{{ $input }} {{ $errors->has('mail_from_address') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    <p class="text-slate-400 text-[11px] mt-1">Must be the mailbox you send from (the Hostinger API always sends from the mailbox).</p>
+                    @error('mail_from_address') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- From Name -->
+                <div>
+                    <label for="mail_from_name" class="{{ $label }}">Sender Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="mail_from_name" name="mail_from_name" required
+                           value="{{ old('mail_from_name', $mail['from_name']) }}" placeholder="Research-Chem"
+                           class="{{ $input }} {{ $errors->has('mail_from_name') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    @error('mail_from_name') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <!-- Admin Email -->
+                <div>
+                    <label for="admin_email" class="{{ $label }}">Admin Notification Email <span class="text-red-500">*</span></label>
+                    <input type="email" id="admin_email" name="admin_email" required
+                           value="{{ old('admin_email', $mail['admin_email']) }}" placeholder="info@yourdomain.com"
+                           class="{{ $input }} {{ $errors->has('admin_email') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    <p class="text-slate-400 text-[11px] mt-1">New orders and enquiries are sent here.</p>
+                    @error('admin_email') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+                </div>
+            </div>
+        </form>
+
+        <!-- Footer: Test + Save -->
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex flex-col md:flex-row md:items-start justify-between gap-3">
+            <form action="{{ route('admin.settings.mail.test') }}" method="POST" class="flex-1 max-w-xl">
+                @csrf
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" name="test_email" required
+                           value="{{ old('test_email', $mail['admin_email']) }}" placeholder="Send test to…"
+                           class="flex-1 px-3 py-2 text-xs border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 {{ $errors->has('mail_test') || $errors->has('test_email') ? 'border-red-300 bg-red-50/30' : 'border-slate-300' }}">
+                    <button type="submit"
+                            class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
+                        <i data-lucide="mail-check" class="w-3.5 h-3.5"></i>
+                        <span>Send Test Email</span>
+                    </button>
+                </div>
+                <p class="text-slate-400 text-[11px] mt-1">Uses the saved settings. Save your changes first.</p>
+                @error('mail_test') <p class="text-red-600 text-[11px] mt-1 break-all">{{ $message }}</p> @enderror
+                @error('test_email') <p class="text-red-600 text-[11px] mt-1">{{ $message }}</p> @enderror
+            </form>
+
+            <button type="submit" form="mailForm"
+                    class="w-full md:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold font-heading rounded-md shadow-xs transition-colors">
+                <i data-lucide="save" class="w-3.5 h-3.5"></i>
+                <span>Save Email Settings</span>
+            </button>
+        </div>
     </div>
 
     <!-- ── SECURITY GUIDELINES ── -->

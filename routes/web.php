@@ -87,6 +87,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings.index');
         Route::put('/settings/profile', [App\Http\Controllers\Admin\SettingController::class, 'updateProfile'])->name('admin.settings.profile');
         Route::put('/settings/password', [App\Http\Controllers\Admin\SettingController::class, 'updatePassword'])->name('admin.settings.password');
+        Route::put('/settings/mail', [App\Http\Controllers\Admin\SettingController::class, 'updateMail'])->name('admin.settings.mail');
+        Route::post('/settings/mail/test', [App\Http\Controllers\Admin\SettingController::class, 'sendTestMail'])->name('admin.settings.mail.test');
     });
 });
 

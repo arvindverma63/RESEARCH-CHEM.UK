@@ -49,6 +49,13 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
+        'hostinger' => [
+            'transport' => 'hostinger',
+            'token' => env('HOSTINGER_MAIL_API_TOKEN'),
+            'mailbox_id' => env('HOSTINGER_MAIL_MAILBOX_ID'),
+            'base_url' => env('HOSTINGER_MAIL_API_URL', 'https://api.mail.hostinger.com'),
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],
@@ -114,5 +121,16 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Notification Address
+    |--------------------------------------------------------------------------
+    |
+    | New contact enquiries and orders are emailed to this address.
+    |
+    */
+
+    'admin_address' => env('ADMIN_EMAIL'),
 
 ];

@@ -91,6 +91,8 @@ class ProductController extends Controller
             'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
+            'tiers_json' => ['nullable', 'string'],
+            'contents_json' => ['nullable', 'string'],
         ]);
 
         if (empty($validated['slug'])) {
@@ -136,9 +138,24 @@ class ProductController extends Controller
             $validated['contents'] = array_values($lines);
         }
 
-        // Tiers if pen-kits
-        if ($validated['category'] === 'pen-kits' && $request->filled('tiers')) {
-            $validated['tiers'] = $request->tiers;
+        // Dynamic tiers from JSON hidden field (all categories)
+        if ($request->filled('tiers_json')) {
+            $tiersDecoded = json_decode($request->input('tiers_json'), true);
+            if (is_array($tiersDecoded)) {
+                // Filter out empty tiers (no qty and no price)
+                $tiersClean = array_values(array_filter($tiersDecoded, function ($t) {
+                    return !empty(trim($t['qty'] ?? '')) || !empty(trim($t['price'] ?? ''));
+                }));
+                $validated['tiers'] = count($tiersClean) > 0 ? $tiersClean : null;
+            }
+        }
+
+        // Contents from dynamic JSON hidden field
+        if ($request->filled('contents_json')) {
+            $contentsDecoded = json_decode($request->input('contents_json'), true);
+            if (is_array($contentsDecoded) && count($contentsDecoded) > 0) {
+                $validated['contents'] = $contentsDecoded;
+            }
         }
 
         // Chemical Data Sheet & Laboratory Specifications
@@ -199,6 +216,8 @@ class ProductController extends Controller
             'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
+            'tiers_json' => ['nullable', 'string'],
+            'contents_json' => ['nullable', 'string'],
         ]);
 
         // Handle File Upload if provided with persistent storage backup
@@ -236,13 +255,30 @@ class ProductController extends Controller
         $validated['price'] = $cleanPrice;
         $validated['price_pence'] = ContentService::parsePence($cleanPrice);
 
-        if ($request->has('contents_raw')) {
+        if ($request->has('contents_json')) {
+            $contentsDecoded = json_decode($request->input('contents_json'), true);
+            if (is_array($contentsDecoded) && count($contentsDecoded) > 0) {
+                $validated['contents'] = $contentsDecoded;
+            } elseif ($request->has('contents_raw')) {
+                $lines = array_filter(array_map('trim', explode("\n", $request->contents_raw)));
+                $validated['contents'] = array_values($lines);
+            }
+        } elseif ($request->has('contents_raw')) {
             $lines = array_filter(array_map('trim', explode("\n", $request->contents_raw)));
             $validated['contents'] = array_values($lines);
         }
 
-        // Pen kit tiers
-        if ($request->filled('tiers_price')) {
+        // Dynamic tiers from JSON hidden field
+        if ($request->filled('tiers_json')) {
+            $tiersDecoded = json_decode($request->input('tiers_json'), true);
+            if (is_array($tiersDecoded)) {
+                $tiersClean = array_values(array_filter($tiersDecoded, function ($t) {
+                    return !empty(trim($t['qty'] ?? '')) || !empty(trim($t['price'] ?? ''));
+                }));
+                $validated['tiers'] = count($tiersClean) > 0 ? $tiersClean : null;
+            }
+        } elseif ($request->filled('tiers_price')) {
+            // Fallback: legacy static grid format
             $tiers = [];
             foreach ($request->tiers_price as $qty => $price) {
                 $each = $request->tiers_each[$qty] ?? '';

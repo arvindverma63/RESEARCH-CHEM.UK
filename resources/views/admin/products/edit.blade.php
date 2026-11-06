@@ -129,68 +129,162 @@
             </div>
         </div>
 
-        <!-- Section 2: Pen Kit Quantity Pricing Tiers -->
-        @if($product->category === 'pen-kits' || old('category') === 'pen-kits')
-            <div class="bg-blue-50/50 p-4 rounded-md border border-blue-200">
-                <h2 class="text-sm font-bold font-heading text-[#002b5c] uppercase tracking-wider mb-3 flex items-center justify-between">
-                    <span>2. Pen Kit Volume Pricing Tiers</span>
-                    <span class="text-[11px] font-mono text-blue-700 font-normal">Controls interactive selector tabs (Image 5)</span>
-                </h2>
+        <!-- Section 2: Volume Pricing Tiers (Dynamic - all categories) -->
+        <div x-data="{
+                tiers: @json($product->tiers ?? []),
+                addTier() {
+                    this.tiers.push({ qty: '', price: '', each: '', highlight: false, id: Date.now().toString() });
+                },
+                removeTier(index) {
+                    this.tiers.splice(index, 1);
+                },
+                tiersJson() {
+                    return JSON.stringify(this.tiers);
+                }
+            }"
+             class="bg-blue-50/50 p-4 rounded-md border border-blue-200 space-y-3">
 
-                @php
-                    $tiers = $product->tiers ?? [];
-                    $tierMap = [];
-                    foreach ($tiers as $t) {
-                        preg_match('/\d+/', $t['qty'] ?? '', $m);
-                        $q = $m[0] ?? 1;
-                        $tierMap[$q] = $t;
-                    }
-                @endphp
-
-                <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs">
-                    @foreach([1, 2, 3, 4, 5] as $q)
-                        @php
-                            $defaultPrices = [1 => '£150', 2 => '£300', 3 => '£420', 4 => '£560', 5 => '£650'];
-                            $defaultEaches = [1 => '', 2 => '£150 each', 3 => '£140 each', 4 => '£140 each', 5 => '£130 each'];
-                            $currentPrice = $tierMap[$q]['price'] ?? $defaultPrices[$q];
-                            $currentEach = $tierMap[$q]['each'] ?? $defaultEaches[$q];
-                        @endphp
-                        <div class="bg-white p-3 rounded border border-slate-200">
-                            <span class="font-bold font-heading text-slate-800 block text-center mb-1">
-                                {{ $q }} {{ $q === 1 ? 'Kit' : 'Kits' }}
-                            </span>
-                            <div class="space-y-1.5">
-                                <div>
-                                    <label class="text-[10px] text-slate-500 uppercase font-mono block">Total Price</label>
-                                    <input type="text" name="tiers_price[{{ $q }}]" value="{{ $currentPrice }}"
-                                           class="w-full px-2 py-1 text-xs font-mono font-bold text-[#0052a3] border border-slate-300 rounded text-center">
-                                </div>
-                                <div>
-                                    <label class="text-[10px] text-slate-500 uppercase font-mono block">Per Kit Note</label>
-                                    <input type="text" name="tiers_each[{{ $q }}]" value="{{ $currentEach }}" placeholder="e.g. £140 each"
-                                           class="w-full px-2 py-1 text-[11px] font-mono text-slate-600 border border-slate-300 rounded text-center">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h2 class="text-sm font-bold font-heading text-[#002b5c] uppercase tracking-wider">
+                        2. Volume Pricing Tiers
+                    </h2>
+                    <p class="text-[11px] text-blue-700 font-sans mt-0.5">
+                        Add quantity-based pricing tiers (e.g. "1 Kit → £150", "2 Kits → £300"). Leave empty if single-price product.
+                    </p>
                 </div>
+                <button type="button" @click="addTier()"
+                        class="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#0052a3] hover:bg-[#004080] text-white text-xs font-bold font-heading rounded-md shadow-sm transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    Add Tier
+                </button>
             </div>
 
-            <!-- Kit Contents List -->
-            <div>
-                <h2 class="text-sm font-bold font-heading text-[#002b5c] uppercase tracking-wider mb-2">
-                    Kit Accessories &amp; Contents
-                </h2>
-                <label class="block text-xs text-slate-500 mb-1">
-                    Listed accessories (one line per item):
-                </label>
-                @php
-                    $rawContents = is_array($product->contents) ? implode("\n", $product->contents) : '';
-                @endphp
-                <textarea name="contents_raw" rows="4"
-                          class="w-full px-3 py-2 text-xs font-mono border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 leading-relaxed">{{ old('contents_raw', $rawContents) }}</textarea>
+            <!-- Tier Rows -->
+            <div class="space-y-2">
+                <template x-if="tiers.length === 0">
+                    <div class="text-center py-6 text-slate-400 text-xs font-mono border border-dashed border-slate-300 rounded-md bg-white/60">
+                        No pricing tiers defined. Click "Add Tier" to add volume pricing.
+                    </div>
+                </template>
+
+                <!-- Column headers -->
+                <template x-if="tiers.length > 0">
+                    <div class="grid grid-cols-12 gap-2 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider px-1">
+                        <div class="col-span-3">Qty Label</div>
+                        <div class="col-span-3">Total Price</div>
+                        <div class="col-span-3">Per-Unit Note</div>
+                        <div class="col-span-2 text-center">Highlight</div>
+                        <div class="col-span-1"></div>
+                    </div>
+                </template>
+
+                <template x-for="(tier, index) in tiers" :key="tier.id || index">
+                    <div class="grid grid-cols-12 gap-2 items-center bg-white border border-slate-200 rounded-md px-3 py-2">
+                        <!-- Qty Label -->
+                        <div class="col-span-3">
+                            <input type="text" x-model="tier.qty"
+                                   placeholder="e.g. 1 Kit, 2 Kits"
+                                   class="w-full px-2 py-1.5 text-xs font-mono font-bold text-slate-800 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <!-- Total Price -->
+                        <div class="col-span-3">
+                            <input type="text" x-model="tier.price"
+                                   placeholder="e.g. £150"
+                                   class="w-full px-2 py-1.5 text-xs font-mono font-bold text-[#0052a3] border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <!-- Per-unit note -->
+                        <div class="col-span-3">
+                            <input type="text" x-model="tier.each"
+                                   placeholder="e.g. £140 each"
+                                   class="w-full px-2 py-1.5 text-xs font-mono text-slate-600 border border-slate-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        <!-- Highlight toggle -->
+                        <div class="col-span-2 flex justify-center">
+                            <label class="flex items-center gap-1 cursor-pointer" title="Mark as highlighted/best value tier">
+                                <input type="checkbox" x-model="tier.highlight"
+                                       class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-[10px] font-mono text-slate-500">Best</span>
+                            </label>
+                        </div>
+                        <!-- Remove -->
+                        <div class="col-span-1 flex justify-end">
+                            <button type="button" @click="removeTier(index)"
+                                    class="p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                    title="Remove this tier">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </template>
             </div>
-        @endif
+
+            <!-- Hidden JSON field serialised on submit -->
+            <input type="hidden" name="tiers_json" :value="tiersJson()">
+
+            <!-- Live preview of saved tiers -->
+            <template x-if="tiers.length > 0">
+                <div class="pt-2 border-t border-blue-200">
+                    <span class="text-[10px] font-mono text-blue-700 uppercase tracking-wider font-bold">Preview:</span>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                        <template x-for="(tier, i) in tiers" :key="i">
+                            <div class="inline-flex flex-col items-center px-3 py-1.5 rounded border text-xs font-mono"
+                                 :class="tier.highlight ? 'bg-[#0052a3] text-white border-[#0052a3]' : 'bg-white text-slate-700 border-slate-300'">
+                                <span class="font-bold" x-text="tier.qty || '—'"></span>
+                                <span x-text="tier.price || '—'"></span>
+                                <span class="text-[10px] opacity-70" x-text="tier.each || ''"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Kit Accessories & Contents (Dynamic) -->
+        <div x-data="{
+                items: @json(is_array($product->contents) ? $product->contents : []),
+                addItem() { this.items.push(''); },
+                removeItem(i) { this.items.splice(i, 1); },
+                itemsJson() { return JSON.stringify(this.items.filter(v => v.trim() !== '')); }
+            }"
+             class="space-y-3">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                <div>
+                    <h2 class="text-sm font-bold font-heading text-[#002b5c] uppercase tracking-wider">
+                        Kit Accessories &amp; Contents
+                    </h2>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Listed items included in the kit (shown as a checklist on the product page).</p>
+                </div>
+                <button type="button" @click="addItem()"
+                        class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold font-heading rounded-md transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                    Add Item
+                </button>
+            </div>
+
+            <div class="space-y-2">
+                <template x-if="items.length === 0">
+                    <div class="text-center py-4 text-slate-400 text-xs font-mono border border-dashed border-slate-300 rounded-md">
+                        No contents listed. Click "Add Item" to list what's included.
+                    </div>
+                </template>
+                <template x-for="(item, index) in items" :key="index">
+                    <div class="flex items-center gap-2">
+                        <span class="text-slate-400 text-xs font-mono w-5 text-right shrink-0" x-text="(index + 1) + '.'"></span>
+                        <input type="text" x-model="items[index]"
+                               placeholder="e.g. 3ml Retatrutide filled vial 40mg"
+                               class="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        <button type="button" @click="removeItem(index)"
+                                class="p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </template>
+            </div>
+
+            <input type="hidden" name="contents_json" :value="itemsJson()">
+        </div>
 
         <!-- Section 3: Scientific Description -->
         <div>

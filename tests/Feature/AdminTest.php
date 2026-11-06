@@ -401,4 +401,76 @@ class AdminTest extends TestCase
         $response->assertSee('Ala-Gly-Ser-Leu');
         $response->assertSee('Quality and Analytical Standards');
     }
+
+    public function test_admin_can_create_product_with_dynamic_tiers_and_contents(): void
+    {
+        $tiers = [
+            ['qty' => '1 Kit', 'price' => '£160', 'each' => '', 'highlight' => false],
+            ['qty' => '2 Kits', 'price' => '£310', 'each' => '£155 each', 'highlight' => false],
+            ['qty' => '3 Kits', 'price' => '£435', 'each' => '£145 each', 'highlight' => true],
+        ];
+        $contents = [
+            '3ml Research Vial 50mg',
+            'Micro Needle Injector Pen',
+            '12x 32G Micro Pins',
+            '12x Alcohol Wipes',
+        ];
+
+        $response = $this->actingAs($this->admin)->post('/admin/products', [
+            'name' => 'Custom Peptide Pen Kit',
+            'slug' => 'custom-peptide-pen-kit',
+            'category' => 'pen-kits',
+            'dose' => '50mg',
+            'price' => '£160',
+            'tiers_json' => json_encode($tiers),
+            'contents_json' => json_encode($contents),
+        ]);
+
+        $response->assertRedirect('/admin/products');
+        $response->assertSessionHas('success');
+
+        $product = Product::where('slug', 'custom-peptide-pen-kit')->first();
+        $this->assertNotNull($product);
+        $this->assertCount(3, $product->tiers);
+        $this->assertEquals('1 Kit', $product->tiers[0]['qty']);
+        $this->assertEquals('£160', $product->tiers[0]['price']);
+        $this->assertCount(4, $product->contents);
+        $this->assertEquals('3ml Research Vial 50mg', $product->contents[0]);
+    }
+
+    public function test_admin_can_update_product_dynamic_tiers_and_contents(): void
+    {
+        $product = Product::first();
+        $this->assertNotNull($product);
+
+        $newTiers = [
+            ['qty' => '1 Vial', 'price' => '£45', 'each' => '', 'highlight' => false],
+            ['qty' => '5 Vials', 'price' => '£200', 'each' => '£40 each', 'highlight' => true],
+            ['qty' => '10 Vials', 'price' => '£350', 'each' => '£35 each', 'highlight' => false],
+        ];
+        $newContents = [
+            '10ml Sterile Saline',
+            '10x Alcohol Preps',
+        ];
+
+        $response = $this->actingAs($this->admin)->put("/admin/products/{$product->id}", [
+            'name' => $product->name,
+            'slug' => $product->slug,
+            'category' => $product->category,
+            'price' => $product->price,
+            'tiers_json' => json_encode($newTiers),
+            'contents_json' => json_encode($newContents),
+        ]);
+
+        $response->assertRedirect("/admin/products/{$product->id}/edit");
+        $response->assertSessionHas('success');
+
+        $product->refresh();
+        $this->assertCount(3, $product->tiers);
+        $this->assertEquals('5 Vials', $product->tiers[1]['qty']);
+        $this->assertEquals('£200', $product->tiers[1]['price']);
+        $this->assertTrue($product->tiers[1]['highlight']);
+        $this->assertCount(2, $product->contents);
+        $this->assertEquals('10ml Sterile Saline', $product->contents[0]);
+    }
 }

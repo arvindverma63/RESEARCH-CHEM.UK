@@ -33,9 +33,11 @@ class ProductController extends Controller
         return view('pen-kits', compact('content'));
     }
 
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
-        $product = ContentService::getProduct($id);
+        $isAdmin = auth()->check() && (auth()->user()->is_admin ?? false);
+        $allowDraft = $isAdmin || $request->boolean('preview');
+        $product = ContentService::getProduct($id, $allowDraft);
         if (!$product) {
             abort(404);
         }

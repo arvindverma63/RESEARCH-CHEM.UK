@@ -426,11 +426,12 @@ class AdminTest extends TestCase
             'contents_json' => json_encode($contents),
         ]);
 
-        $response->assertRedirect('/admin/products');
+        $response->assertRedirect();
         $response->assertSessionHas('success');
 
         $product = Product::where('slug', 'custom-peptide-pen-kit')->first();
         $this->assertNotNull($product);
+        $response->assertRedirect("/admin/products/{$product->id}/edit");
         $this->assertCount(3, $product->tiers);
         $this->assertEquals('1 Kit', $product->tiers[0]['qty']);
         $this->assertEquals('£160', $product->tiers[0]['price']);
@@ -472,5 +473,45 @@ class AdminTest extends TestCase
         $this->assertTrue($product->tiers[1]['highlight']);
         $this->assertCount(2, $product->contents);
         $this->assertEquals('10ml Sterile Saline', $product->contents[0]);
+    }
+
+    public function test_admin_can_save_product_as_draft_and_preview_it(): void
+    {
+        $response = $this->actingAs($this->admin)->post('/admin/products', [
+            'name' => 'Secret Experimental Peptide',
+            'slug' => 'secret-experimental-peptide',
+            'category' => 'peptides',
+            'price' => '£99.00',
+            'action' => 'draft',
+        ]);
+
+        $product = Product::where('slug', 'secret-experimental-peptide')->first();
+        $this->assertNotNull($product);
+        $this->assertFalse($product->is_active);
+
+        // Guest visitor: cannot view draft product (404)
+        auth()->logout();
+        $guestResponse = $this->get('/products/secret-experimental-peptide');
+        $guestResponse->assertStatus(404);
+
+        // Admin preview: can view draft product with preview banner
+        $adminResponse = $this->actingAs($this->admin)->get('/products/secret-experimental-peptide?preview=1');
+        $adminResponse->assertStatus(200);
+        $adminResponse->assertSee('Draft Preview');
+        $adminResponse->assertSee('Secret Experimental Peptide');
+    }
+
+    public function test_admin_can_toggle_product_draft_status(): void
+    {
+        $product = Product::first();
+        $this->assertNotNull($product);
+        $initialState = $product->is_active;
+
+        $response = $this->actingAs($this->admin)->post("/admin/products/{$product->id}/toggle-active");
+        $response->assertRedirect();
+        $response->assertSessionHas('success');
+
+        $product->refresh();
+        $this->assertEquals(!$initialState, $product->is_active);
     }
 }

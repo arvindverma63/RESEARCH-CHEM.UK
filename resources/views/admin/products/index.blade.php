@@ -44,6 +44,10 @@
            class="px-4 py-2.5 border-b-2 transition-colors whitespace-nowrap {{ request('category') === 'pen-kits' ? 'border-purple-600 text-purple-700' : 'border-transparent text-slate-500 hover:text-slate-800' }}">
             Peptide Pen Kits ({{ $counts['pen-kits'] }})
         </a>
+        <a href="{{ route('admin.products.index', array_merge(request()->except('category', 'page', 'status'), ['status' => 'draft'])) }}"
+           class="px-4 py-2.5 border-b-2 transition-colors whitespace-nowrap {{ request('status') === 'draft' ? 'border-amber-500 text-amber-700 bg-amber-50/50' : 'border-transparent text-slate-500 hover:text-slate-800' }}">
+            Drafts ({{ $counts['drafts'] }})
+        </a>
     </div>
 
     <!-- Filter & Search Toolbar -->
@@ -65,7 +69,9 @@
             <div class="w-full sm:w-auto">
                 <select name="status" onchange="this.form.submit()"
                         class="w-full sm:w-auto px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 bg-white">
-                    <option value="">All Stock Statuses</option>
+                    <option value="">All Statuses</option>
+                    <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published Only</option>
+                    <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Drafts Only</option>
                     <option value="in_stock" {{ request('status') === 'in_stock' ? 'selected' : '' }}>In Stock Only</option>
                     <option value="out_of_stock" {{ request('status') === 'out_of_stock' ? 'selected' : '' }}>Out of Stock Only</option>
                 </select>
@@ -96,13 +102,14 @@
                         <th class="py-3 px-4">Base Price</th>
                         <th class="py-3 px-4">Purity</th>
                         <th class="py-3 px-4">CAS Number</th>
+                        <th class="py-3 px-4">Status</th>
                         <th class="py-3 px-4">Stock</th>
                         <th class="py-3 px-4 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse($products as $prod)
-                        <tr class="hover:bg-slate-50/80 transition-colors {{ !$prod->in_stock ? 'opacity-65 bg-slate-50/40' : '' }}">
+                        <tr class="hover:bg-slate-50/80 transition-colors {{ !$prod->in_stock || !$prod->is_active ? 'opacity-80 bg-slate-50/40' : '' }}">
                             <td class="py-3 px-4 font-mono text-slate-400 text-[11px]">
                                 {{ $prod->id }}
                             </td>
@@ -112,9 +119,16 @@
                                         <img src="{{ $prod->image }}" alt="{{ $prod->name }}" class="w-full h-full object-contain">
                                     </div>
                                     <div>
-                                        <a href="{{ route('admin.products.edit', $prod) }}" class="font-bold text-slate-900 hover:text-blue-700 block font-heading text-xs">
-                                            {{ $prod->name }}
-                                        </a>
+                                        <div class="flex items-center gap-1.5">
+                                            <a href="{{ route('admin.products.edit', $prod) }}" class="font-bold text-slate-900 hover:text-blue-700 block font-heading text-xs">
+                                                {{ $prod->name }}
+                                            </a>
+                                            @if(!$prod->is_active)
+                                                <span class="inline-block px-1.5 py-0.2 rounded text-[9px] font-mono font-bold uppercase tracking-wider bg-amber-100 text-amber-800 border border-amber-300">
+                                                    Draft
+                                                </span>
+                                            @endif
+                                        </div>
                                         <span class="text-[11px] font-mono text-slate-400 block">{{ $prod->slug }}</span>
                                     </div>
                                 </div>
@@ -142,6 +156,18 @@
                                 {{ $prod->cas_no ?? '—' }}
                             </td>
                             <td class="py-3 px-4">
+                                <form action="{{ route('admin.products.toggle-active', $prod) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                            title="Click to toggle between Published and Draft"
+                                            class="inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-mono font-bold uppercase tracking-wider transition-all cursor-pointer border
+                                            {{ $prod->is_active ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : 'bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100' }}">
+                                        <span class="w-1.5 h-1.5 rounded-full {{ $prod->is_active ? 'bg-emerald-500' : 'bg-amber-500' }}"></span>
+                                        <span>{{ $prod->is_active ? 'Published' : 'Draft' }}</span>
+                                    </button>
+                                </form>
+                            </td>
+                            <td class="py-3 px-4">
                                 <form action="{{ route('admin.products.toggle-stock', $prod) }}" method="POST">
                                     @csrf
                                     <button type="submit"
@@ -158,9 +184,9 @@
                                        class="px-2.5 py-1 bg-slate-100 hover:bg-[#0052a3] hover:text-white rounded text-[11px] font-bold font-heading text-slate-700 transition-colors">
                                         Edit
                                     </a>
-                                    <a href="{{ route('products.show', $prod->slug) }}" target="_blank"
-                                       class="p-1 text-slate-400 hover:text-blue-700 transition-colors" title="View Public Page">
-                                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                                    <a href="{{ route('admin.products.preview', $prod) }}" target="_blank"
+                                       class="p-1 text-slate-400 hover:text-blue-700 transition-colors" title="{{ $prod->is_active ? 'View Live Page' : 'Preview Draft Page' }}">
+                                        <i data-lucide="{{ $prod->is_active ? 'external-link' : 'eye' }}" class="w-3.5 h-3.5 {{ !$prod->is_active ? 'text-amber-600' : '' }}"></i>
                                     </a>
                                     <form action="{{ route('admin.products.destroy', $prod) }}" method="POST"
                                           onsubmit="return confirm('Are you sure you want to delete {{ addslashes($prod->name) }}?');"

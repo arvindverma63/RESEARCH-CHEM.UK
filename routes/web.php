@@ -79,6 +79,8 @@ Route::prefix('admin')->group(function () {
 
         // Product Management
         Route::post('/products/{product}/toggle-stock', [App\Http\Controllers\Admin\ProductController::class, 'toggleStock'])->name('admin.products.toggle-stock');
+        Route::post('/products/{product}/toggle-active', [App\Http\Controllers\Admin\ProductController::class, 'toggleActive'])->name('admin.products.toggle-active');
+        Route::get('/products/{product}/preview', [App\Http\Controllers\Admin\ProductController::class, 'preview'])->name('admin.products.preview');
         Route::resource('products', App\Http\Controllers\Admin\ProductController::class, [
             'as' => 'admin',
         ]);

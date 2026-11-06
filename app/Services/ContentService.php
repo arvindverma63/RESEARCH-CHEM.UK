@@ -318,7 +318,7 @@ class ContentService
         return $all;
     }
 
-    public static function getProduct(string $slug): ?array
+    public static function getProduct(string $slug, bool $allowDraft = false): ?array
     {
         $products = self::getAllProducts();
         $product = $products[$slug] ?? null;
@@ -327,6 +327,9 @@ class ContentService
             try {
                 $dbProduct = \App\Models\Product::where('slug', $slug)->first();
                 if ($dbProduct) {
+                    if (!$dbProduct->is_active && !$allowDraft) {
+                        return null;
+                    }
                     $pDetails = is_array($dbProduct->details) ? $dbProduct->details : (json_decode($dbProduct->details ?? '[]', true) ?: []);
                     if (!$product) {
                         $cat = $dbProduct->category;
@@ -343,6 +346,7 @@ class ContentService
                             'price' => $dbProduct->price,
                             'price_pence' => $dbProduct->price_pence,
                             'in_stock' => (bool) $dbProduct->in_stock,
+                            'is_active' => (bool) $dbProduct->is_active,
                             'featured' => (bool) $dbProduct->featured,
                             'dose' => $dbProduct->dose,
                             'contents' => $dbProduct->contents ?? [],
@@ -350,7 +354,10 @@ class ContentService
                             'image' => $dbProduct->image ?: '/assets/images/photorealistic-single-glass-research-via-ATRm5m.png',
                             'img' => $dbProduct->image ?: '/assets/images/photorealistic-single-glass-research-via-ATRm5m.png',
                         ];
+                    } else {
+                        $product['is_active'] = (bool) $dbProduct->is_active;
                     }
+                    $product['is_draft'] = !$dbProduct->is_active;
                     $product['details'] = $pDetails;
                     if (!empty($dbProduct->description)) {
                         $product['description'] = $dbProduct->description;

@@ -24,6 +24,10 @@ class ProductController extends Controller
                 $query->where('in_stock', true);
             } elseif ($request->status === 'out_of_stock') {
                 $query->where('in_stock', false);
+            } elseif ($request->status === 'published') {
+                $query->where('is_active', true);
+            } elseif ($request->status === 'draft') {
+                $query->where('is_active', false);
             }
         }
 
@@ -52,6 +56,8 @@ class ProductController extends Controller
             'peptides' => Product::where('category', 'peptides')->count(),
             'sarms' => Product::where('category', 'sarms')->count(),
             'pen-kits' => Product::where('category', 'pen-kits')->count(),
+            'published' => Product::where('is_active', true)->count(),
+            'drafts' => Product::where('is_active', false)->count(),
         ];
 
         return view('admin.products.index', compact('products', 'counts', 'perPage'));
@@ -90,9 +96,11 @@ class ProductController extends Controller
             'schema_markup' => ['nullable', 'string'],
             'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
             'tiers_json' => ['nullable', 'string'],
             'contents_json' => ['nullable', 'string'],
+            'action' => ['nullable', 'string'],
         ]);
 
         if (empty($validated['slug'])) {
@@ -171,15 +179,23 @@ class ProductController extends Controller
 
         $validated['in_stock'] = $request->boolean('in_stock', true);
         $validated['featured'] = $request->boolean('featured', false);
-        $validated['is_active'] = true;
+
+        if ($request->input('action') === 'draft') {
+            $validated['is_active'] = false;
+        } elseif ($request->has('is_active')) {
+            $validated['is_active'] = $request->boolean('is_active');
+        } else {
+            $validated['is_active'] = true;
+        }
 
         $product = Product::create($validated);
 
         // Sync with frontend JSON
         ProductSyncService::exportToJson();
 
-        return redirect()->route('admin.products.index')
-            ->with('success', "Product '{$product->name}' created successfully!");
+        $statusMsg = $product->is_active ? 'created and published' : 'saved as Draft (hidden from public)';
+        return redirect()->route('admin.products.edit', $product)
+            ->with('success', "Product '{$product->name}' {$statusMsg}!");
     }
 
     public function edit(Product $product)
@@ -215,9 +231,11 @@ class ProductController extends Controller
             'schema_markup' => ['nullable', 'string'],
             'schema_file' => ['nullable', 'file', 'mimes:json,txt', 'max:2048'],
             'in_stock' => ['nullable', 'boolean'],
+            'is_active' => ['nullable', 'boolean'],
             'featured' => ['nullable', 'boolean'],
             'tiers_json' => ['nullable', 'string'],
             'contents_json' => ['nullable', 'string'],
+            'action' => ['nullable', 'string'],
         ]);
 
         // Handle File Upload if provided with persistent storage backup
@@ -309,13 +327,38 @@ class ProductController extends Controller
         $validated['in_stock'] = $request->boolean('in_stock');
         $validated['featured'] = $request->boolean('featured');
 
+        if ($request->input('action') === 'draft') {
+            $validated['is_active'] = false;
+        } elseif ($request->input('action') === 'publish') {
+            $validated['is_active'] = true;
+        } elseif ($request->has('is_active')) {
+            $validated['is_active'] = $request->boolean('is_active');
+        }
+
         $product->update($validated);
 
         // Sync with frontend JSON
         ProductSyncService::exportToJson();
 
+        $statusMsg = $product->is_active ? 'updated and published' : 'saved as Draft (hidden from public)';
         return redirect()->route('admin.products.edit', $product)
-            ->with('success', "Product '{$product->name}' updated successfully!");
+            ->with('success', "Product '{$product->name}' {$statusMsg}!");
+    }
+
+    public function toggleActive(Product $product)
+    {
+        $product->is_active = !$product->is_active;
+        $product->save();
+
+        ProductSyncService::exportToJson();
+
+        $status = $product->is_active ? 'Published' : 'Draft';
+        return back()->with('success', "'{$product->name}' status changed to {$status}.");
+    }
+
+    public function preview(Product $product)
+    {
+        return redirect()->route('products.show', ['id' => $product->slug, 'preview' => 1]);
     }
 
     public function toggleStock(Product $product)

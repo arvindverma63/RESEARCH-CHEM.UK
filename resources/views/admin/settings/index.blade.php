@@ -437,6 +437,124 @@
         </div>
     </div>
 
+    <!-- ── CARD 4: CONTACT FORM CAPTCHA & SPAM PROTECTION ── -->
+    <div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden"
+         x-data="{ driver: '{{ old('captcha_driver', $captcha['driver'] ?? 'math') }}' }">
+        <!-- Card Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center font-bold">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                </div>
+                <div>
+                    <h2 class="text-sm font-bold text-slate-900 font-heading">Contact Form CAPTCHA &amp; Spam Protection</h2>
+                    <p class="text-[11px] text-slate-500">Configure bot prevention on the public research inquiry form</p>
+                </div>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Active: {{ ucfirst($captcha['driver'] ?? 'math') }}
+            </span>
+        </div>
+
+        <!-- Form -->
+        <form action="{{ route('admin.settings.captcha') }}" method="POST" class="p-5 space-y-5">
+            @csrf
+            @method('PUT')
+
+            <!-- Driver Selection -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-2 font-heading">
+                    Protection Engine <span class="text-red-500">*</span>
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <label class="relative flex items-start gap-3 p-3.5 rounded-lg border cursor-pointer transition-all"
+                           :class="driver === 'math' ? 'border-blue-600 bg-blue-50/40 ring-1 ring-blue-600' : 'border-slate-200 hover:bg-slate-50'">
+                        <input type="radio" name="captcha_driver" value="math" x-model="driver" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                        <div>
+                            <span class="block text-xs font-bold text-slate-900">Interactive Math Challenge</span>
+                            <span class="block text-[11px] text-slate-500 mt-0.5">Built-in, zero API keys required, works immediately.</span>
+                        </div>
+                    </label>
+
+                    <label class="relative flex items-start gap-3 p-3.5 rounded-lg border cursor-pointer transition-all"
+                           :class="driver === 'turnstile' ? 'border-blue-600 bg-blue-50/40 ring-1 ring-blue-600' : 'border-slate-200 hover:bg-slate-50'">
+                        <input type="radio" name="captcha_driver" value="turnstile" x-model="driver" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                        <div>
+                            <span class="block text-xs font-bold text-slate-900">Cloudflare Turnstile</span>
+                            <span class="block text-[11px] text-slate-500 mt-0.5">Privacy-friendly smart CAPTCHA widget from Cloudflare.</span>
+                        </div>
+                    </label>
+
+                    <label class="relative flex items-start gap-3 p-3.5 rounded-lg border cursor-pointer transition-all"
+                           :class="driver === 'recaptcha' ? 'border-blue-600 bg-blue-50/40 ring-1 ring-blue-600' : 'border-slate-200 hover:bg-slate-50'">
+                        <input type="radio" name="captcha_driver" value="recaptcha" x-model="driver" class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                        <div>
+                            <span class="block text-xs font-bold text-slate-900">Google reCAPTCHA</span>
+                            <span class="block text-[11px] text-slate-500 mt-0.5">Standard Google v2 checkbox or v3 token verification.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Turnstile Credentials -->
+            <div x-show="driver === 'turnstile'" x-cloak class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-4">
+                <div class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                    <i data-lucide="key" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>Cloudflare Turnstile Credentials</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Site Key</label>
+                        <input type="text" name="turnstile_site_key" value="{{ old('turnstile_site_key', $captcha['turnstile_site_key'] ?? '') }}"
+                               placeholder="0x4AAAAAA..." class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Secret Key</label>
+                        <input type="password" name="turnstile_secret_key" value="{{ old('turnstile_secret_key', $captcha['turnstile_secret_key'] ?? '') }}"
+                               placeholder="0x4AAAAAA..." class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono">
+                    </div>
+                </div>
+            </div>
+
+            <!-- reCAPTCHA Credentials -->
+            <div x-show="driver === 'recaptcha'" x-cloak class="p-4 rounded-lg bg-slate-50 border border-slate-200 space-y-4">
+                <div class="text-xs font-bold text-slate-800 flex items-center gap-2">
+                    <i data-lucide="key" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>Google reCAPTCHA Credentials</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Site Key</label>
+                        <input type="text" name="recaptcha_site_key" value="{{ old('recaptcha_site_key', $captcha['recaptcha_site_key'] ?? '') }}"
+                               placeholder="6LeIxacTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Secret Key</label>
+                        <input type="password" name="recaptcha_secret_key" value="{{ old('recaptcha_secret_key', $captcha['recaptcha_secret_key'] ?? '') }}"
+                               placeholder="6LeIxacTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Built-in Math Challenge Info -->
+            <div x-show="driver === 'math'" class="p-4 rounded-lg bg-emerald-50/60 border border-emerald-200 flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <div class="text-[11px] text-emerald-800 leading-relaxed">
+                    <strong class="font-bold block text-xs text-emerald-900 mb-0.5">Zero-Configuration Math Verification Active</strong>
+                    Every inquiry requires human calculation with cryptographic HMAC validation and automated invisible honeypots. No external scripts or tracking cookies required.
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button type="submit"
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-[#0052a3] hover:bg-[#003d7a] text-white text-xs font-bold rounded-md shadow-xs transition-colors font-heading">
+                    <i data-lucide="save" class="w-3.5 h-3.5"></i>
+                    <span>Save Protection Settings</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
     <!-- ── SECURITY GUIDELINES ── -->
     <div class="p-5 rounded-lg border border-slate-200 bg-white shadow-xs">
         <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider font-heading mb-3 flex items-center gap-2">

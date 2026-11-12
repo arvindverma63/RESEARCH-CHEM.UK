@@ -36,6 +36,7 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 Route::get('/coa', [CoaController::class, 'index'])->name('coa');
 Route::get('/compliance', [ComplianceController::class, 'index'])->name('compliance');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contact/captcha', [ContactController::class, 'refreshCaptcha'])->name('contact.captcha');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -91,6 +92,7 @@ Route::prefix('admin')->group(function () {
         Route::put('/settings/password', [App\Http\Controllers\Admin\SettingController::class, 'updatePassword'])->name('admin.settings.password');
         Route::put('/settings/mail', [App\Http\Controllers\Admin\SettingController::class, 'updateMail'])->name('admin.settings.mail');
         Route::post('/settings/mail/test', [App\Http\Controllers\Admin\SettingController::class, 'sendTestMail'])->name('admin.settings.mail.test');
+        Route::put('/settings/captcha', [App\Http\Controllers\Admin\SettingController::class, 'updateCaptcha'])->name('admin.settings.captcha');
     });
 });
 

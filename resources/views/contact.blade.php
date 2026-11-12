@@ -27,6 +27,35 @@
         sending: false,
         sent: false,
         errorMsg: '',
+        captchaNum1: '{{ $captcha['num1'] ?? '?' }}',
+        captchaOp: '{{ $captcha['op'] ?? '+' }}',
+        captchaNum2: '{{ $captcha['num2'] ?? '?' }}',
+        captchaToken: '{{ $captcha['token'] ?? '' }}',
+        captchaAnswer: '',
+        refreshingCaptcha: false,
+        async refreshCaptcha() {
+            this.refreshingCaptcha = true;
+            try {
+                const res = await fetch('{{ route('contact.captcha') }}', {
+                    headers: { 'Accept': 'application/json' }
+                });
+                const data = await res.json();
+                if (data.token) {
+                    this.applyCaptcha(data);
+                }
+            } catch (err) {
+                // Keep current challenge if request fails
+            } finally {
+                this.refreshingCaptcha = false;
+            }
+        },
+        applyCaptcha(data) {
+            this.captchaNum1 = data.num1;
+            this.captchaOp = data.op;
+            this.captchaNum2 = data.num2;
+            this.captchaToken = data.token;
+            this.captchaAnswer = '';
+        },
         async submitForm(e) {
             this.sending = true;
             this.errorMsg = '';
@@ -44,8 +73,14 @@
                 if (data.success) {
                     this.sent = true;
                     e.target.reset();
+                    this.refreshCaptcha();
                 } else {
                     this.errorMsg = data.message || 'Something went wrong. Please try again.';
+                    if (data.new_captcha) {
+                        this.applyCaptcha(data.new_captcha);
+                    } else {
+                        this.refreshCaptcha();
+                    }
                 }
             } catch(err) {
                 this.errorMsg = 'Network error. Please try again or email us directly.';
@@ -128,8 +163,9 @@
 
                 <form @submit.prevent="submitForm($event)" class="space-y-6">
                     @csrf
-                    <!-- Honeypot Bot Trap -->
-                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+                    <!-- Honeypot Bot Traps -->
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <input type="text" name="honeypot" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
@@ -169,6 +205,87 @@
                                   placeholder="Please provide details of your inquiry, batch number, or requested compounds..."></textarea>
                     </div>
 
+                    <!-- ── CAPTCHA Verification ── -->
+                    @if (($captchaDriver ?? 'math') === 'turnstile' && !empty($turnstileSiteKey))
+                        <div class="my-2 p-4 rounded-xl border border-slate-200 bg-slate-50/70">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                                Security Verification <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="cf-turnstile" data-sitekey="{{ $turnstileSiteKey }}"></div>
+                        </div>
+                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                    @elseif (($captchaDriver ?? 'math') === 'recaptcha' && !empty($recaptchaSiteKey))
+                        <div class="my-2 p-4 rounded-xl border border-slate-200 bg-slate-50/70">
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                                Security Verification <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="g-recaptcha" data-sitekey="{{ $recaptchaSiteKey }}"></div>
+                        </div>
+                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    @else
+                        <!-- Built-in Math Challenge -->
+                        <div class="p-4 sm:p-5 rounded-xl border border-slate-200 bg-slate-50/80">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center">
+                                        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <label for="captcha_answer" class="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                                        Security Verification <span class="text-rose-500">*</span>
+                                    </label>
+                                </div>
+                                <button type="button"
+                                        @click="refreshCaptcha()"
+                                        :disabled="refreshingCaptcha"
+                                        title="Get a new question"
+                                        class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 hover:text-blue-700 disabled:opacity-50 transition-colors">
+                                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5" :class="{'animate-spin': refreshingCaptcha}"></i>
+                                    <span>New question</span>
+                                </button>
+                            </div>
+
+                            <p class="text-xs text-slate-500 mb-3">
+                                Please solve this simple calculation to verify you are human:
+                            </p>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <!-- Equation badge -->
+                                <div class="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-300 rounded-lg font-mono text-base font-extrabold text-slate-900 shadow-2xs select-none">
+                                    <span class="w-7 h-7 flex items-center justify-center rounded bg-blue-50 text-blue-700 font-bold" x-text="captchaNum1">{{ $captcha['num1'] ?? '?' }}</span>
+                                    <span class="text-slate-400 font-bold" x-text="captchaOp">{{ $captcha['op'] ?? '+' }}</span>
+                                    <span class="w-7 h-7 flex items-center justify-center rounded bg-blue-50 text-blue-700 font-bold" x-text="captchaNum2">{{ $captcha['num2'] ?? '?' }}</span>
+                                    <span class="text-slate-400 font-bold">=</span>
+                                </div>
+
+                                <!-- User answer input -->
+                                <div class="w-24 sm:w-28">
+                                    <input type="text"
+                                           id="captcha_answer"
+                                           name="captcha_answer"
+                                           x-model="captchaAnswer"
+                                           required
+                                           inputmode="numeric"
+                                           pattern="[0-9]*"
+                                           autocomplete="off"
+                                           placeholder="?"
+                                           class="w-full text-center px-3 py-2 text-base font-bold font-mono rounded-lg border border-slate-300 bg-white text-slate-900 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 outline-none transition-all placeholder:text-slate-300">
+                                </div>
+
+                                <!-- Hidden signed token -->
+                                <input type="hidden" name="captcha_token" :value="captchaToken">
+                            </div>
+
+                            @error('captcha')
+                                <p class="text-rose-600 text-xs mt-2 font-medium">{{ $message }}</p>
+                            @enderror
+
+                            <div class="flex items-center gap-1.5 text-[11px] text-slate-400 mt-2.5">
+                                <i data-lucide="lock" class="w-3 h-3 text-slate-400"></i>
+                                <span>Automated spam protection active</span>
+                            </div>
+                        </div>
+                    @endif
+
                     <div>
                         <button type="submit"
                                 :disabled="sending"
@@ -194,4 +311,3 @@
     </div>
 </div>
 @endsection
-

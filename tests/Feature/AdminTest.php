@@ -366,6 +366,21 @@ class AdminTest extends TestCase
         $this->assertTrue(Hash::check('secret123', $this->admin->password));
     }
 
+    public function test_admin_can_update_captcha_settings(): void
+    {
+        $response = $this->actingAs($this->admin)->put('/admin/settings/captcha', [
+            'captcha_driver' => 'turnstile',
+            'turnstile_site_key' => '0x4AAAAAAATestKey',
+            'turnstile_secret_key' => '0x4AAAAAAATestSecret',
+        ]);
+
+        $response->assertRedirect(route('admin.settings.index'));
+        $response->assertSessionHas('success');
+
+        $this->assertEquals('turnstile', \App\Models\Setting::get('captcha_driver'));
+        $this->assertEquals('0x4AAAAAAATestKey', \App\Models\Setting::get('turnstile_site_key'));
+    }
+
     public function test_dynamic_product_renders_formatted_specifications_table(): void
     {
         $product = Product::create([

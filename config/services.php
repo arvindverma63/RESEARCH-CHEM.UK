@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'captcha' => [
+        'driver' => env('CAPTCHA_DRIVER', 'math'),
+        'turnstile_site_key' => env('TURNSTILE_SITE_KEY'),
+        'turnstile_secret' => env('TURNSTILE_SECRET_KEY'),
+        'recaptcha_site_key' => env('RECAPTCHA_SITE_KEY'),
+        'recaptcha_secret' => env('RECAPTCHA_SECRET_KEY'),
+    ],
+
 ];

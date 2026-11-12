@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
+use App\Services\CaptchaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -11,7 +12,17 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact');
+        $captcha = CaptchaService::generateMathChallenge();
+        $captchaDriver = CaptchaService::activeDriver();
+        $turnstileSiteKey = CaptchaService::getTurnstileSiteKey();
+        $recaptchaSiteKey = CaptchaService::getRecaptchaSiteKey();
+
+        return view('contact', compact('captcha', 'captchaDriver', 'turnstileSiteKey', 'recaptchaSiteKey'));
+    }
+
+    public function refreshCaptcha()
+    {
+        return response()->json(CaptchaService::generateMathChallenge());
     }
 
     public function submit(Request $request)
@@ -19,6 +30,20 @@ class ContactController extends Controller
         // Bot trap check
         if ($request->filled('website') || $request->filled('honeypot')) {
             return response()->json(['success' => true]);
+        }
+
+        // Verify CAPTCHA
+        if (!CaptchaService::verify($request->all(), $request->ip())) {
+            $msg = 'Security verification failed: Please enter the correct calculation answer.';
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $msg,
+                    'new_captcha' => CaptchaService::generateMathChallenge(),
+                ], 422);
+            }
+
+            return back()->withInput()->withErrors(['captcha' => $msg]);
         }
 
         $validated = $request->validate([

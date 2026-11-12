@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Services\CaptchaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -36,7 +37,15 @@ class SettingController extends Controller
             'mailbox_id' => config('mail.mailers.hostinger.mailbox_id'),
         ];
 
-        return view('admin.settings.index', compact('user', 'mail'));
+        $captcha = [
+            'driver' => CaptchaService::activeDriver(),
+            'turnstile_site_key' => CaptchaService::getTurnstileSiteKey(),
+            'turnstile_secret_key' => CaptchaService::getTurnstileSecretKey(),
+            'recaptcha_site_key' => CaptchaService::getRecaptchaSiteKey(),
+            'recaptcha_secret_key' => CaptchaService::getRecaptchaSecretKey(),
+        ];
+
+        return view('admin.settings.index', compact('user', 'mail', 'captcha'));
     }
 
     /**
@@ -183,5 +192,30 @@ class SettingController extends Controller
 
         return redirect()->route('admin.settings.index')
             ->with('success', "Test email sent to {$validated['test_email']}. Check the inbox (and spam folder).");
+    }
+
+    /**
+     * Update CAPTCHA & spam protection settings.
+     */
+    public function updateCaptcha(Request $request)
+    {
+        $validated = $request->validate([
+            'captcha_driver' => ['required', Rule::in(['math', 'turnstile', 'recaptcha'])],
+            'turnstile_site_key' => ['nullable', 'string', 'max:255'],
+            'turnstile_secret_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_site_key' => ['nullable', 'string', 'max:255'],
+            'recaptcha_secret_key' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        Setting::setMany([
+            'captcha_driver' => $validated['captcha_driver'],
+            'turnstile_site_key' => $validated['turnstile_site_key'] ?? '',
+            'turnstile_secret_key' => $validated['turnstile_secret_key'] ?? '',
+            'recaptcha_site_key' => $validated['recaptcha_site_key'] ?? '',
+            'recaptcha_secret_key' => $validated['recaptcha_secret_key'] ?? '',
+        ]);
+
+        return redirect()->route('admin.settings.index')
+            ->with('success', 'Spam protection and CAPTCHA settings updated successfully.');
     }
 }

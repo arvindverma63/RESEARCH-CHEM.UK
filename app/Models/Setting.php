@@ -16,9 +16,13 @@ class Setting extends Model
      */
     public static function allCached(): array
     {
-        return Cache::rememberForever(self::CACHE_KEY, function () {
-            return static::query()->pluck('value', 'key')->all();
-        });
+        try {
+            return Cache::rememberForever(self::CACHE_KEY, function () {
+                return static::query()->pluck('value', 'key')->all();
+            });
+        } catch (\Throwable $e) {
+            return [];
+        }
     }
 
     public static function get(string $key, $default = null)

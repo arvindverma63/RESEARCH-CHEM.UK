@@ -502,7 +502,7 @@
                     'pen-kits' => 'syringe'
                 ];
             @endphp
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 @foreach($dynCategories as $catKey => $cat)
                     @php
                         $icon = $catIcons[$catKey] ?? 'beaker';
@@ -560,131 +560,6 @@
                 @endforeach
             </div>
 
-            <!-- ── FEATURED PRODUCTS SHOWCASE ── -->
-            <div class="pt-6 border-t border-slate-200">
-                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1.5">
-                            <span class="w-2 h-2 rounded-full" style="background-color: #0052a3;"></span>
-                            <span class="text-xs font-mono tracking-widest uppercase font-bold text-blue-900">
-                                Live In-Stock Catalog
-                            </span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900" style="font-family: var(--font-heading);">
-                            Featured Research Compounds
-                        </h3>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-mono text-slate-500 font-semibold hidden sm:inline">Dispatch: Shipped Next Working Day UK</span>
-                    </div>
-                </div>
-
-                @php
-                    $allProds = \App\Services\ContentService::getAllProducts();
-                    $featuredSlugs = [
-                        'retatrutide',
-                        'bpc-157',
-                        'wolverine',
-                        'mk-677-ibutamoren',
-                        'rad-140-testolone',
-                        'retatrutide-pen-kit'
-                    ];
-                    $featuredList = [];
-                    foreach ($featuredSlugs as $fSlug) {
-                        if (isset($allProds[$fSlug])) {
-                            $featuredList[] = $allProds[$fSlug];
-                        }
-                    }
-                @endphp
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                    @foreach($featuredList as $fProd)
-                        @php
-                            $fPricePence = $fProd['price_pence'] ?? \App\Services\ContentService::parsePence($fProd['price'] ?? '0');
-                        @endphp
-                        <div class="group flex flex-col p-3 rounded-xs border border-slate-200 hover:border-blue-700 hover:shadow-lg transition-all duration-200 bg-white"
-                             x-data="{ loading: false, added: false }">
-                            <!-- Image Box -->
-                            <div class="relative w-full aspect-square bg-slate-50 rounded-xs mb-2.5 flex items-center justify-center p-2.5 border border-slate-100 overflow-hidden">
-                                <img src="{{ $fProd['image'] }}"
-                                     alt="{{ $fProd['name'] }}"
-                                     loading="lazy"
-                                     decoding="async"
-                                     onerror="this.onerror=null; this.src='/assets/images/photorealistic-single-glass-research-via-ATRm5m.png';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
-                                <span class="absolute top-1.5 right-1.5 bg-blue-700 text-white text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-xs">
-                                    {{ $fProd['purity'] ?? '≥98%' }}
-                                </span>
-                            </div>
-
-                            <!-- Title & Dose -->
-                            <h4 class="text-xs font-bold text-slate-900 group-hover:text-blue-700 truncate leading-snug"
-                                style="font-family: var(--font-heading);"
-                                title="{{ $fProd['name'] }}">
-                                {{ $fProd['name'] }}
-                            </h4>
-                            @if(!empty($fProd['dose']))
-                                <div class="text-[10px] font-mono text-slate-500 truncate mb-1">
-                                    {{ $fProd['dose'] }}
-                                </div>
-                            @endif
-
-                            <!-- Price -->
-                            <div class="mt-auto pt-2 border-t border-slate-100 mb-2.5 flex items-center justify-between">
-                                <span class="text-xs font-bold font-mono text-blue-900">
-                                    {{ $fProd['price'] }}
-                                </span>
-                                <span class="text-[9px] font-mono font-bold text-emerald-600 bg-emerald-50 px-1 py-0.5 rounded-xs">
-                                    In Stock
-                                </span>
-                            </div>
-
-                            <!-- Actions -->
-                            <div class="flex flex-col gap-1.5">
-                                <a href="{{ route('products.show', $fProd['slug']) }}"
-                                   class="block text-center py-1.5 text-xs font-bold rounded-xs border border-[#0052a3] text-[#0052a3] hover:bg-blue-50 transition-colors"
-                                   style="font-family: var(--font-heading);">
-                                    View Details
-                                </a>
-                                <button type="button"
-                                        @click="
-                                            if (loading) return;
-                                            loading = true;
-                                            setTimeout(() => {
-                                                $store.cart.addToCart({
-                                                    id: '{{ $fProd['slug'] }}',
-                                                    name: '{{ addslashes($fProd['name']) }}',
-                                                    price: {{ $fPricePence }},
-                                                    currency: 'gbp',
-                                                    image: '{{ $fProd['image'] }}',
-                                                    category: '{{ $fProd['category'] ?? 'peptides' }}'
-                                                });
-                                                loading = false;
-                                                added = true;
-                                                setTimeout(() => added = false, 2000);
-                                            }, 300);
-                                        "
-                                        :disabled="loading"
-                                        :class="added ? 'bg-emerald-600 border-emerald-600' : 'bg-[#0052a3] border-[#0052a3] hover:bg-[#003d7a] hover:border-[#003d7a]'"
-                                        class="w-full py-1.5 text-xs font-bold rounded-xs text-white transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-xs border-[1.5px]"
-                                        style="font-family: var(--font-heading);">
-                                    <span x-show="loading" x-cloak class="flex flex-row items-center justify-center gap-1 text-white">
-                                        <svg class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                                        <span class="text-white">Adding...</span>
-                                    </span>
-                                    <span x-show="!loading && !added" class="flex flex-row items-center justify-center gap-1.5 text-white">
-                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                        <span class="text-white">Add to Cart</span>
-                                    </span>
-                                    <span x-show="!loading && added" x-cloak class="flex flex-row items-center justify-center gap-1 text-white">
-                                        <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                        <span class="text-white">Added!</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
         </div>
     </section>
 

@@ -69,13 +69,15 @@ class DynamicNavigationTest extends TestCase
         $response->assertSee('pen-kit-retatrutide-hd.jpg');
     }
 
-    public function test_home_page_shows_dynamic_featured_compounds_grid(): void
+    public function test_home_page_shows_product_categories(): void
     {
         $response = $this->get('/');
         $response->assertStatus(200);
 
-        $response->assertSee('Featured Research Compounds');
-        $response->assertSee('Live In-Stock Catalog');
+        $response->assertSee('Product Categories');
+        $response->assertSee('Research Grade Compounds');
+        $response->assertDontSee('Featured Research Compounds');
+        $response->assertDontSee('Live In-Stock Catalog');
     }
 }
 

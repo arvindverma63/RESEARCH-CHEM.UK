@@ -109,9 +109,7 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex items-center shrink-0 min-w-0 py-1 transition-transform hover:opacity-90">
-                    <span style="font-family: var(--font-heading); font-weight: 900; font-size: clamp(0.95rem, 2vw, 1.2rem); color: #0052a3; letter-spacing: -0.02em;">
-                        RESEARCH-CHEM.UK
-                    </span>
+                    <x-logo tagline-class="hidden lg:block" aria-label="Research-Chem.uk home" />
                 </a>
 
                 <!-- Desktop Nav -->
@@ -366,13 +364,11 @@
         <div class="w-full h-px" style="background: #0052a3; opacity: 0.4;"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
                 <!-- Brand Column -->
-                <div class="md:col-span-1">
+                <div class="md:col-span-2 max-w-xs">
                     <a href="{{ route('home') }}" class="inline-block mb-4">
-                        <span style="font-family: var(--font-heading); font-weight: 900; font-size: 1.25rem; color: #3b82f6; letter-spacing: -0.02em;">
-                            RESEARCH-CHEM.UK
-                        </span>
+                        <x-logo variant="dark" aria-label="Research-Chem.uk home" />
                     </a>
                     <p class="text-xs leading-relaxed mb-4 text-slate-400">
                         UK-based supplier of laboratory research compounds. All products are

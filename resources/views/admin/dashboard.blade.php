@@ -217,27 +217,6 @@
         </div>
     </div>
 
-    <!-- ── SYNC TRIGGER CARD ── -->
-    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-xs">
-        <h2 class="text-sm font-bold text-slate-800 font-heading mb-2 uppercase tracking-wider">
-            Frontend JSON &amp; Database Bridge
-        </h2>
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-600 bg-slate-50 p-4 rounded-md border border-slate-200">
-            <div>
-                <span class="font-bold text-slate-800 block">Synchronize Static Files</span>
-                <span>Any product edits saved here automatically update both the live database and frontend store pages.</span>
-            </div>
-            <form action="{{ route('admin.sync') }}" method="POST">
-                @csrf
-                <button type="submit"
-                        class="px-4 py-2 bg-[#0052a3] hover:bg-[#004080] text-white font-bold rounded-sm font-heading flex items-center gap-2 whitespace-nowrap transition-colors">
-                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-                    <span>Export / Sync All JSON</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
     <!-- ── RECENTLY UPDATED PRODUCTS ── -->
     <div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
         <div class="p-5 border-b border-slate-200 flex items-center justify-between">

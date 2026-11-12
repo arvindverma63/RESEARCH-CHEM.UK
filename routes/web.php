@@ -87,7 +87,6 @@ Route::prefix('admin')->group(function () {
     Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
-        Route::post('/sync', [App\Http\Controllers\Admin\DashboardController::class, 'syncJson'])->name('admin.sync');
 
         // Orders Management
         Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders.index');

@@ -120,7 +120,8 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary-cart > span,
 .btn-primary-cart-kit > span,
 .btn-cart-content {
-    display: inline-flex !important;
+    /* No !important here: Alpine's x-show / x-cloak must be able to hide these states */
+    display: inline-flex;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;

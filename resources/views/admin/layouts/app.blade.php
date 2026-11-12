@@ -144,15 +144,6 @@
                 </span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
             </a>
-
-            <form action="{{ route('admin.sync') }}" method="POST" class="pt-2">
-                @csrf
-                <button type="submit"
-                        class="w-full flex items-center gap-3 px-3.5 py-2 rounded-md text-xs font-semibold text-cyan-200 bg-white/5 border border-cyan-400/20 hover:bg-cyan-500/20 hover:text-cyan-100 transition-colors text-left">
-                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-                    <span>Sync Live Pages</span>
-                </button>
-            </form>
         </nav>
 
         <!-- User Profile & Logout -->

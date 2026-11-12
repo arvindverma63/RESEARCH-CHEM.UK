@@ -30,7 +30,7 @@
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td align="left" style="vertical-align:middle;">
-                                <a href="{{ config('app.url') }}" target="_blank" style="color:#ffffff;text-decoration:none;font-size:20px;font-weight:bold;letter-spacing:0.8px;display:inline-block;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                                <a href="https://research-chem.uk" target="_blank" style="color:#ffffff;text-decoration:none;font-size:20px;font-weight:bold;letter-spacing:0.8px;display:inline-block;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
                                     RESEARCH-CHEM<span style="color:#38bdf8;">.UK</span>
                                 </a>
                                 <div style="color:#93c5fd;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Laboratory Research Reagents</div>
@@ -60,7 +60,7 @@
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                             <td style="padding-bottom:10px;border-bottom:1px solid #e2e8f0;color:#0f172a;font-weight:600;font-size:12px;">
-                                RESEARCH-CHEM.UK &middot; <a href="{{ config('app.url') }}" target="_blank" style="color:#0052a3;text-decoration:none;">{{ rtrim(preg_replace('#^https?://#', '', config('app.url')), '/') }}</a>
+                                <a href="https://research-chem.uk" target="_blank" style="color:#0052a3;text-decoration:none;">RESEARCH-CHEM.UK</a>
                                 @if (config('mail.admin_address'))
                                     &middot; <a href="mailto:{{ config('mail.admin_address') }}" style="color:#0052a3;text-decoration:none;">{{ config('mail.admin_address') }}</a>
                                 @endif

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactMessage;
 use App\Models\Order;
 use App\Models\Product;
-use App\Services\ProductSyncService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -36,12 +35,6 @@ class DashboardController extends Controller
         $recentProducts = Product::orderBy('updated_at', 'desc')->take(6)->get();
 
         return view('admin.dashboard', compact('stats', 'recentOrders', 'recentLeads', 'recentProducts'));
-    }
-
-    public function syncJson()
-    {
-        ProductSyncService::exportToJson();
-        return back()->with('success', 'Catalog successfully exported and synchronized with frontend pages!');
     }
 }
 

@@ -180,7 +180,7 @@
                     <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-[11px]">i</div>
                     <div>
                         <p class="font-bold text-slate-900 mb-0.5">What happens next?</p>
-                        <p>We reconcile bank payments throughout business hours. Once verified, your order is hermetically packed in discreet plain packaging with batch analytical documentation and dispatched via Royal Mail Tracked delivery.</p>
+                        <p>We reconcile bank payments throughout business hours. Once verified, your order is hermetically packed in discreet plain packaging with batch analytical documentation and shipped next working day via Royal Mail Tracked delivery.</p>
                     </div>
                 </div>
 
@@ -387,7 +387,7 @@
                                             </h2>
                                         </div>
                                         <p class="text-xs text-slate-500 mt-1 font-sans">
-                                            Orders are shipped via Royal Mail Tracked in plain, discreet laboratory packaging.
+                                            Orders are shipped next working day via Royal Mail Tracked in plain, discreet laboratory packaging.
                                         </p>
                                     </div>
                                     <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -510,7 +510,10 @@
 
                                     <!-- UK Delivery -->
                                     <div class="flex justify-between items-center text-slate-600 text-xs">
-                                        <span class="font-medium">Royal Mail Tracked Delivery</span>
+                                        <div>
+                                            <span class="font-medium block">Royal Mail Tracked Delivery</span>
+                                            <span class="text-[10px] text-slate-400 font-sans">Shipped next working day</span>
+                                        </div>
                                         <span class="font-mono font-bold text-xs"
                                               :class="$store.cart.shippingFee() === 0 ? 'text-emerald-700 font-extrabold' : 'text-slate-900'"
                                               x-text="$store.cart.shippingFee() === 0 ? 'FREE (Over £50)' : $store.cart.formatMoney($store.cart.shippingFee())"></span>

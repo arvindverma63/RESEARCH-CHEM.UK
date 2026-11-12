@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Retatrutide Pen Kit & Research Peptides UK | ResearchChem.uk')
-@section('meta_description', 'Buy Retatrutide pen kits, peptide pens, and research-grade peptides in the UK. Bestselling Reta pen kits dispatched within 2–3 working days. Batch COA included.')
+@section('meta_description', 'Buy Retatrutide pen kits, peptide pens, and research-grade peptides in the UK. Bestselling Reta pen kits shipped next working day. Batch COA included.')
 
 @section('json_ld')
 <script type="application/ld+json">
@@ -177,7 +177,7 @@
                             </h1>
 
                             <p class="text-base sm:text-lg text-slate-200 leading-relaxed font-sans max-w-2xl font-normal">
-                                Peptides, SARMs and pen kits supplied strictly for in-vitro laboratory research. Batch documentation available. Dispatched from the UK within 2–3 working days with verified third-party HPLC analysis.
+                                Peptides, SARMs and pen kits supplied strictly for in-vitro laboratory research. Batch documentation available. Shipped next working day from the UK with verified third-party HPLC analysis.
                             </p>
 
                             <!-- Technical Compound Spec Badges -->
@@ -575,7 +575,7 @@
                         </h3>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-mono text-slate-500 font-semibold hidden sm:inline">Dispatch: 2-3 Working Days UK</span>
+                        <span class="text-xs font-mono text-slate-500 font-semibold hidden sm:inline">Dispatch: Shipped Next Working Day UK</span>
                     </div>
                 </div>
 

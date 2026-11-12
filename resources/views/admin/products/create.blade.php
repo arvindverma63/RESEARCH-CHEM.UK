@@ -566,8 +566,8 @@
                         Compound Name – Research-Chem.uk
                     </div>
                     <div class="text-xs text-slate-600 line-clamp-2 leading-relaxed"
-                         x-text="seoDesc || 'Buy laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.'">
-                        Buy laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.
+                         x-text="seoDesc || 'Buy laboratory-grade research compound. Certificate of Analysis included. UK shipped next working day.'">
+                        Buy laboratory-grade research compound. Certificate of Analysis included. UK shipped next working day.
                     </div>
                 </div>
             </div>
@@ -614,7 +614,7 @@
                         </span>
                     </div>
                     <textarea name="meta_description" x-model="seoDesc" rows="2"
-                              placeholder="e.g. Premium laboratory-grade BPC-157 10mg lyophilised peptide vial. Third-party UKAS accredited HPLC tested with batch COA included. Fast 2-3 working day UK dispatch."
+                              placeholder="e.g. Premium laboratory-grade BPC-157 10mg lyophilised peptide vial. Third-party UKAS accredited HPLC tested with batch COA included. Shipped next working day UK dispatch."
                               class="w-full px-3 py-2 text-xs border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 font-sans leading-relaxed">{{ old('meta_description') }}</textarea>
                     <p class="text-[11px] text-slate-400 mt-0.5">Concise summary displayed under the title in search engine results (140-160 characters recommended)</p>
                 </div>

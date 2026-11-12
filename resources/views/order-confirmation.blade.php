@@ -12,7 +12,7 @@
         Order Confirmed
     </h1>
     <p class="text-slate-600 mb-8 max-w-lg mx-auto">
-        Thank you for your order with ResearchChem.uk. Your research compounds will be packaged discreetly and dispatched within 2&ndash;3 working days.
+        Thank you for your order with ResearchChem.uk. Your research compounds will be packaged discreetly and shipped next working day.
     </p>
 
     <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-left mb-8 space-y-3 text-sm">

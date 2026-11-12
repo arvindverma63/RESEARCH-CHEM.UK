@@ -165,7 +165,7 @@ class OrderController extends Controller
                 . "Reference: {$vars['ref']}\n\n"
                 . "Your order:\n{$summary}{$commentsText}\n\n"
                 . "Delivery address:\n{$address}\n\n"
-                . "Your order will be dispatched within 2-3 working days of payment being received.\n\n"
+                . "Your order will be shipped next working day after payment is received.\n\n"
                 . "Research-Chem";
 
             Mail::send(['html' => 'emails.order-customer', 'raw' => $text], $vars, function ($m) use ($vars, $adminEmail) {

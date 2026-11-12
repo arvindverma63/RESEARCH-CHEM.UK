@@ -29,7 +29,7 @@
         <p style="margin:4px 0 0;white-space:pre-line;">{{ $comments }}</p>
     @endif
 
-    <p style="margin:24px 0 0;">Your order will be dispatched within 2&ndash;3 working days of payment being received.</p>
+    <p style="margin:24px 0 0;">Your order will be shipped next working day after payment is received.</p>
     @if ($adminEmail)
         <p style="margin:8px 0 0;">Questions? Contact us at <a href="mailto:{{ $adminEmail }}" style="color:#0052a3;">{{ $adminEmail }}</a>.</p>
     @endif

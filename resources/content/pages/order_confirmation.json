@@ -1,10 +1,10 @@
 {
   "title": "Payment Submitted",
-  "subtitle": "Thank you for your order. Your Open Banking transfer has been submitted and we will confirm once funds have cleared. Orders are dispatched within 2–3 working days.",
+  "subtitle": "Thank you for your order. Your Open Banking transfer has been submitted and we will confirm once funds have cleared. Orders are shipped next working day.",
   "referenceLabel": "Payment reference",
   "orderIdLabel": "Order ID",
   "contactNote": "A confirmation will be sent to your email address. If you have any questions, contact us at info@research-chem.uk",
   "contactEmail": "info@research-chem.uk",
   "backButton": "Back to Home",
-  "dispatchNote": "2–3 working days"
+  "dispatchNote": "Shipped next working day"
 }

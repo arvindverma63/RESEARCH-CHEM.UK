@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Buy Research Peptides & SARMs UK | ResearchChem.uk')</title>
-    <meta name="description" content="@yield('meta_description', 'UK supplier of laboratory research compounds. Peptide vials, SARMs and pen kits with batch documentation available. Orders dispatch within 2–3 working days.')">
+    <meta name="description" content="@yield('meta_description', 'UK supplier of laboratory research compounds. Peptide vials, SARMs and pen kits with batch documentation available. Orders shipped next working day.')">
     @hasSection('meta_keywords')
     <meta name="keywords" content="@yield('meta_keywords')">
     @endif
@@ -13,7 +13,7 @@
     <!-- Open Graph -->
     <meta property="og:site_name" content="ResearchChem.uk">
     <meta property="og:title" content="@yield('og_title', 'Retatrutide Pen Kit & Research Peptides UK | ResearchChem.uk')">
-    <meta property="og:description" content="@yield('og_description', 'UK supplier of laboratory research compounds. Lyophilised vials, SARMs and pen kits. Orders dispatch within 2–3 working days.')">
+    <meta property="og:description" content="@yield('og_description', 'UK supplier of laboratory research compounds. Lyophilised vials, SARMs and pen kits. Orders shipped next working day.')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:image" content="@yield('og_image', asset('og-image.png'))">
@@ -21,10 +21,19 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('og_title', 'Retatrutide Pen Kit & Research Peptides UK | ResearchChem.uk')">
-    <meta name="twitter:description" content="@yield('og_description', 'UK supplier of laboratory research compounds. Orders dispatch within 2–3 working days.')">
+    <meta name="twitter:description" content="@yield('og_description', 'UK supplier of laboratory research compounds. Orders shipped next working day.')">
     <meta name="twitter:image" content="@yield('og_image', asset('og-image.png'))">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    @include('partials.pwa-head')
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('{{ asset('sw.js') }}', { scope: '/' }).catch(function (e) {
+                    console.warn('Service worker registration failed:', e);
+                });
+            });
+        }
+    </script>
 
     <!-- Google Fonts: Plus Jakarta Sans (Headings), Inter (Body) & JetBrains Mono (Technical/Specs) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

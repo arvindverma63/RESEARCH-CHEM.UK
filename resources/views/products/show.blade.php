@@ -4,20 +4,20 @@
     $penKitSeo = [
         'retatrutide-pen-kit' => [
             'title' => 'Retatrutide Pen Kit UK — Buy Reta Pen 40mg | ResearchChem.uk',
-            'desc' => "Buy the Retatrutide pen kit (Reta pen) — 40mg vial, micro pin injector pen & 32G needles. UK's bestselling peptide pen kit. Dispatched within 2–3 working days.",
+            'desc' => "Buy the Retatrutide pen kit (Reta pen) — 40mg vial, micro pin injector pen & 32G needles. UK's bestselling peptide pen kit. Shipped next working day.",
         ],
         'wolverine-pen-kit' => [
             'title' => 'Wolverine Peptide Pen Kit UK — BPC-157 & TB-500 20mg | ResearchChem.uk',
-            'desc' => "Buy the Wolverine peptide pen kit — BPC-157 & TB-500 20mg blend, micro pin injector pen & 32G needles. Complete research kit dispatched within 2–3 working days.",
+            'desc' => "Buy the Wolverine peptide pen kit — BPC-157 & TB-500 20mg blend, micro pin injector pen & 32G needles. Complete research kit shipped next working day.",
         ],
         'glow-ghk-cu-pen-kit' => [
             'title' => 'GLOW GHK-CU Peptide Pen Kit UK — 70mg Research Kit | ResearchChem.uk',
-            'desc' => "Buy the GLOW GHK-CU peptide pen kit — 70mg GHK-CU blend, micro pin injector pen & 32G needles. Complete copper peptide research kit. UK dispatched 2–3 working days.",
+            'desc' => "Buy the GLOW GHK-CU peptide pen kit — 70mg GHK-CU blend, micro pin injector pen & 32G needles. Complete copper peptide research kit. UK shipped next working day.",
         ],
     ];
     $seo = $penKitSeo[$id] ?? null;
     $pageTitle = !empty($product['seo_title']) ? $product['seo_title'] : ($seo['title'] ?? (($product['name'] ?? 'Product') . ' – Research-Chem.uk'));
-    $metaDesc = !empty($product['meta_description']) ? $product['meta_description'] : ($seo['desc'] ?? ('Buy ' . ($product['name'] ?? 'Compound') . ' — laboratory-grade research compound. Certificate of Analysis included. UK dispatched within 2–3 working days.'));
+    $metaDesc = !empty($product['meta_description']) ? $product['meta_description'] : ($seo['desc'] ?? ('Buy ' . ($product['name'] ?? 'Compound') . ' — laboratory-grade research compound. Certificate of Analysis included. UK shipped next working day.'));
     $metaKeywords = !empty($product['meta_keywords']) ? $product['meta_keywords'] : null;
     $productImage = $product['image'] ?? $product['img'] ?? ("/airo-assets/images/pages/" . ($product['category'] ?? 'peptides') . "/{$id}");
     $absoluteImage = str_starts_with($productImage, 'http') ? $productImage : asset($productImage);
@@ -359,7 +359,7 @@
                     <i data-lucide="truck" class="w-4 h-4 text-blue-700 shrink-0 mt-0.5"></i>
                     <div>
                         <p class="text-xs font-bold text-blue-900">UK Dispatch</p>
-                        <p class="text-[11px] text-slate-500">2–3 working days target</p>
+                        <p class="text-[11px] text-slate-500">Shipped next working day</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-[#f0f7ff]">

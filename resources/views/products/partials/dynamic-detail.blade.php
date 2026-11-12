@@ -79,7 +79,7 @@
 
             $features[] = ['Documentation', 'Batch-specific Certificate of Analysis (COA)'];
             $features[] = ['Intended Application', 'In-vitro scientific laboratory research only'];
-            $features[] = ['Origin / Dispatch', 'United Kingdom (Dispatched in 2–3 working days)'];
+            $features[] = ['Origin / Dispatch', 'United Kingdom (Shipped next working day)'];
           @endphp
 
           @foreach($features as $i => $row)

@@ -89,7 +89,7 @@
     },
     {
       "id": "cred3",
-      "text": "Orders processed and dispatched within 2–3 working days"
+      "text": "Orders processed and shipped next working day"
     },
     {
       "id": "cred4",
@@ -106,7 +106,7 @@
   ],
   "cta_section": {
     "headline": "",
-    "subtext": "Browse our full catalogue of laboratory research compounds. Batch documentation is available and orders are dispatched within 2–3 working days.",
+    "subtext": "Browse our full catalogue of laboratory research compounds. Batch documentation is available and orders are shipped next working day.",
     "button": "Browse Full Catalogue"
   }
 }

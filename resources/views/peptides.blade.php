@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Buy Peptide Vials UK — BPC-157, TB-500, Retatrutide | ResearchChem.uk')
-@section('meta_description', $content['pageSubtitle'] ?? 'Lyophilised peptide vials for laboratory research. Batch documentation is available. Orders are dispatched within 2–3 working days.')
+@section('meta_description', $content['pageSubtitle'] ?? 'Lyophilised peptide vials for laboratory research. Batch documentation is available. Orders are shipped next working day.')
 
 @section('content')
 <!-- ── Hero banner ── -->
@@ -18,7 +18,7 @@
         Peptide Lyophilized Vials
     </h1>
     <p style="color: rgba(255,255,255,0.85); font-size: 0.82rem; margin: 0 0 14px; max-width: 560px; margin-left: auto; margin-right: auto;" class="font-sans">
-        {{ $content['pageSubtitle'] ?? 'Lyophilised peptide vials for laboratory research. Batch documentation is available. Orders are dispatched within 2–3 working days.' }}
+        {{ $content['pageSubtitle'] ?? 'Lyophilised peptide vials for laboratory research. Batch documentation is available. Orders are shipped next working day.' }}
     </p>
     <!-- Discount banner -->
     <div style="display: inline-block; background-color: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 3px; padding: 7px 16px; color: #fff; font-size: 0.75rem; font-weight: 700;">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Retatrutide Pen Kit UK — Reta Pen, Peptide Pens & Research Kits | ResearchChem.uk')
-@section('meta_description', 'Buy Retatrutide pen kits (Reta pen), Wolverine, and GLOW GHK-CU peptide pen kits in the UK. Bestselling research compound kits with micro pin injector pen. Dispatched within 2–3 working days.')
+@section('meta_description', 'Buy Retatrutide pen kits (Reta pen), Wolverine, and GLOW GHK-CU peptide pen kits in the UK. Bestselling research compound kits with micro pin injector pen. Shipped next working day.')
 
 @section('content')
     <style>
@@ -91,7 +91,7 @@
             {{ $content['pageTitle'] ?? 'Peptide Pen Kits' }}
         </h1>
         <p style="color: rgba(255,255,255,0.85); font-size: 0.88rem; margin: 0 0 18px;" class="font-sans">
-            {{ $content['pageSubtitle'] ?? 'Research compound kits · Listed accessories included · Dispatched within 2–3 working days' }}
+            {{ $content['pageSubtitle'] ?? 'Research compound kits · Listed accessories included · Shipped next working day' }}
         </p>
         <div
             style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; background-color: rgba(255,255,255,0.12); border-radius: 3px; padding: 10px 20px;">

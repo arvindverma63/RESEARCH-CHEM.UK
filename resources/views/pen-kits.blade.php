@@ -274,7 +274,7 @@
                                                 setTimeout(() => added = false, 2000);
                                             }, 300);
                                         ">
-                                <span x-show="loading" x-cloak style="display: inline-flex; align-items: center; gap: 6px;">
+                                <span x-show="loading" x-cloak class="btn-cart-content" style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px;">
                                     <svg class="animate-spin" style="width: 14px; height: 14px; color: #ffffff;" fill="none"
                                         viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -283,7 +283,7 @@
                                     </svg>
                                     <span style="color: #ffffff;">Adding...</span>
                                 </span>
-                                <span x-show="!loading && !added" style="display: inline-flex; align-items: center; gap: 6px;">
+                                <span x-show="!loading && !added" class="btn-cart-content" style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px;">
                                     <svg style="width: 15px; height: 15px; color: #ffffff;" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" stroke-width="2.2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -291,8 +291,8 @@
                                     </svg>
                                     <span style="color: #ffffff;">Add to Cart</span>
                                 </span>
-                                <span x-show="!loading && added" x-cloak
-                                    style="display: inline-flex; align-items: center; gap: 5px;">
+                                <span x-show="!loading && added" x-cloak class="btn-cart-content"
+                                    style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 5px;">
                                     <svg style="width: 14px; height: 14px; color: #ffffff;" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" stroke-width="3">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />

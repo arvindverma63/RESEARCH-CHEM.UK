@@ -96,6 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 /* E-commerce Standard Action Buttons */
 .btn-primary-cart {
     display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 6px !important;
@@ -115,6 +116,28 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 1px 2px rgba(0,82,163,0.12) !important;
     transition: all 0.15s ease !important;
 }
+
+.btn-primary-cart > span,
+.btn-primary-cart-kit > span,
+.btn-cart-content {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+}
+
+.btn-primary-cart svg,
+.btn-primary-cart-kit svg,
+.btn-cart-content svg {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+}
+
 .btn-primary-cart * {
     color: #ffffff !important;
 }
@@ -129,6 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary-details {
     display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
@@ -153,6 +177,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Pen kit specific larger buttons */
 .btn-primary-cart-kit {
     display: inline-flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;

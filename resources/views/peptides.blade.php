@@ -189,17 +189,17 @@
                                         setTimeout(() => added = false, 2000);
                                     }, 300);
                                 ">
-                            <span x-show="loading" x-cloak style="display: inline-flex; align-items: center; gap: 5px;">
-                                <svg class="animate-spin" style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
-                                <span style="color: #ffffff;">Adding...</span>
+                            <span x-show="loading" x-cloak class="btn-cart-content" style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 5px;">
+                                <svg class="animate-spin" style="width: 13px; height: 13px; color: #ffffff; display: inline-block; vertical-align: middle; flex-shrink: 0;" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                                <span style="color: #ffffff; display: inline-block; vertical-align: middle;">Adding...</span>
                             </span>
-                            <span x-show="!loading && !added" style="display: inline-flex; align-items: center; gap: 5px;">
-                                <svg style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                <span style="color: #ffffff;">Add to Cart</span>
+                            <span x-show="!loading && !added" class="btn-cart-content" style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 6px;">
+                                <svg style="width: 13px; height: 13px; color: #ffffff; display: inline-block; vertical-align: middle; flex-shrink: 0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <span style="color: #ffffff; display: inline-block; vertical-align: middle;">Add to Cart</span>
                             </span>
-                            <span x-show="!loading && added" x-cloak style="display: inline-flex; align-items: center; gap: 4px;">
-                                <svg style="width: 13px; height: 13px; color: #ffffff;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                                <span style="color: #ffffff;">Added!</span>
+                            <span x-show="!loading && added" x-cloak class="btn-cart-content" style="display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 4px;">
+                                <svg style="width: 13px; height: 13px; color: #ffffff; display: inline-block; vertical-align: middle; flex-shrink: 0;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                <span style="color: #ffffff; display: inline-block; vertical-align: middle;">Added!</span>
                             </span>
                         </button>
                     </div>

@@ -312,20 +312,20 @@
                             :class="added ? 'bg-emerald-600 border-emerald-600' : 'bg-[#0052a3] border-[#0052a3] hover:bg-[#003d7a] hover:border-[#003d7a]'"
                             class="flex-1 flex items-center justify-center gap-2.5 h-12 px-6 rounded-md text-sm font-bold text-white transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer select-none disabled:opacity-80 disabled:cursor-not-allowed border-[1.5px]"
                             style="font-family: var(--font-heading);">
-                        <span x-show="loading" x-cloak class="flex items-center gap-2 text-white">
+                        <span x-show="loading" x-cloak class="flex flex-row items-center justify-center gap-2 text-white">
                             <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                             </svg>
                             <span class="text-white">Adding to Cart...</span>
                         </span>
-                        <span x-show="!loading && !added" class="flex items-center gap-2 text-white">
+                        <span x-show="!loading && !added" class="flex flex-row items-center justify-center gap-2 text-white">
                             <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                             <span class="text-white">Add to Cart</span>
                         </span>
-                        <span x-show="!loading && added" x-cloak class="flex items-center gap-2 text-white">
+                        <span x-show="!loading && added" x-cloak class="flex flex-row items-center justify-center gap-2 text-white">
                             <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>

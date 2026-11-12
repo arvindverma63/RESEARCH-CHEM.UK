@@ -19,6 +19,7 @@ class OrderController extends Controller
         $validated = $request->validate([
             'customerName' => 'required|string|max:150',
             'customerEmail' => 'required|email|max:150',
+            'customerPhone' => 'nullable|string|max:40',
             'customerAddress' => 'required|array',
             'customerAddress.line1' => 'required|string|max:200',
             'customerAddress.city' => 'required|string|max:100',
@@ -69,6 +70,7 @@ class OrderController extends Controller
             'placedAt' => now()->toIso8601String(),
             'customerName' => $validated['customerName'],
             'customerEmail' => $validated['customerEmail'],
+            'customerPhone' => $validated['customerPhone'] ?? null,
             'customerAddress' => $validated['customerAddress'],
             'customerComments' => $validated['customerComments'] ?? '',
             'items' => $validated['items'],
@@ -125,10 +127,14 @@ class OrderController extends Controller
         ], $order['discounts']);
 
         $a = $order['customerAddress'];
-        $address = implode(', ', array_filter([
-            $a['line1'] ?? null, $a['line2'] ?? null, $a['city'] ?? null,
-            $a['postcode'] ?? null, $a['country'] ?? 'United Kingdom',
-        ]));
+        $addressLines = array_filter([
+            $a['line1'] ?? null,
+            $a['line2'] ?? null,
+            $a['city'] ?? null,
+            $a['postcode'] ?? null,
+            $a['country'] ?? 'United Kingdom',
+        ]);
+        $address = implode("\n", $addressLines);
 
         $adminEmail = config('mail.admin_address');
         $vars = [
@@ -136,6 +142,7 @@ class OrderController extends Controller
             'placedAt' => now()->format('d M Y, H:i'),
             'customerName' => $order['customerName'],
             'customerEmail' => $order['customerEmail'],
+            'customerPhone' => $order['customerPhone'] ?? null,
             'address' => $address,
             'comments' => $order['customerComments'] ?? '',
             'rows' => $rows,
@@ -166,7 +173,8 @@ class OrderController extends Controller
                 . "Your order:\n{$summary}{$commentsText}\n\n"
                 . "Delivery address:\n{$address}\n\n"
                 . "Your order will be shipped next working day after payment is received.\n\n"
-                . "Research-Chem";
+                . "Research-Chem UK\n"
+                . "Laboratory Research Reagents";
 
             Mail::send(['html' => 'emails.order-customer', 'raw' => $text], $vars, function ($m) use ($vars, $adminEmail) {
                 $m->to($vars['customerEmail'], $vars['customerName'])
@@ -181,10 +189,12 @@ class OrderController extends Controller
 
         if ($adminEmail) {
             try {
+                $phoneLine = $vars['customerPhone'] ? "Phone: {$vars['customerPhone']}\n" : '';
                 $text = "New bank-transfer order received.\n\n"
                     . "Ref: {$vars['ref']}\n"
                     . "Customer: {$vars['customerName']} <{$vars['customerEmail']}>\n"
-                    . "Address: {$address}\n"
+                    . $phoneLine
+                    . "Address:\n{$address}\n"
                     . "Total: {$vars['total']}\n\n"
                     . "{$summary}{$commentsText}\n\n"
                     . "View in admin: {$vars['adminUrl']}\n";

@@ -1,37 +1,89 @@
-@extends('emails.layout', ['title' => "Order Received - {$ref}", 'badge' => 'Order Received'])
+@extends('emails.layout', [
+    'title' => "Order Received - {$ref}",
+    'badge' => 'Order Received',
+    'preheader' => "Thank you for your order ({$ref}). Please find bank transfer payment details inside."
+])
 
 @section('content')
-    <h1 style="margin:0 0 6px;font-size:20px;color:#002b5c;">Thank you for your order, {{ $customerName }}</h1>
-    <p style="margin:0 0 20px;">We've received your order <strong>{{ $ref }}</strong>. To complete it, please make a bank transfer using the details below.</p>
+    <h1 style="margin:0 0 8px;font-size:20px;font-weight:bold;color:#002b5c;line-height:1.3;">Thank you for your order, {{ $customerName }}</h1>
+    <p style="margin:0 0 20px;color:#334155;font-size:14px;">
+        We have received your order <strong style="color:#002b5c;">{{ $ref }}</strong>. To complete your purchase and release the package for dispatch, please make a UK bank transfer using the details below:
+    </p>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;margin:0 0 22px;">
-        <tr><td style="padding:16px 18px;font-size:13px;">
-            <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-bottom:8px;">Bank Transfer Details</div>
-            <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:13px;">
-                <tr><td style="padding:3px 18px 3px 0;color:#64748b;">Amount</td><td style="font-weight:bold;">{{ $total }}</td></tr>
-                <tr><td style="padding:3px 18px 3px 0;color:#64748b;">Account Name</td><td style="font-weight:bold;">{{ $bank['name'] }}</td></tr>
-                <tr><td style="padding:3px 18px 3px 0;color:#64748b;">Sort Code</td><td style="font-weight:bold;">{{ $bank['sortCode'] }}</td></tr>
-                <tr><td style="padding:3px 18px 3px 0;color:#64748b;">Account Number</td><td style="font-weight:bold;">{{ $bank['account'] }}</td></tr>
-                <tr><td style="padding:3px 18px 3px 0;color:#64748b;">Payment Reference</td><td style="font-weight:bold;color:#b45309;">{{ $ref }}</td></tr>
-            </table>
-            <div style="margin-top:10px;font-size:12px;color:#b45309;">Please use <strong>{{ $ref }}</strong> as the payment reference so we can match your payment.</div>
-        </td></tr>
+    <!-- Bank Transfer Details Card -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f0f7ff;border:1px solid #bfdbfe;border-radius:8px;margin:0 0 24px;overflow:hidden;">
+        <tr>
+            <td style="padding:18px 20px;">
+                <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-bottom:12px;letter-spacing:0.3px;text-transform:uppercase;">
+                    Bank Transfer Details
+                </div>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;width:100%;">
+                    <tr>
+                        <td style="padding:5px 16px 5px 0;color:#64748b;width:130px;vertical-align:middle;">Amount to Transfer</td>
+                        <td style="padding:5px 0;vertical-align:middle;">
+                            <span style="font-size:17px;font-weight:bold;color:#002b5c;">{{ $total }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px 16px 5px 0;color:#64748b;vertical-align:middle;">Account Name</td>
+                        <td style="padding:5px 0;font-weight:bold;color:#0f172a;vertical-align:middle;">{{ $bank['name'] }}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px 16px 5px 0;color:#64748b;vertical-align:middle;">Sort Code</td>
+                        <td style="padding:5px 0;vertical-align:middle;">
+                            <code style="font-family:Consolas, 'Courier New', monospace;font-size:14px;font-weight:bold;background:#ffffff;border:1px solid #cbd5e1;padding:2px 8px;border-radius:4px;color:#0f172a;">{{ $bank['sortCode'] }}</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:5px 16px 5px 0;color:#64748b;vertical-align:middle;">Account Number</td>
+                        <td style="padding:5px 0;vertical-align:middle;">
+                            <code style="font-family:Consolas, 'Courier New', monospace;font-size:14px;font-weight:bold;background:#ffffff;border:1px solid #cbd5e1;padding:2px 8px;border-radius:4px;color:#0f172a;">{{ $bank['account'] }}</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:7px 16px 5px 0;color:#64748b;vertical-align:middle;">Payment Reference</td>
+                        <td style="padding:7px 0 5px;vertical-align:middle;">
+                            <code style="display:inline-block;font-family:Consolas, 'Courier New', monospace;font-size:15px;font-weight:bold;background:#fef3c7;border:1px solid #fde68a;color:#92400e;padding:3px 10px;border-radius:4px;letter-spacing:0.5px;">{{ $ref }}</code>
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin-top:14px;padding:10px 12px;background:#fffbeb;border:1px solid #fde68a;border-radius:6px;font-size:12px;line-height:1.5;color:#92400e;">
+                    <strong>Important:</strong> Please ensure you enter <strong style="color:#78350f;">{{ $ref }}</strong> as your payment reference so our system can automatically match and approve your payment without delay.
+                </div>
+            </td>
+        </tr>
     </table>
 
-    <div style="font-weight:bold;color:#002b5c;font-size:14px;">Order Summary</div>
+    <!-- Order Items Summary -->
+    <div style="font-weight:bold;color:#002b5c;font-size:14px;letter-spacing:0.3px;text-transform:uppercase;">Order Summary</div>
     @include('emails._order-table')
 
-    <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-top:20px;">Delivery Address</div>
-    <p style="margin:4px 0 0;">{{ $address }}</p>
+    <!-- Delivery Address -->
+    <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-top:22px;letter-spacing:0.3px;text-transform:uppercase;">Delivery Address</div>
+    <div style="margin:6px 0 0;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;line-height:1.6;color:#334155;font-size:13px;">
+        {!! nl2br(e($address)) !!}
+    </div>
 
     @if ($comments)
-        <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-top:20px;">Your Comments</div>
-        <p style="margin:4px 0 0;white-space:pre-line;">{{ $comments }}</p>
+        <div style="font-weight:bold;color:#002b5c;font-size:14px;margin-top:18px;letter-spacing:0.3px;text-transform:uppercase;">Order Notes</div>
+        <div style="margin:6px 0 0;padding:12px 14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;line-height:1.6;color:#334155;font-size:13px;">
+            {!! nl2br(e($comments)) !!}
+        </div>
     @endif
 
-    <p style="margin:24px 0 0;">Your order will be shipped next working day after payment is received.</p>
+    <!-- Dispatch Banner -->
+    <div style="margin:22px 0 0;padding:12px 16px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:6px;color:#065f46;font-size:13px;line-height:1.5;">
+        <strong>📦 Next-Day Dispatch:</strong> Your order will be <strong>shipped next working day</strong> via tracked delivery once your payment has been confirmed.
+    </div>
+
     @if ($adminEmail)
-        <p style="margin:8px 0 0;">Questions? Contact us at <a href="mailto:{{ $adminEmail }}" style="color:#0052a3;">{{ $adminEmail }}</a>.</p>
+        <p style="margin:20px 0 0;font-size:13px;color:#475569;">
+            Questions about your order? Reply directly to this email or contact us at <a href="mailto:{{ $adminEmail }}" style="color:#0052a3;font-weight:600;text-decoration:none;">{{ $adminEmail }}</a>.
+        </p>
     @endif
-    <p style="margin:16px 0 0;">Thank you,<br><strong>Research-Chem</strong></p>
+
+    <p style="margin:18px 0 0;color:#0f172a;font-size:14px;">
+        Thank you for choosing Research-Chem UK.<br>
+        <strong>Research-Chem Laboratory Supply</strong>
+    </p>
 @endsection

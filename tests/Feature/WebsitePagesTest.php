@@ -13,6 +13,7 @@ class WebsitePagesTest extends TestCase
         $response->assertSee('RESEARCH-CHEM.UK');
         $response->assertSee('Laboratory Research Compounds');
         $response->assertSee('FOR RESEARCH USE ONLY');
+        $response->assertSee('aria-label="Scroll to top"', false);
     }
 
     public function test_peptide_vials_page_renders(): void

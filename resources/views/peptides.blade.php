@@ -12,7 +12,7 @@
         </a>
     </div>
     <span style="display: inline-block; background-color: rgba(255,255,255,0.18); color: #fff; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px;">
-        Trienza Laboratory Research
+        Research-Chem.uk
     </span>
     <h1 style="font-family: var(--font-heading); color: #fff; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin: 0 0 8px; line-height: 1.1;">
         Peptide Lyophilized Vials

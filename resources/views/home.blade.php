@@ -237,7 +237,7 @@
                         <div class="lg:col-span-7 flex flex-col items-start gap-4 text-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-blue-400/50 bg-blue-950/50 text-blue-200 text-xs font-mono font-bold tracking-widest uppercase backdrop-blur-xs">
                                 <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-                                Trienza Laboratory Research &middot; UK Dispatched
+                                Research-Chem.uk &middot; UK Dispatched
                             </div>
 
                             <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] tracking-tight"
@@ -299,7 +299,7 @@
                         <div class="lg:col-span-7 flex flex-col items-start gap-4 text-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-cyan-400/50 bg-cyan-950/50 text-cyan-200 text-xs font-mono font-bold tracking-widest uppercase backdrop-blur-xs">
                                 <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                                Trienza Laboratory Research &middot; In-Vitro Only
+                                Research-Chem.uk &middot; In-Vitro Only
                             </div>
 
                             <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.08] tracking-tight"

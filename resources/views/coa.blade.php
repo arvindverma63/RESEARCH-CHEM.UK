@@ -14,7 +14,7 @@
             </a>
         </div>
         <span style="display: inline-block; border: 1px solid rgba(255,255,255,0.5); color: #fff; font-size: 0.58rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; margin-bottom: 10px;">
-            Trienza Laboratory Research
+            Research-Chem.uk
         </span>
         <h1 style="font-family: var(--font-heading); color: #fff; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin: 0 0 8px; line-height: 1.1;">
             Certificates of Analysis (COA)

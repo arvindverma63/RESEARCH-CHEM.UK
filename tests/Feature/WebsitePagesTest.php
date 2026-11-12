@@ -251,4 +251,37 @@ class WebsitePagesTest extends TestCase
         $responseUpload = $this->get('/airo-assets/uploads/change-the-label-on-this-research-chemic-LRmlHu.png');
         $responseUpload->assertStatus(200);
     }
+
+    public function test_pwa_assets_and_manifest_configured(): void
+    {
+        // 1. Web App Manifest
+        $manifest = $this->get('/manifest.webmanifest');
+        $manifest->assertStatus(200);
+        $manifestData = json_decode($manifest->getContent(), true);
+        $this->assertIsArray($manifestData);
+        $this->assertEquals('ResearchChem', $manifestData['short_name']);
+        $this->assertEquals('standalone', $manifestData['display']);
+        $this->assertNotEmpty($manifestData['icons']);
+
+        // 2. Service Worker
+        $sw = $this->get('/sw.js');
+        $sw->assertStatus(200);
+        $this->assertStringContainsString('rc-pwa-v1', $sw->getContent());
+        $this->assertStringContainsString('PRECACHE_ASSETS', $sw->getContent());
+
+        // 3. App Icons exist and are valid PNG files
+        $this->assertFileExists(public_path('icons/icon-192.png'));
+        $this->assertFileExists(public_path('icons/icon-512.png'));
+        $this->assertFileExists(public_path('icons/apple-touch-icon.png'));
+        $this->assertFileExists(public_path('icons/icon.svg'));
+
+        // 4. Storefront homepage contains PWA metadata and install triggers
+        $home = $this->get('/');
+        $home->assertStatus(200);
+        $home->assertSee('manifest.webmanifest');
+        $home->assertSee('apple-touch-icon');
+        $home->assertSee('Install Mobile App');
+        $home->assertSee('Install ResearchChem App');
+        $home->assertSee('Install on iPhone / iPad');
+    }
 }

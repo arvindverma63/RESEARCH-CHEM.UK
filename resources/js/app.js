@@ -183,6 +183,79 @@ Alpine.store('cart', {
     }
 });
 
+// Global PWA Store
+Alpine.store('pwa', {
+    deferredPrompt: null,
+    isInstallable: false,
+    isInstalled: false,
+    isIOS: false,
+    isMobile: false,
+    showIOSModal: false,
+    showFallbackModal: false,
+    dismissed: false,
+
+    init() {
+        try {
+            const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                || window.navigator.standalone === true
+                || document.referrer.includes('android-app://');
+            this.isInstalled = !!isStandalone;
+
+            this.dismissed = localStorage.getItem('rc_pwa_dismissed') === '1';
+
+            const ua = (navigator.userAgent || '').toLowerCase();
+            this.isIOS = /iphone|ipad|ipod/.test(ua) && !window.MSStream;
+            this.isMobile = /android|iphone|ipad|ipod|mobile|phone/i.test(ua) || (window.innerWidth <= 768);
+
+            // Listen for beforeinstallprompt (Chromium / Android)
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                this.deferredPrompt = e;
+                this.isInstallable = true;
+            });
+
+            // Listen for appinstalled
+            window.addEventListener('appinstalled', () => {
+                this.isInstalled = true;
+                this.isInstallable = false;
+                this.deferredPrompt = null;
+                try {
+                    localStorage.setItem('rc_pwa_installed', '1');
+                } catch (e) {}
+            });
+        } catch (e) {
+            console.warn('[PWA] Store init error:', e);
+        }
+    },
+
+    async install() {
+        if (this.deferredPrompt) {
+            try {
+                this.deferredPrompt.prompt();
+                const choice = await this.deferredPrompt.userChoice;
+                if (choice && choice.outcome === 'accepted') {
+                    this.isInstalled = true;
+                }
+                this.deferredPrompt = null;
+                this.isInstallable = false;
+            } catch (err) {
+                console.warn('[PWA] Prompt error:', err);
+            }
+        } else if (this.isIOS) {
+            this.showIOSModal = true;
+        } else {
+            this.showFallbackModal = true;
+        }
+    },
+
+    dismiss() {
+        this.dismissed = true;
+        try {
+            localStorage.setItem('rc_pwa_dismissed', '1');
+        } catch (e) {}
+    }
+});
+
 window.Alpine = Alpine;
 Alpine.start();
 

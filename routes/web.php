@@ -14,6 +14,29 @@ use Illuminate\Support\Facades\Route;
 Route::get('/airo-assets/{type}/{path}', [MediaController::class, 'resolve'])
     ->where('path', '.*');
 
+// PWA Manifest & Service Worker Routes
+Route::get('/manifest.webmanifest', function () {
+    return response(file_get_contents(public_path('manifest.webmanifest')), 200, [
+        'Content-Type' => 'application/manifest+json; charset=UTF-8',
+        'Cache-Control' => 'public, max-age=3600',
+    ]);
+});
+
+Route::get('/site.webmanifest', function () {
+    return response(file_get_contents(public_path('site.webmanifest')), 200, [
+        'Content-Type' => 'application/manifest+json; charset=UTF-8',
+        'Cache-Control' => 'public, max-age=3600',
+    ]);
+});
+
+Route::get('/sw.js', function () {
+    return response(file_get_contents(public_path('sw.js')), 200, [
+        'Content-Type' => 'application/javascript; charset=UTF-8',
+        'Cache-Control' => 'no-cache, no-store, must-revalidate',
+        'Service-Worker-Allowed' => '/',
+    ]);
+});
+
 // 301 SEO Redirects (Must precede parameterized routes)
 Route::redirect('/catalogue', '/peptide-vials', 301);
 Route::redirect('/products', '/peptide-vials', 301);

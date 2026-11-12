@@ -1,0 +1,75 @@
+{
+  "name": "ResearchChem UK — Laboratory Compounds",
+  "short_name": "ResearchChem",
+  "description": "UK supplier of laboratory research compounds, peptides, SARMs, and pen kits. Orders shipped next working day.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#002b5c",
+  "theme_color": "#002b5c",
+  "id": "/?source=pwa",
+  "categories": ["shopping", "business"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Peptide Vials",
+      "short_name": "Peptides",
+      "description": "Browse research peptide vials",
+      "url": "/peptide-vials",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "SARMs",
+      "short_name": "SARMs",
+      "description": "Browse research SARMs compounds",
+      "url": "/sarms-products",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pen Kits",
+      "short_name": "Pen Kits",
+      "description": "Browse peptide pen kits",
+      "url": "/pen-kits",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Your Cart",
+      "short_name": "Cart",
+      "description": "View cart and checkout",
+      "url": "/cart",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

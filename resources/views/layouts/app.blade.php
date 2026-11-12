@@ -25,15 +25,6 @@
     <meta name="twitter:image" content="@yield('og_image', asset('og-image.png'))">
 
     @include('partials.pwa-head')
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('{{ asset('sw.js') }}', { scope: '/' }).catch(function (e) {
-                    console.warn('Service worker registration failed:', e);
-                });
-            });
-        }
-    </script>
 
     <!-- Google Fonts: Plus Jakarta Sans (Headings), Inter (Body) & JetBrains Mono (Technical/Specs) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -330,6 +321,28 @@
                     <span>Shopping Cart</span>
                     <span class="bg-blue-700 text-white text-xs px-2.5 py-1 rounded-full font-bold" x-text="$store.cart.count()">0</span>
                 </a>
+
+                <!-- PWA Install Button in Mobile Menu -->
+                <div x-show="!$store.pwa.isInstalled" x-cloak class="pt-2 mt-2 border-t border-slate-100">
+                    <button type="button"
+                            @click="$store.pwa.install(); mobileOpen = false;"
+                            class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-blue-50 hover:bg-blue-100/80 text-blue-900 font-semibold text-sm transition-all border border-blue-200/60 shadow-xs cursor-pointer group text-left"
+                            style="font-family: var(--font-heading);">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <img src="{{ asset('icons/icon-192.png') }}" alt="" class="w-7 h-7 rounded-md shadow-2xs shrink-0 group-hover:scale-105 transition-transform">
+                            <div class="min-w-0">
+                                <div class="text-xs font-bold text-slate-900 leading-tight">Install Mobile App</div>
+                                <div class="text-[10px] text-slate-500 font-normal truncate">Fast access &amp; instant loading</div>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-[#0052a3] group-hover:bg-[#003d7a] px-2.5 py-1 rounded-md shadow-2xs shrink-0 transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            <span>Install</span>
+                        </span>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -574,6 +587,185 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
             </svg>
         </button>
+    </div>
+
+    <!-- ── Mobile PWA Floating Install Banner ── -->
+    <div x-show="!$store.pwa.isInstalled && !$store.pwa.dismissed && !showAgeGate && ($store.pwa.isMobile || $store.pwa.isInstallable || $store.pwa.isIOS)"
+         x-cloak
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-6"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 translate-y-6"
+         class="fixed bottom-4 left-3 right-3 sm:left-auto sm:right-6 sm:w-[380px] z-40 bg-white border-2 border-[#0052a3] rounded-xl shadow-2xl p-3.5 sm:p-4 text-slate-900"
+         style="box-shadow: 0 10px 30px -5px rgba(0, 82, 163, 0.3);">
+        <div class="flex items-start gap-3">
+            <img src="{{ asset('icons/icon-192.png') }}" alt="ResearchChem App" class="w-12 h-12 rounded-xl shadow-xs shrink-0 border border-slate-100 object-cover">
+            <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 leading-tight" style="font-family: var(--font-heading);">
+                            Install ResearchChem App
+                        </h4>
+                        <p class="text-xs text-slate-600 mt-0.5 leading-snug">
+                            Instant access to research peptides, SARMs &amp; batch tracking.
+                        </p>
+                    </div>
+                    <button type="button"
+                            @click="$store.pwa.dismiss()"
+                            class="text-slate-400 hover:text-slate-600 p-1 -mt-1 -mr-1 transition-colors cursor-pointer"
+                            aria-label="Dismiss app install banner">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-3 flex items-center gap-2">
+                    <button type="button"
+                            @click="$store.pwa.install()"
+                            class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0052a3] hover:bg-[#003d7a] text-white text-xs font-bold shadow-xs transition-colors cursor-pointer"
+                            style="font-family: var(--font-heading);">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span>Install App</span>
+                    </button>
+                    <button type="button"
+                            @click="$store.pwa.dismiss()"
+                            class="px-2.5 py-1.5 text-xs text-slate-500 hover:text-slate-700 font-medium transition-colors cursor-pointer">
+                        Not now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── iOS Safari Add-to-Home-Screen Instructions Modal ── -->
+    <div x-show="$store.pwa.showIOSModal" x-cloak
+         role="dialog" aria-modal="true" aria-labelledby="ios-modal-title"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-slate-900/75 backdrop-blur-xs transition-opacity"
+             @click="$store.pwa.showIOSModal = false"></div>
+
+        <!-- Modal Dialog -->
+        <div class="relative bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 z-10 text-slate-900">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <img src="{{ asset('icons/icon-192.png') }}" alt="" class="w-8 h-8 rounded-lg shadow-2xs">
+                    <h3 id="ios-modal-title" class="text-sm font-bold text-slate-900" style="font-family: var(--font-heading);">
+                        Install on iPhone / iPad
+                    </h3>
+                </div>
+                <button type="button" @click="$store.pwa.showIOSModal = false" class="text-slate-400 hover:text-slate-600 p-1 cursor-pointer" aria-label="Close instructions">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                To install the ResearchChem app on iOS Safari, follow these 3 quick steps:
+            </p>
+
+            <div class="mt-4 space-y-3">
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">1</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Tap the <strong class="text-slate-900">Share</strong> button
+                        <span class="inline-flex items-center justify-center w-5 h-5 bg-white border border-slate-300 rounded mx-1 align-middle text-blue-600">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l4-4m0 0l4 4m-4-4v12" />
+                            </svg>
+                        </span>
+                        in Safari's bottom toolbar.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">2</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Scroll down the share menu and tap <strong class="text-slate-900">&ldquo;Add to Home Screen&rdquo;</strong>
+                        <span class="inline-flex items-center justify-center w-5 h-5 bg-white border border-slate-300 rounded mx-1 align-middle text-slate-700 font-bold">+</span>.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">3</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Tap <strong class="text-slate-900">&ldquo;Add&rdquo;</strong> in the top-right corner to finish. ResearchChem will appear on your home screen!
+                    </div>
+                </div>
+            </div>
+
+            <button type="button"
+                    @click="$store.pwa.showIOSModal = false"
+                    class="w-full mt-4 py-2 bg-[#0052a3] hover:bg-[#003d7a] text-white text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer"
+                    style="font-family: var(--font-heading);">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <!-- ── General Fallback Add-to-Home-Screen Instructions Modal ── -->
+    <div x-show="$store.pwa.showFallbackModal" x-cloak
+         role="dialog" aria-modal="true" aria-labelledby="fallback-modal-title"
+         class="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-slate-900/75 backdrop-blur-xs transition-opacity"
+             @click="$store.pwa.showFallbackModal = false"></div>
+
+        <!-- Modal Dialog -->
+        <div class="relative bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 z-10 text-slate-900">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2.5">
+                    <img src="{{ asset('icons/icon-192.png') }}" alt="" class="w-8 h-8 rounded-lg shadow-2xs">
+                    <h3 id="fallback-modal-title" class="text-sm font-bold text-slate-900" style="font-family: var(--font-heading);">
+                        Install ResearchChem App
+                    </h3>
+                </div>
+                <button type="button" @click="$store.pwa.showFallbackModal = false" class="text-slate-400 hover:text-slate-600 p-1 cursor-pointer" aria-label="Close instructions">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+                To install ResearchChem on your device:
+            </p>
+
+            <div class="mt-4 space-y-3">
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">1</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Tap your browser menu <strong class="text-slate-900">(⋮ three dots)</strong> in the top or bottom corner.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">2</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Select <strong class="text-slate-900">&ldquo;Install app&rdquo;</strong> or <strong class="text-slate-900">&ldquo;Add to Home screen&rdquo;</strong>.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-2.5 bg-slate-50 rounded-lg border border-slate-200/70">
+                    <div class="w-7 h-7 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center shrink-0">3</div>
+                    <div class="text-xs text-slate-700 leading-snug">
+                        Confirm the prompt to install the app onto your phone.
+                    </div>
+                </div>
+            </div>
+
+            <button type="button"
+                    @click="$store.pwa.showFallbackModal = false"
+                    class="w-full mt-4 py-2 bg-[#0052a3] hover:bg-[#003d7a] text-white text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer"
+                    style="font-family: var(--font-heading);">
+                Got it
+            </button>
+        </div>
     </div>
 
 </body>
